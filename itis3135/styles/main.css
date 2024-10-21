@@ -1,0 +1,62 @@
+/* media query samples: */
+/* */
+section.highlighting * {
+    background-color: red;
+}
+section.centeredc * {
+    background-color: yellow;
+    text-align: center;
+}
+section.centerede * {
+    background-color:green;
+    color:#fff;
+    margin: auto;
+    max-width: 500px;
+    width:95%;
+}
+body {
+    background:#fdfdfd;
+}
+header {
+    background:#000;
+    color:#fff;
+}
+main {
+    background:#fff;
+    text-align:center;
+}
+#colorbox {
+    height:200px;
+    width:200px;
+    background:blue;
+    margin:50px auto;
+}
+/* MOBILE RULES */
+/* Remove Initial */
+html, body {
+    all:initial;
+}
+/* Foundational Three */
+main, .maincontainer {
+    width: 95%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+/* Rule Overrides For Laptops / Small Screens */
+@media screen and ( min-width: 981px ) and ( max-width: 1400px ) {
+    #colorbox {
+        background-color:yellow;
+    }
+}
+/* Rule Overrides For Tablet Devices */
+@media screen and ( min-width: 601px ) and ( max-width: 980px )  {
+    #colorbox {
+        background-color:orange;
+    }
+}
+/* Rule Overrides For Mobile Devices */
+@media screen and ( min-width: 370px ) and ( max-width: 600px ) {
+    #colorbox {
+        background-color:red;
+    }
+}
