@@ -1,57 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- Accumulus Validator  -->
+	<script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
+	
+	<title>Andrew's Personal Webpage | UNC Charlotte</title>
 		
-		<title>Personal Webpage | UNC Charlotte</title>
-		<style type="text/css">
-			body {
-				background-color: #FFFFFF;
-				color: #333333;
-				margin: 0;
-				padding: 0;
-			}
-			#page-wrapper {
-				height: 100%;
-				width: 100%;
-				max-width: 950px;
-				margin: auto;
-			}
-			#logo-wrapper {
-				padding-top: 20px;
-				padding-bottom: 10px;
-				text-align: center;
-				border-bottom: 1px solid #006633;
-			}
-			#content-wrapper {
-				width: 100%;
-				max-width: 950px;
-				margin: auto;
-				text-align: center;
-			}			
-			a {
-				color: #006633;
-			}
-		</style>
-		<link rel="icon" type="image/png" href="data:image/png;base64," />
-		<script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>	
-	</head>
-	<body>
-		<div id="page-wrapper">
-			<div id="header-wrapper">
-				<header>
-					<div id="header-container">
-						<div id="logo-wrapper">
-							<a href="http://www.uncc.edu">
-								<img src="itis3135/images/UNCC logo.png" alt="UNC Charlotte logo" width="864" height="576">
-							</a>
-						</div> <!-- /#logo-wrapper -->
-					</div> <!-- /#header-container -->
-				</header>
-			</div> <!-- /#header-wrapper -->
-			<div id="content-wrapper">
-				<p><a href = "itis3135/index.html">Click to go to my ITIS-3135 Site</a> </p>
+	<style type="text/css">
+		/* Page background with beige */
+body {
+    background-color: #EDE8D0; /* Cream/Beige */
+    color: #333333;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    text-align: center;
+}
 
-			</div> <!-- /#content-wrapper -->
-		</div> <!-- /#page-wrapper -->
+/* Header styling */
+header {
+    margin: 30px 0;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #006633; /* Dark green */
+}
+
+h1 {
+    color: #006633;
+    font-size: 2.5rem;
+}
+
+/* Footer styling */
+footer {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 10px 0;
+    background-color: #006633; /* Dark green */
+    color: #EDE8D0; /* Cream */
+}
+
+/* Footer links */
+footer a {
+    color: #FFD700; /* Gold */
+    margin: 0 10px;
+}
+
+/* "Go to ITIS-3135" button */
+.goto-3135 {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 2px solid #256600; /* Dark olive green */
+    border-radius: 8px;
+    background-color: #A8D5BA; /* Light green */
+    color: #006633;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.goto-3135:hover {
+    background-color: #006633;
+    color: white;
+    text-decoration: underline;
+}
+
+/* Links as buttons */
+.my-links {
+    display: inline-block;
+    padding: 4px 14px;
+    border: 2px solid #256600; /* Dark olive */
+    border-radius: 8px;
+    background-color: #FFF5B7; /* Muted yellow */
+    color: #006633;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.my-links:hover {
+    background-color: #006633;
+    color: white;
+    text-decoration: underline;
+}
+
+
+		</style>	
+	</head>
+
+	<body>
+		<header>
+			<h1>Welcome to Andrew's Personal Webpage</h1>
+			<a href="https://webpages.charlotte.edu/aschmal/">
+				<img src="itis3135/images/UNCC logo.png" alt="UNC Charlotte logo" width="250">
+			</a>
+		</header>
+
+		<main>
+			<p><a class="goto-3135" href="itis3135/">Click here to go to my ITIS-3135 Site</a></p>
+		</main>
+
+		<footer>
+			<nav>
+				<a class="my-links" href="https://github.com/AndrewSchmal">GitHub</a>
+				<a class="my-links" href="https://andrewschmal.github.io/">GitHub Pages</a>
+				<a class="my-links" href="https://webpages.charlotte.edu/aschmal/">CLT Web</a>
+				<a class="my-links" href="https://linkedin.com/in/andrewschmal/">LinkedIn</a>
+			</nav>
+		</footer>
 	</body>
 </html>
