@@ -50,7 +50,21 @@
         footer {
             background-color: #333333;
             color: white;
-            padding: 10px 0;
+            padding: 15px 0;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: #FFD700; /* Gold */
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
         }
 
         .button {
@@ -160,11 +174,11 @@
     </main>
 
     <footer>
-        <p>Designed by Andrew Schmal - <a href="#">My Design Firm</a></p>
+        <p>Designed by <a href="../asdesigns.me/">AS Designs</a></p>
         <div>
-            <button class="button">HTML Validation</button>
-            <button class="button">CSS Validation</button>
-            <button class="button">Accessibility Validation</button>
+            <a target="_blank" class="button" href="https://validator.w3.org/nu/?doc=https://webpages.charlotte.edu/aschmal/itis3135/hobby/">HTML Validation</a>
+            <a target="_blank" class="button" href="https://jigsaw.w3.org/css-validator/validator?uri=https://webpages.charlotte.edu/aschmal/itis3135/hobby/">CSS Validation</a>
+            <a target="_blank" class="button" href="https://wave.webaim.org/report#/https://webpages.charlotte.edu/aschmal/itis3135/hobby/">Accessibility Validation</a>
         </div>
     </footer>
 </body>
