@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andrew's Hobby Site</title>
+
+    <style>
+        /* General Page Styling */
+        body {
+            background-color: #FAF3E0; /* Light beige background */
+            color: #333333;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        header {
+            background-color: #A44A3F; /* Dark red */
+            color: white;
+            padding: 20px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+        }
+
+        nav a {
+            color: #FFD700; /* Gold */
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.2rem;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main section {
+            display: none; /* Initially hide all sections */
+            padding: 20px;
+        }
+
+        main section.active {
+            display: block; /* Only the active section is shown */
+        }
+
+        footer {
+            background-color: #333333;
+            color: white;
+            padding: 10px 0;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #A44A3F;
+            color: white;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .button:hover {
+            background-color: #FFD700; /* Gold on hover */
+            color: black;
+        }
+
+        figure {
+            margin: 20px 0;
+        }
+
+        figure img {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        figure figcaption {
+            font-style: italic;
+            margin-top: 5px;
+        }
+    </style>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('main section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            // Show the selected section
+            document.getElementById(sectionId).classList.add('active');
+        }
+
+        // Show the "home" section by default
+        window.onload = () => showSection('home');
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Andrew's Hobby Site - Hiking Adventures</h1>
+        <nav>
+            <a href="#" onclick="showSection('home')">Home</a> |
+            <a href="#" onclick="showSection('who')">Who</a> |
+            <a href="#" onclick="showSection('when')">When</a> |
+            <a href="#" onclick="showSection('where')">Where</a> |
+            <a href="#" onclick="showSection('how')">How</a> |
+            <a href="#" onclick="showSection('why')">Why</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="active">
+            <h2>Welcome to Hiking Adventures!</h2>
+            <p>Explore the joy of hiking and discover new trails.</p>
+            <figure>
+                <img src="images/hiking.jpg" alt="Hiking Trail">
+                <figcaption>A peaceful trail through the forest.</figcaption>
+            </figure>
+        </section>
+
+        <section id="who">
+            <h2>About Me</h2>
+            <p>My name is Andrew, and I love hiking.</p>
+            <figure>
+                <img src="images/AndrewHiking.jpg" alt="Andrew hiking">
+                <figcaption>Andrew enjoying a hike in the mountains.</figcaption>
+            </figure>
+        </section>
+
+        <section id="when">
+            <h2>Best Times to Hike</h2>
+            <p>Spring and Fall are the ideal seasons for hiking.</p>
+        </section>
+
+        <section id="where">
+            <h2>Top Hiking Locations</h2>
+            <p>Here are some of my favorite hiking spots:</p>
+            <ul>
+                <li>Great Smoky Mountains</li>
+                <li>Blue Ridge Parkway</li>
+                <li>Grandfather Mountain</li>
+            </ul>
+        </section>
+
+        <section id="how">
+            <h2>How to Prepare for a Hike</h2>
+            <p>Plan ahead, wear the right gear, and stay hydrated!</p>
+        </section>
+
+        <section id="why">
+            <h2>Why I Love Hiking</h2>
+            <p>Hiking gives me peace of mind and helps me stay fit.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Designed by Andrew Schmal - <a href="#">My Design Firm</a></p>
+        <div>
+            <button class="button">HTML Validation</button>
+            <button class="button">CSS Validation</button>
+            <button class="button">Accessibility Validation</button>
+        </div>
+    </footer>
+</body>
+</html>
