@@ -99,19 +99,59 @@
             font-style: italic;
             margin-top: 5px;
         }
+
+        /* Chat UI Styling */
+        .chat-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .message {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .message img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 0 10px;
+        }
+
+        .message-text {
+            max-width: 70%;
+            padding: 10px;
+            border-radius: 10px;
+            line-height: 1.4;
+        }
+
+        .user-message {
+            justify-content: flex-end;
+        }
+
+        .user-message .message-text {
+            background-color: #A44A3F;
+            color: white;
+        }
+
+        .ai-message {
+            justify-content: flex-start;
+        }
+
+        .ai-message .message-text {
+            background-color: #EEE;
+            color: black;
+        }
     </style>
 
     <script>
         function showSection(sectionId) {
-            // Hide all sections
             const sections = document.querySelectorAll('main section');
             sections.forEach(section => section.classList.remove('active'));
-
-            // Show the selected section
             document.getElementById(sectionId).classList.add('active');
         }
-
-        // Show the "home" section by default
         window.onload = () => showSection('home');
     </script>
 </head>
@@ -125,7 +165,7 @@
             <a href="#" onclick="showSection('where')">Where</a> |
             <a href="#" onclick="showSection('how')">How</a> |
             <a href="#" onclick="showSection('why')">Why</a> |
-            <a href="#" onclick="showSection('ai-prompts')">AI Prompts</a> <!-- New AI Prompts Tab -->
+            <a href="#" onclick="showSection('ai-prompts')">AI Prompts</a>
         </nav>
     </header>
 
@@ -148,40 +188,47 @@
             </figure>
         </section>
 
-        <section id="when">
-            <h2>Best Times to Hike</h2>
-            <p>Spring and Fall are the ideal seasons for hiking.</p>
-        </section>
-
-        <section id="where">
-            <h2>Top Hiking Locations</h2>
-            <p>Here are some of my favorite hiking spots:</p>
-            <ul>
-                <li>Great Smoky Mountains</li>
-                <li>Blue Ridge Parkway</li>
-                <li>Grandfather Mountain</li>
-            </ul>
-        </section>
-
-        <section id="how">
-            <h2>How to Prepare for a Hike</h2>
-            <p>Plan ahead, wear the right gear, and stay hydrated!</p>
-        </section>
-
-        <section id="why">
-            <h2>Why I Love Hiking</h2>
-            <p>Hiking gives me peace of mind and helps me stay fit.</p>
-        </section>
-
         <!-- New AI Prompts Section -->
         <section id="ai-prompts">
             <h2>AI Prompts</h2>
-            <p>This section will document the AI prompts used to create this site.</p>
-            <ul>
-                <li>Prompt for generating hiking-related descriptions and captions.</li>
-                <li>Prompt for code suggestions on HTML structure and CSS styling.</li>
-                <li>Prompt to generate ideas for hiking destinations and preparation tips.</li>
-            </ul>
+            <div class="chat-container">
+                <div class="message user-message">
+                    <div class="message-text">
+                        Can you generate ideas for hiking destinations?
+                    </div>
+                    <img src="images/user-icon.png" alt="User Icon">
+                </div>
+                <div class="message ai-message">
+                    <img src="images/ai-icon.png" alt="AI Icon">
+                    <div class="message-text">
+                        Sure! Here are a few suggestions: Great Smoky Mountains, Blue Ridge Parkway, and Grandfather Mountain.
+                    </div>
+                </div>
+                <div class="message user-message">
+                    <div class="message-text">
+                        Can you generate ideas for hiking destinations?
+                    </div>
+                    <img src="images/user-icon.png" alt="User Icon">
+                </div>
+                <div class="message ai-message">
+                    <img src="images/ai-icon.png" alt="AI Icon">
+                    <div class="message-text">
+                        Sure! Here are a few suggestions: Great Smoky Mountains, Blue Ridge Parkway, and Grandfather Mountain.
+                    </div>
+                </div>
+                <div class="message user-message">
+                    <div class="message-text">
+                        Can you generate ideas for hiking destinations?
+                    </div>
+                    <img src="images/user-icon.png" alt="User Icon">
+                </div>
+                <div class="message ai-message">
+                    <img src="images/ai-icon.png" alt="AI Icon">
+                    <div class="message-text">
+                        Sure! Here are a few suggestions: Great Smoky Mountains, Blue Ridge Parkway, and Grandfather Mountain.
+                    </div>
+                </div>                 
+            </div>
         </section>
     </main>
 
