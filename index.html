@@ -10,78 +10,87 @@
 	<title>Andrew's Personal Webpage | UNC Charlotte</title>
 		
 	<style type="text/css">
-		/* Page background with beige */
+
 body {
-    background-color: #EDE8D0; /* Cream/Beige */
+    background-color: #D4E9E2; /* Light Teal */
     color: #333333;
     font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    line-height: 1.5;
+    line-height: 1.6;
     text-align: center;
+    font-size: 24px;
 }
 
-/* Header styling */
 header {
-    margin: 30px 0;
-    padding-bottom: 30px;
-    border-bottom: 2px solid #006633; /* Dark green */
+    margin: 40px 0;
+    padding-bottom: 40px;
+    border-bottom: 2px solid #006633;
 }
 
 h1 {
     color: #006633;
-    font-size: 2.5rem;
+    font-size: 3rem; /* Larger header text */
 }
 
-/* Footer styling */
-footer {
-    margin-top: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-    padding: 10px 0;
-    background-color: #006633; /* Dark green */
-    color: #EDE8D0; /* Cream */
-}
-
-/* Footer links */
-footer a {
-    color: #FFD700; /* Gold */
-    margin: 0 10px;
-}
-
-/* "Go to ITIS-3135" button */
-.goto-3135 {
-    display: inline-block;
-    padding: 8px 16px;
-    border: 2px solid #256600; /* Dark olive green */
-    border-radius: 8px;
-    background-color: #A8D5BA; /* Light green */
+a {
     color: #006633;
-    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
+    font-size: 1.2rem; /* Increase link text size */
 }
 
-.goto-3135:hover {
-    background-color: #006633;
-    color: white;
+a:hover {
     text-decoration: underline;
 }
 
-/* Links as buttons */
+footer {
+    margin-top: 30px;
+    padding: 20px 0;
+    background-color: #0D5C63; /* Teal */
+    color: #F7FFF7; /* Pale Green */
+}
+
+footer a {
+    color: #FAED27; /* Bright Yellow */
+    margin: 0 15px;
+    font-size:1.25rem;
+}
+
+/* Border around my "Go here to my 3135 class" button */
+.goto-3135 {
+    display: inline-block;
+    padding: 12px 20px;
+    border: 2px solid #0A3D40; /* Dark Teal */
+    border-radius: 8px;
+    background-color: #A8D5BA; /* Light Green */
+    color: #0D5C63;
+    transition: background-color 0.3s, color 0.3s;
+    font-size:1.75rem;
+}
+
+.goto-3135:hover {
+    background-color: #0D5C63;
+    color: white;
+}
+
+/* Smaller border around all my other links */
 .my-links {
     display: inline-block;
-    padding: 4px 14px;
-    border: 2px solid #256600; /* Dark olive */
+    padding: 8px 18px;
+    border: 2px solid #0A3D40; /* Dark Teal */
     border-radius: 8px;
-    background-color: #FFF5B7; /* Muted yellow */
-    color: #006633;
+    background-color: #C3DCE3; /* Blue-gray */
+    color: #0D5C63;
+    font-size: 1.2rem;
     transition: background-color 0.3s, color 0.3s;
 }
 
 .my-links:hover {
-    background-color: #006633;
+    background-color: #0D5C63;
     color: white;
-    text-decoration: underline;
 }
+
+
 
 
 		</style>	
@@ -100,12 +109,21 @@ footer a {
 		</main>
 
 		<footer>
-			<nav>
-				<a class="my-links" href="https://github.com/AndrewSchmal">GitHub</a>
-				<a class="my-links" href="https://andrewschmal.github.io/">GitHub Pages</a>
-				<a class="my-links" href="https://webpages.charlotte.edu/aschmal/">CLT Web</a>
-				<a class="my-links" href="https://linkedin.com/in/andrewschmal/">LinkedIn</a>
-			</nav>
-		</footer>
+            <nav>
+                <a class="my-links" href="https://github.com/AndrewSchmal">
+                    <img src="itis3135/images/GitHubLogo.png" alt="GitHub logo" width="20"> GitHub
+                </a>
+                <a class="my-links" href="https://andrewschmal.github.io/">
+                    <img src="itis3135/images/UNCC logo.png" alt="Website logo" width="20"> GitHub Pages
+                </a>
+                <a class="my-links" href="https://webpages.charlotte.edu/aschmal/">
+                    <img src="itis3135/images/UNCC logo.png" alt="Home logo" width="20"> CLT Web
+                </a>
+                <a class="my-links" href="https://linkedin.com/in/andrewschmal/">
+                    <img src="itis3135/images/LinkedInLogo.png" alt="LinkedIn logo" width="20"> LinkedIn
+                </a>
+            </nav>
+        </footer>
+        
 	</body>
 </html>
