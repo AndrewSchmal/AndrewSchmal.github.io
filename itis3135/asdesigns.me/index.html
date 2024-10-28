@@ -11,7 +11,7 @@
 
     <!-- Accumulus Validator -->
     <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
-    
+
     <!-- Embedded Stylesheet -->
     <style>
         /* Color Scheme: https://coolors.co/919098-897c80-ba8f95-cab6cd-cfbcdf */
@@ -102,6 +102,7 @@
                 padding: 10px;
                 margin: 20px;
                 width: 90%;
+                box-sizing: border-box; /* ensures padding included in width so accumuls stops yelling at me */
             }
 
             header img {
@@ -109,9 +110,10 @@
                 height: 40px;
             }
 
-            header h1 {
+            /* Removed bc Accumulus thinks it's reduntant :( */
+            /* h1 {
                 font-size: 2rem;
-            }
+            } */
         }
     </style>
 </head>
