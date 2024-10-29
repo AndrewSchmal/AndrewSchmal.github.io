@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Andrew's Hobby Site</title>
+    <title>Andrew's Cooking Cookbook</title>
 
     <style>
         /* General Page Styling */
@@ -39,12 +39,12 @@
         }
 
         main section {
-            display: none; /* Initially hide all sections */
+            display: none;
             padding: 20px;
         }
 
         main section.active {
-            display: block; /* Only the active section is shown */
+            display: block;
         }
 
         footer {
@@ -80,7 +80,7 @@
         }
 
         .button:hover {
-            background-color: #FFD700; /* Gold on hover */
+            background-color: #FFD700;
             color: black;
         }
 
@@ -100,7 +100,6 @@
             margin-top: 5px;
         }
 
-        /* Chat UI Styling */
         .chat-container {
             max-width: 800px;
             margin: 0 auto;
@@ -124,7 +123,6 @@
             max-width: 70%;
             padding: 10px;
             border-radius: 10px;
-            line-height: 1.4;
         }
 
         .user-message {
@@ -144,6 +142,49 @@
             background-color: #EEE;
             color: black;
         }
+        .meal-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-top: 20px;
+        text-align: left;
+    }
+
+    .meal-grid h4 {
+        margin-bottom: 10px;
+        color: #A44A3F;
+    }
+
+    .meal-grid ul {
+        list-style-type: disc;
+        padding-left: 20px;
+    }
+
+    @media (max-width: 768px) {
+        .meal-grid {
+            grid-template-columns: 1fr; /* Stacks columns on small screens */
+        }
+    }
+
+    h4 {
+        text-decoration: underline;
+    }
+
+    .meal-prep-gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .meal-prep-gallery img {
+        width: 100%;
+        border-radius: 10px;
+    }
+
+    figure {
+        text-align: center;
+    }
     </style>
 
     <script>
@@ -152,82 +193,189 @@
             sections.forEach(section => section.classList.remove('active'));
             document.getElementById(sectionId).classList.add('active');
         }
+
         window.onload = () => showSection('home');
     </script>
 </head>
 <body>
     <header>
-        <h1>Andrew's Hobby Site - Hiking Adventures</h1>
+        <h1>Andrew's Cooking Adventures</h1>
         <nav>
             <a href="#" onclick="showSection('home')">Home</a> |
-            <a href="#" onclick="showSection('who')">Who</a> |
-            <a href="#" onclick="showSection('when')">When</a> |
-            <a href="#" onclick="showSection('where')">Where</a> |
-            <a href="#" onclick="showSection('how')">How</a> |
-            <a href="#" onclick="showSection('why')">Why</a> |
+            <a href="#" onclick="showSection('grocery-shopping')">Grocery Shopping</a> |
+            <a href="#" onclick="showSection('utensils')">Essential Utensils</a> |
+            <a href="#" onclick="showSection('meal-prep')">Meal Prep</a> |
+            <a href="#" onclick="showSection('recipes')">Recipes</a> |
             <a href="#" onclick="showSection('ai-prompts')">AI Prompts</a>
         </nav>
     </header>
 
     <main>
         <section id="home" class="active">
-            <h2>Welcome to Hiking Adventures!</h2>
-            <p>Explore the joy of hiking and discover new trails.</p>
+            <h2>Welcome to my Cooking Cookbook!</h2>
+            <p>Learning to cook is one of the best hobbies/skills you can learn, and knowing where to get started can be one of the hardest steps for many people. I hope this website is a great starting point for you to learn more about the art of cooking and baking and where to start. From mastering basic utensils to planning meals, this site has it all!</p>
             <figure>
-                <img src="images/hiking.jpg" alt="Hiking Trail">
-                <figcaption>A peaceful trail through the forest.</figcaption>
+                <img src="images/sanji-cooking.gif" alt="Cooking in Action">
+                <figcaption>This will be you by the end of reading this website.</figcaption>
             </figure>
         </section>
 
-        <section id="who">
-            <h2>About Me</h2>
-            <p>My name is Andrew, and I love hiking.</p>
-            <figure>
-                <img src="images/AndrewHiking.jpg" alt="Andrew hiking">
-                <figcaption>Andrew enjoying a hike in the mountains.</figcaption>
-            </figure>
+        <section id="grocery-shopping">
+            <h2>Grocery Shopping Without a List</h2>
+            <p>One of the first steps to becoming a great home cook is mastering your grocery shopping habits. Instead of following recipes to the letter and buying specialized ingredients you may only use once, I recommend focusing on <strong>meal building blocks</strong>. This way, you can create flexible meals with the ingredients you have, reducing food waste and unnecessary costs.</p>
+        
+            <!-- Embedded YouTube Video -->
+            <div style="text-align: center; margin-top: 20px;">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/srMEoe_5y6g" 
+                title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; 
+                clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+                </iframe>
+                <figcaption style="margin-top: 10px; font-style: italic;">
+                    Ethan Chlebowski discusses the value of food-based cooking over strict recipe-based cooking.
+                </figcaption>
+            </div>
+        
+            <h3>Meal Building Blocks</h3>
+            <p>Below are some essential building blocks you can always have on hand. Use them to create a wide variety of dishes, tailored to what you enjoy.</p>
+        
+            <!-- Two-column layout using CSS Grid -->
+            <div class="meal-grid">
+                <div>
+                    <h4>Proteins (Choose 1-2)</h4>
+                    <ul>
+                        <li>Chicken Breast / Thighs</li>
+                        <li>Ground Meat (Beef, Chicken, Pork, Lamb, Plant-based)</li>
+                        <li>Steak or Chops (Beef, Pork, Lamb)</li>
+                        <li>Braising Cuts (Pork Shoulder, Beef Chuck Roast, Short Ribs)</li>
+                        <li>Beans / Tofu</li>
+                        <li>Eggs</li>
+                    </ul>
+        
+                    <h4>Starch Bases (Choose 2-3)</h4>
+                    <ul>
+                        <li>Rice</li>
+                        <li>Pasta / Noodles</li>
+                        <li>Tortillas / Wraps</li>
+                        <li>Bread</li>
+                        <li>Lettuce / Leafy Greens</li>
+                        <li>Tostadas / Chips</li>
+                    </ul>
+                </div>
+        
+                <div>
+                    <h4>Vegetables (Choose 2-3)</h4>
+                    <ul>
+                        <li>Carrots</li>
+                        <li>Potatoes / Sweet Potatoes</li>
+                        <li>Broccoli / Bok Choy</li>
+                        <li>Zucchini / Squash</li>
+                        <li>Bell Peppers / Poblanos</li>
+                        <li>Peas (Frozen)</li>
+                    </ul>
+        
+                    <h4>Meal Flavor Adjusters</h4>
+                    <ul>
+                        <li>Mayo / Greek Yogurt / Sour Cream</li>
+                        <li>Harissa Paste / Gochujang / Chili Crisp</li>
+                        <li>Tomato Paste / Hot Sauce / Sriracha</li>
+                        <li>Hummus / Salad Dressing</li>
+                        <li>Soy Sauce / Fish Sauce / Oyster Sauce</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        
+
+        <section id="utensils">
+            <h2>Essential Kitchen Utensils</h2>
+            <p>A good set of kitchen tools is vital for making your cooking experience easy and enjoyable. Here are a few essentials every cook should have:</p>
+        
+            <div class="utensil-gallery">
+                <figure>
+                    <img src="images/chef-knife.png" alt="Chef's Knife">
+                    <figcaption><strong>Chef's Knife:</strong> The most versatile tool in the kitchen. Great for chopping and slicing.</figcaption>
+                </figure>
+        
+                <figure>
+                    <img src="images/cutting-board.png" alt="Cutting Board">
+                    <figcaption><strong>Cutting Board:</strong> Provides a stable surface to prep ingredients safely. Can use wood or plastic, depending on the ingredient.</figcaption>
+                </figure>
+        
+                <figure>
+                    <img src="images/measuring-cups.png" alt="Measuring Cups">
+                    <figcaption><strong>Measuring Cups:</strong> Essential for baking and cooking with precise amounts.</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="images/measuring-spoons.png" alt="Measuring Spoons">
+                    <figcaption><strong>Measuring Spoons:</strong> Like measuring cups, but smaller and with a much larger handle.</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="images/kitchen-scale.png" alt="Kitchen Scale">
+                    <figcaption><strong>Kitchen Scale:</strong> Like measuring cups, but smaller and with a much larger handle.</figcaption>
+                </figure>
+        
+                <figure>
+                    <img src="images/nonstick-pan.png" alt="Non-stick Pan">
+                    <figcaption><strong>Non-Stick Pan:</strong> Ideal for frying and cooking without sticking or burning.</figcaption>
+                </figure>
+            </div>
+        
+            <p>To explore more utensils and how to use them, visit the full guide <a href="https://www.nerdfitness.com/blog/cooking-101-your-essential-kitchen-tools/" target="_blank">here</a>.</p>
         </section>
 
-        <!-- New AI Prompts Section -->
+        <section id="meal-prep">
+            <h2>Mastering Meal Prep</h2>
+            <p>Meal prep is the art of preparing meals or individual ingredients ahead of time, making it easier to enjoy healthy and efficient meals during your busy days. Below are different ways to meal prep, so you can pick what fits your lifestyle the best!</p>
+            
+            <p>Choose one specific day of the week to do all your meal prep for extra efficiency. Most people choose Saturday or Sunday so they don't have to cook during a weeknight and can prepare all their meals for the month, but do whatever works best for you. I personally prefer to do reheat meals, freezing extras so I don't have to worry about freshness by the time I get to them.</p>
+            <div class="meal-prep-gallery">
+                <figure>
+                    <img src="images/reheat-meals.png" alt="Reheat Meals">
+                    <figcaption><strong>Reheat Meals:</strong> Fully-cooked meals you just need to reheat.</figcaption>
+                </figure>
+        
+                <figure>
+                    <img src="images/assemble-ahead.png" alt="Assemble Ahead">
+                    <figcaption><strong>Assemble Ahead:</strong> Prepare ingredients ahead of time and freeze for easy assembly later.</figcaption>
+                </figure>
+        
+                <figure>
+                    <img src="images/ingredient-prep.png" alt="Ingredient Prep">
+                    <figcaption><strong>Ingredient Prep:</strong> Portion out ingredients for quick use later.</figcaption>
+                </figure>
+        
+                <figure>
+                    <img src="images/buffet-style.png" alt="Buffet Style">
+                    <figcaption><strong>Buffet Style:</strong> Prep various ingredients to mix and match throughout the week.</figcaption>
+                </figure>
+        
+                <figure>
+                    <img src="images/batch-prep.png" alt="Batch Prep">
+                    <figcaption><strong>Batch Prep:</strong> Cook larger portions of individual ingredients to use in multiple meals.</figcaption>
+                </figure>
+            </div>
+        
+            <p>For more tips and ideas, check out this <a href="https://sweetpeasandsaffron.com/category/meal-prep/" target="_blank">Meal Prep Guide</a>.</p>
+        </section>
+
+        <section id="recipes">
+            <h2>Favorite Recipes</h2>
+            <p>Try these easy recipes: Spaghetti Carbonara, Chocolate Chip Cookies, and Grilled Chicken Salad.</p>
+        </section>
+
         <section id="ai-prompts">
             <h2>AI Prompts</h2>
             <div class="chat-container">
                 <div class="message user-message">
-                    <div class="message-text">
-                        Can you generate ideas for hiking destinations?
-                    </div>
-                    <img src="images/user-icon.png" alt="User Icon">
+                    <div class="message-text">Can you suggest easy dinner recipes?</div>
+                    <img src="../my-icon.png" alt="User Icon">
                 </div>
                 <div class="message ai-message">
-                    <img src="images/ai-icon.png" alt="AI Icon">
-                    <div class="message-text">
-                        Sure! Here are a few suggestions: Great Smoky Mountains, Blue Ridge Parkway, and Grandfather Mountain.
-                    </div>
+                    <img src="../ai-icon.png" alt="AI Icon">
+                    <div class="message-text">Sure! Try Spaghetti Carbonara, Chicken Stir-fry, or Tacos.</div>
                 </div>
-                <div class="message user-message">
-                    <div class="message-text">
-                        Can you generate ideas for hiking destinations?
-                    </div>
-                    <img src="images/user-icon.png" alt="User Icon">
-                </div>
-                <div class="message ai-message">
-                    <img src="images/ai-icon.png" alt="AI Icon">
-                    <div class="message-text">
-                        Sure! Here are a few suggestions: Great Smoky Mountains, Blue Ridge Parkway, and Grandfather Mountain.
-                    </div>
-                </div>
-                <div class="message user-message">
-                    <div class="message-text">
-                        Can you generate ideas for hiking destinations?
-                    </div>
-                    <img src="images/user-icon.png" alt="User Icon">
-                </div>
-                <div class="message ai-message">
-                    <img src="images/ai-icon.png" alt="AI Icon">
-                    <div class="message-text">
-                        Sure! Here are a few suggestions: Great Smoky Mountains, Blue Ridge Parkway, and Grandfather Mountain.
-                    </div>
-                </div>                 
             </div>
         </section>
     </main>
@@ -235,9 +383,9 @@
     <footer>
         <p>Designed by <a href="../asdesigns.me/">AS Designs</a></p>
         <div>
-            <a target="_blank" class="button" href="https://validator.w3.org/nu/?doc=https://webpages.charlotte.edu/aschmal/itis3135/hobby/">HTML Validation</a>
-            <a target="_blank" class="button" href="https://jigsaw.w3.org/css-validator/validator?uri=https://webpages.charlotte.edu/aschmal/itis3135/hobby/">CSS Validation</a>
-            <a target="_blank" class="button" href="https://wave.webaim.org/report#/https://webpages.charlotte.edu/aschmal/itis3135/hobby/">Accessibility Validation</a>
+            <a class="button" target="_blank" href="https://validator.w3.org/nu/?doc=https://webpages.charlotte.edu/aschmal/itis3135/hobby/">HTML Validation</a>
+            <a class="button" target="_blank" href="https://jigsaw.w3.org/css-validator/validator?uri=https://webpages.charlotte.edu/aschmal/itis3135/hobby/">CSS Validation</a>
+            <a class="button" target="_blank" href="https://wave.webaim.org/report#/https://webpages.charlotte.edu/aschmal/itis3135/hobby/">Accessibility Validation</a>
         </div>
     </footer>
 </body>
