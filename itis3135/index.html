@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <title>Andrew's ITIS3135 Course Page</title>
-    
+
     <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
 
     <style>
         /* General Page Styling */
         body {
-            background-color: #E8F1F2; /* Softer Light Teal */
+            background-color: #E8F1F2;
+            /* Softer Light Teal */
             color: #333333;
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -24,7 +26,8 @@
         header {
             margin: 40px 0;
             padding-bottom: 20px;
-            border-bottom: 2px solid #005F73; /* Deep Teal */
+            border-bottom: 2px solid #005F73;
+            /* Deep Teal */
         }
 
         h1 {
@@ -113,7 +116,8 @@
         }
 
         .design-firm a {
-            color: #FAED27; /* Bright Yellow */
+            color: #FAED27;
+            /* Bright Yellow */
             text-decoration: none;
             font-weight: bold;
         }
@@ -139,16 +143,61 @@
             color: white;
         }
 
+        /* Certification Container */
+        .certification-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .cert-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #0A3D40;
+            border-radius: 12px;
+            background-color: #C3DCE3;
+            color: #0D5C63;
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-sizing: border-box;
+            /* Fix for width with border and padding */
+        }
+
+        .cert-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .cert-box img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+
+        .cert-box p {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 0;
+        }
     </style>
 </head>
+
 <body>
     <header>
         <h1>Andrew Schmal's ITIS-3135 Course Page</h1>
         <!-- Navigation Bars -->
         <nav>
             <!-- <p>Check out my other pages:  -->
-                <p class="my-links">Assignments: Coming soon!</p> 
-                    
+            <p class="my-links">Assignments: Coming soon!</p>
+
             <!-- </p> -->
         </nav>
         <nav>
@@ -165,42 +214,52 @@
     </main>
 
     <footer>
-    <p>Check out my links below:</p>
-    <nav>
-        <a target="_blank" class="my-links" href="https://github.com/AndrewSchmal">
-            <img src="images/GitHubLogo.png" alt="GitHub logo" width="20"> GitHub
-        </a>
-        <a target="_blank" class="my-links" href="https://andrewschmal.github.io/">
-            <img src="images/UNCC%20logo.png" alt="Website logo" width="20"> GitHub Pages
-        </a>
-        <a target="_blank" class="my-links" href="https://webpages.charlotte.edu/aschmal/">
-            <img src="images/UNCC%20logo.png" alt="CLT Web logo" width="20"> CLT Web
-        </a>
-        <a target="_blank" class="my-links" href="https://linkedin.com/in/andrewschmal/">
-            <img src="images/LinkedInLogo.png" alt="LinkedIn logo" width="20"> LinkedIn
-        </a>
-        <a target="_blank" class="my-links" href="https://www.freecodecamp.org/AndrewSchmal">
-            <img src="images/fCCLogo.png" alt="freeCodeCamp logo" width="20"> freeCodeCamp
-        </a>
-        <a target="_blank" class="my-links" href="https://www.codecademy.com/profiles/andrewschmal">
-            <img src="images/CodecademyLogo.png" alt="Codecademy logo" width="20"> codecademy
-        </a>
-    </nav>
-
-    <div class="design-firm">
-        <p>
-            Designed by <a href="./asdesigns.me/">AS Designs</a>, <i>Certified in <a href="https://www.freecodecamp.org/certification/AndrewSchmal/responsive-web-design" target="_blank">Responsive Web Design</a></i>.
-        </p>
-        <p>
-            <a target="_blank" href="https://validator.w3.org/nu/?doc=https://andrewschmal.github.io/itis3135/">
-                HTML Validation
-            </a> |
-            <a target="_blank" href="https://jigsaw.w3.org/css-validator/validator?uri=https://andrewschmal.github.io/itis3135/">
-                CSS Validation
+        <p>Check out my links below (opens in a new tab!):</p>
+        <nav>
+            <a target="_blank" class="my-links" href="https://github.com/AndrewSchmal">
+                <img src="images/GitHubLogo.png" alt="GitHub logo" width="20"> GitHub
             </a>
-        </p>
-    </div>
-</footer>
+            <a target="_blank" class="my-links" href="https://andrewschmal.github.io/">
+                <img src="images/UNCC%20logo.png" alt="Website logo" width="20"> GitHub Pages
+            </a>
+            <a target="_blank" class="my-links" href="https://webpages.charlotte.edu/aschmal/">
+                <img src="images/UNCC%20logo.png" alt="CLT Web logo" width="20"> CLT Web
+            </a>
+            <a target="_blank" class="my-links" href="https://linkedin.com/in/andrewschmal/">
+                <img src="images/LinkedInLogo.png" alt="LinkedIn logo" width="20"> LinkedIn
+            </a>
+            <a target="_blank" class="my-links" href="https://www.freecodecamp.org/AndrewSchmal">
+                <img src="images/fCCLogo.png" alt="freeCodeCamp logo" width="20"> freeCodeCamp
+            </a>
+            <a target="_blank" class="my-links" href="https://www.codecademy.com/profiles/andrewschmal">
+                <img src="images/CodecademyLogo.png" alt="Codecademy logo" width="20"> codecademy
+            </a>
+        </nav>
+
+        <div class="design-firm">
+            <h3>Designed by <a href="./asdesigns.me/">AS Designs</a></h3>
+            <div class="certification-container">
+                <a class="cert-box" href="https://www.freecodecamp.org/certification/AndrewSchmal/responsive-web-design"
+                    target="_blank">
+                    <img src="images/RWDCert.png" alt="Responsive Web Design Certificate">
+                    <p>Responsive Web Design</p>
+                </a>
+                <div class="cert-box">
+                    <p>Coming Soon</p>
+                </div>
+            </div>
+            <p>
+                <a target="_blank" href="https://validator.w3.org/nu/?doc=https://andrewschmal.github.io/itis3135/">
+                    HTML Validation
+                </a> |
+                <a target="_blank"
+                    href="https://jigsaw.w3.org/css-validator/validator?uri=https://andrewschmal.github.io/itis3135/">
+                    CSS Validation
+                </a>
+            </p>
+        </div>
+    </footer>
 
 </body>
+
 </html>
