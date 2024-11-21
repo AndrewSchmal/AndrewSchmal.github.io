@@ -159,14 +159,13 @@
             border: 2px solid #0A3D40;
             border-radius: 12px;
             background-color: #C3DCE3;
-            color: #0D5C63;
             padding: 20px;
             width: 200px;
+            height: 250px;
             text-align: center;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
             box-sizing: border-box;
-            /* Fix for width with border and padding */
         }
 
         .cert-box:hover {
@@ -181,12 +180,18 @@
             border-radius: 8px;
         }
 
-
         .cert-box p {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin: 0;
+            color: #0D5C63;
         }
+
+        h4 {
+    color: #CA6702; /* Bright contrasting color to stand out */
+    font-size: 1.8rem;
+    margin-top: 15px;
+    text-transform: uppercase; /* Optional for emphasis */
+    font-weight: bold;
+}
+
     </style>
 </head>
 
@@ -238,15 +243,18 @@
 
         <div class="design-firm">
             <h3>Designed by <a href="./asdesigns.me/">AS Designs</a></h3>
+            <h4>freeCodeCamp certified:</h4>
             <div class="certification-container">
                 <a class="cert-box" href="https://www.freecodecamp.org/certification/AndrewSchmal/responsive-web-design"
                     target="_blank">
                     <img src="images/RWDCert.png" alt="Responsive Web Design Certificate">
                     <p>Responsive Web Design</p>
                 </a>
-                <div class="cert-box">
-                    <p>Coming Soon</p>
-                </div>
+                <a class="cert-box" href="https://www.freecodecamp.org/certification/AndrewSchmal/responsive-web-design"
+                    target="_blank">
+                    <img src="images/RWDCert.png" alt="Coming Soon)">
+                    <p>JS Algorithms & DS Course</p>
+                </a>
             </div>
             <p>
                 <a target="_blank" href="https://validator.w3.org/nu/?doc=https://andrewschmal.github.io/itis3135/">
@@ -258,6 +266,8 @@
                 </a>
             </p>
         </div>
+        
+
     </footer>
 
 </body>
