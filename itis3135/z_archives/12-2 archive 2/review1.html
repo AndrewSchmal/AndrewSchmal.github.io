@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peer Review 1</title>
+    <style>
+        body {
+            background-color: #E8F1F2; /* Softer Light Teal */
+            color: #0D5C63; /* Blue-Gray */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #0A9396; /* Aqua */
+            color: #F7FFF7; /* White Tint */
+            padding: 20px 0;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+        }
+
+        nav {
+            margin: 10px 0;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 0 5px;
+            border: 2px solid #005F73;
+            border-radius: 8px;
+            background-color: #94D2BD;
+            color: #005F73;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #005F73;
+            color: #F7FFF7;
+        }
+
+        main {
+            margin: 20px auto;
+            padding: 20px;
+            max-width: 800px;
+            background-color: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        main h2 {
+            color: #0A9396;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            text-align: left;
+            margin: 0 auto;
+            padding: 0;
+            list-style-type: none;
+            max-width: 600px;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        ul li:before {
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .checkmark:before {
+            content: "✔️";
+            color: green;
+        }
+
+        .improve:before {
+            content: "⚠️";
+            color: orange;
+        }
+
+        .cross:before {
+            content: "❌";
+            color: red;
+        }
+
+        a {
+            color: #005F73;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #CA6702;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Client Project - Part 3B Peer Review #1</h1>
+    <nav>
+        <a class="my-links" href="index.html">Home</a>
+        <a class="my-links" href="introduction.html">Introduction</a>
+        <a class="my-links" href="project_overview.html">Project Overview</a>
+        <a class="my-links" href="review1.html">Peer Review 1</a>
+        <a class="my-links" href="review2.html">Peer Review 2</a>
+    </nav>
+
+    <nav>
+        <a class="my-links" href="./hobby/">Hobby Page (Midterm)</a>
+        <p class="my-links">Other Projects Coming Soon!</p>
+    </nav>
+
+    <main>
+        <h2>Peer Review 1: Cabahug, Aleeza</h2>
+        <div>
+            <figure>
+                <img src="images/review1.png" alt="Screenshot of Cahabug's Website"
+                    style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                <figcaption>
+                    <a href="https://webpages.charlotte.edu/acabahug/itis3135/" target="_blank">View Aleeza's Website</a>
+                </figcaption>
+            </figure>
+        </div>
+
+        <h3>Evaluation</h3>
+        <ul>
+            <li class="checkmark">Page leads to the correct location.</li>
+            <li class="checkmark">No spaces or uppercase letters in file names.</li>
+            <li class="improve">Uses CRAP principles effectively (Contrast, Repetition, Alignment, Proximity). 
+                <br><em>- Alignment could use slight adjustments in tagline spacing.</em>
+                <br><em>- Stuff like the white form in the "BYO Intro" page is pretty bright/harsh on the eyes, maybe replace that with a more natural color if you can.</em>
+            </li>
+            <li class="checkmark">Has header, main, footer, and optional nav as required.</li>
+            <li class="checkmark">Header includes the site's branding and uses proper hierarchy.</li>
+            <li class="checkmark">Tagline is visible and consistent on every page.</li>
+            <li class="checkmark">Footer includes validation links and user page menu.</li>
+            <li class="improve">Specific project requirements are addressed. 
+                <br><em>- You could maybe add something else to the homepage, since it's more empty than most other pages, but I think it looks really good styling wise. If you want, you could consider expanding on the course context for a more detailed homepage.</em>
+            </li>
+        </ul>
+
+        <h3>Additional Feedback</h3>
+        <ul>
+            <li><strong>Strength:</strong> Very girlypop/colorful design, stands out compared to most other websites. Navigation works and makes the website look full of stuff to click around in. Styling is consistent and all that too.</li>
+            <li><strong>Improvement:</strong> Improve contrast between the navigation text and background for better readability. </li>
+            <li><strong>Suggestion:</strong> Make sure the bright pink is readable/accessible, it could be hard to read if it's "an old lady on an ipad looking at the website outside in the sun" to use the example from class. Maybe add hover effects on navigation links and ensure responsiveness for mobile devices (testing viewport and all that stuff).</li>
+        </ul>
+
+        <p>Evaluation by Andrew Schmal. Completed on 11/26/2024.</p>
+        <footer>
+            <a href="index.html">Back to Homepage</a>
+        </footer>
+    </main>
+</body>
+
+</html>
