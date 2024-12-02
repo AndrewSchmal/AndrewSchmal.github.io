@@ -38,3 +38,19 @@ main {
     }
 }
 
+h1 {
+    text-align: center; 
+    color: #0A9396; 
+    font-size: 3rem; 
+    font-family: 'Arial', sans-serif;
+    text-shadow: 2px 2px #333; 
+}
+
+/* Add a tagline below the title */
+h2 {
+    text-align: center;
+    color: #0baaac; 
+    font-size: 1.5rem;
+    margin-top: -10px; /* Adjust spacing */
+    font-family: 'Arial', sans-serif;
+}
