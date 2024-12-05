@@ -199,23 +199,8 @@
 
 <body>
     <header>
-        <h1>Andrew Schmal's Acclaimed Squid</h1>
-        <h2>ITIS-3135 Home Page</h2>
-        <div id="header-container"></div>
-
-        <!-- Navigation -->
-       <nav>
-        <a class="my-links" href="index.html">Home</a>
-        <a class="my-links" href="introduction.html">Introduction</a>
-        <a class="my-links" href="contract.html">Contract</a>
-        <a class="my-links" href="about.html">Company - About Page</a>
-        <a class="my-links" href="review1.html">Peer Review 1</a>
-        <a class="my-links" href="review2.html">Peer Review 2</a>
-        <a class="my-links" href="project_overview.html">Project Overview</a>
-        <a class="my-links" href="./hobby/">Hobby</a>
-    </nav>
+    <div data-include="components/header.html"></div>    
     </header>
-
     <main>
         <h2 alignment="center">Introduction</h2>
         <p>My name is Andrew Schmal, and this is my ITIS-3135 Intro to Web Dev website. I hope you enjoy your look around here.</p>
@@ -245,35 +230,9 @@
         <!-- <a class="back-home" href="index.html">Back to Homepage</a> -->
     </main>
 
-    <footer>
-        <div class="design-firm">
-            <h3>freeCodeCampCerts:</h3>
-            <div class="certification-container">
-                <a class="cert-box" href="https://www.freecodecamp.org/certification/AndrewSchmal/responsive-web-design" target="_blank">
-                    <img src="images/RWDCert.png" alt="Responsive Web Design Certificate">
-                    <p>Responsive Web Design</p>
-                </a>
-                <a class="cert-box" href="https://www.freecodecamp.org/certification/AndrewSchmal/responsive-web-design" target="_blank">
-                    <img src="images/RWDCert.png" alt="Coming Soon">
-                    <p>JS Algorithms &amp; DS Course</p>
-                </a>
-            </div>
-            <p>
-                Designed by <a href="./asdesigns.me/">AS Designs</a>, 
-                <a href="https://www.freecodecamp.org/certification/AndrewSchmal/responsive-web-design" target="_blank">
-                    <em>Certified in Responsive Web Design</em>
-                </a>.
-            </p>
-            <p>
-                <a target="_blank" href="https://validator.w3.org/nu/?doc=https://andrewschmal.github.io/itis3135/">
-                    HTML Validation
-                </a> |
-                <a target="_blank" href="https://jigsaw.w3.org/css-validator/validator?uri=https://andrewschmal.github.io/itis3135/">
-                    CSS Validation
-                </a>
-            </p>
-        </div>
+    <footer> 
+    <div data-include="components/footer.html"></div>
     </footer>
-</body>
+<script src="scripts/HTMLInclude.min.js"></script></body>
 
 </html>

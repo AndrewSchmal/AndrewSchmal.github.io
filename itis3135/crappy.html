@@ -199,91 +199,18 @@
 
 <body>
     <header>
-        <h1>Andrew Schmal's Acclaimed Squid</h1>
-        <h2>ITIS-3135 Home Page</h2>
-        <div id="header-container"></div>
-
-        <!-- Navigation -->
-    <nav>
-        <a class="my-links" href="index.html">Home</a>
-        <a class="my-links" href="introduction.html">Introduction</a>
-        <a class="my-links" href="contract.html">Contract</a>
-        <a class="my-links" href="review1.html">Peer Review 1</a>
-        <a class="my-links" href="review2.html">Peer Review 2</a>
-        <a class="my-links" href="project_overview.html">Project Overview</a>
-        <a class="my-links" href="./hobby/">Hobby</a>
-    </nav>
-    <nav>
-        <a class="my-links" href="crappy.html">CRAPPY</a>
-    </nav>
+    <div data-include="components/header.html"></div>    
     </header>
-
     <main>
         <p>My name is Andrew Schmal. This is my ITIS-3135 website's home page. Have a pic of my pets.</p>
         <img class="pet-image" src="images/MinnieAndMaggi.png" alt="Maggie and Minnie" width="500">
         <a class="back-home" href="../index.html">Back to Homepage</a>
     </main>
 
-    <footer>
-        <p>Check out my links below (opens in a new tab!):</p>
-        <nav>
-            <a target="_blank" class="my-links" href="https://github.com/AndrewSchmal">
-                <img src="images/GitHubLogo.png" alt="GitHub logo" width="20"> GitHub
-            </a>
-            <a target="_blank" class="my-links" href="https://andrewschmal.github.io/">
-                <img src="images/UNCC%20logo.png" alt="Website logo" width="20"> GitHub Pages
-            </a>
-            <a target="_blank" class="my-links" href="https://webpages.charlotte.edu/aschmal/">
-                <img src="images/UNCC%20logo.png" alt="CLT Web logo" width="20"> CLT Web
-            </a>
-            <a target="_blank" class="my-links" href="https://linkedin.com/in/andrewschmal/">
-                <img src="images/LinkedInLogo.png" alt="LinkedIn logo" width="20"> LinkedIn
-            </a>
-            <a target="_blank" class="my-links" href="https://www.freecodecamp.org/AndrewSchmal">
-                <img src="images/fCCLogo.png" alt="freeCodeCamp logo" width="20"> freeCodeCamp
-            </a>
-            <a target="_blank" class="my-links" href="https://www.codecademy.com/profiles/andrewschmal">
-                <img src="images/CodecademyLogo.png" alt="Codecademy logo" width="20"> codecademy
-            </a>
-        </nav>
-
-        <div class="design-firm">
-            <h3>freeCodeCampCerts:</h3>
-            <div class="certification-container">
-                <!-- Responsive Web Design Certificate -->
-                <a class="cert-box" href="https://www.freecodecamp.org/certification/AndrewSchmal/responsive-web-design" target="_blank">
-                    <img src="images/RWDCert.png" alt="Responsive Web Design Certificate">
-                    <p>Responsive Web Design</p>
-                </a>
-                <!-- JavaScript Algorithms & Data Structures Certificate -->
-                <a class="cert-box" href="https://www.freecodecamp.org/certification/AndrewSchmal/responsive-web-design" target="_blank">
-                    <img src="images/RWDCert.png" alt="Coming Soon">
-                    <p>JS Algorithms &amp; DS Course</p>
-                </a>
-            </div>
-            <p>
-                <!-- Certification Text-->
-                Designed by <a href="./asdesigns.me/">AS Designs</a>, 
-                <a href="https://www.freecodecamp.org/certification/AndrewSchmal/responsive-web-design" target="_blank">
-                    <em>Certified in Responsive Web Design</em>
-                </a>.
-            </p>
-            <p>
-                <!-- HTML & CSS Validation Links -->
-                <a target="_blank" href="https://validator.w3.org/nu/?doc=https://andrewschmal.github.io/itis3135/">
-                    HTML Validation
-                </a> |
-                <a target="_blank" href="https://jigsaw.w3.org/css-validator/validator?uri=https://andrewschmal.github.io/itis3135/">
-                    CSS Validation
-                </a>
-            </p>
-        </div>
-        
-        
-        
-
+    <footer> 
+    <div data-include="components/footer.html"></div>
     </footer>
-
+<script src="scripts/HTMLInclude.min.js"></script>
 </body>
 
 </html>

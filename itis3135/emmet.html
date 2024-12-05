@@ -52,14 +52,8 @@
 </head>
 <body>
     <header>
-        <h1>Welcome to My Emmet HTML Page</h1>
-        <nav>
-            <a href="#about">About</a>
-            <a href="#features">Features</a>
-            <a href="#contact">Contact</a>
-        </nav>
+    <div data-include="components/header.html"></div>    
     </header>
-
     <main>
         <h2 id="about">About Emmet</h2>
         <p>Emmet is a web-developer's toolkit that helps you write HTML and CSS faster. It uses abbreviations that expand into full code snippets to save time.</p>
@@ -88,8 +82,8 @@
         </form>
     </main>
 
-    <footer>
-        <p>Created for ITIS3135 | <a href="https://emmet.io" target="_blank" style="color:white;">Learn more about Emmet</a></p>
+    <footer> 
+    <div data-include="components/footer.html"></div>
     </footer>
-</body>
+<script src="scripts/HTMLInclude.min.js"></script></body>
 </html>
