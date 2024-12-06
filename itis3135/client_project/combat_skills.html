@@ -97,111 +97,113 @@
     </header>
 
     <main>
-        <div class="planner-container">
-            <h2>Combat Skills Planner</h2>
-            <p class="instructions">Select a character to begin planning skill upgrades.</p>
-            <div class="character-select">
-                <!-- Character Selection Boxes -->
-                <div class="character-box">
-                    <img src="images/anby.png" alt="Anby">
-                    <p>Anby</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/anton.png" alt="Anton">
-                    <p>Anton</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/ben.png" alt="Ben">
-                    <p>Ben</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/billy.png" alt="Billy">
-                    <p>Billy</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/burnice.png" alt="Burnice">
-                    <p>Burnice</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/caesar.png" alt="Caesar">
-                    <p>Caesar</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/corin.png" alt="Corin">
-                    <p>Corin</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/ellen.png" alt="Ellen">
-                    <p>Ellen</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/grace.png" alt="Grace">
-                    <p>Grace</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/jane.png" alt="Jane">
-                    <p>Jane</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/koleda.png" alt="Koleda">
-                    <p>Koleda</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/lighter.png" alt="Lighter">
-                    <p>Lighter</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/lucy.png" alt="Lucy">
-                    <p>Lucy</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/lycaon.png" alt="Lycaon">
-                    <p>Lycaon</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/nekomata.png" alt="Nekomata">
-                    <p>Nekomata</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/nicole.png" alt="Nicole">
-                    <p>Nicole</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/piper.png" alt="Piper">
-                    <p>Piper</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/qingyi.png" alt="Qingyi">
-                    <p>Qingyi</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/rina.png" alt="Rina">
-                    <p>Rina</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/seth.png" alt="Seth">
-                    <p>Seth</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/soldier11.png" alt="Soldier 11">
-                    <p>Soldier 11</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/soukaku.png" alt="Soukaku">
-                    <p>Soukaku</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/yanagi.png" alt="Yanagi">
-                    <p>Yanagi</p>
-                </div>
-                <div class="character-box">
-                    <img src="images/zhuyuan.png" alt="Zhu Yuan">
-                    <p>Zhu Yuan</p>
-                </div>
+        <div id="planner-container">
+            <h2>Select a Character</h2>
+            <div id="character-grid">
+                <!-- Characters are dynamically inserted via JavaScript -->
             </div>
         </div>
+    
+        <div id="skill-planner" style="display: none;">
+            <h2 id="selected-character">Character Skills</h2>
+            <div id="skills-container">
+                <div class="skill">
+                    <img src="images/basic.png" alt="Basic Skill">
+                    <p>Basic</p>
+                    <input type="number" id="current-basic" min="1" max="12" placeholder="Current Level">
+                    <input type="number" id="target-basic" min="1" max="12" placeholder="Target Level">
+                </div>
+                <div class="skill">
+                    <img src="images/dodge.png" alt="Dodge Skill">
+                    <p>Dodge</p>
+                    <input type="number" id="current-dodge" min="1" max="12" placeholder="Current Level">
+                    <input type="number" id="target-dodge" min="1" max="12" placeholder="Target Level">
+                </div>
+                <div class="skill">
+                    <img src="images/assist.png" alt="Assist Skill">
+                    <p>Assist</p>
+                    <input type="number" id="current-assist" min="1" max="12" placeholder="Current Level">
+                    <input type="number" id="target-assist" min="1" max="12" placeholder="Target Level">
+                </div>
+                <div class="skill">
+                    <img src="images/special.png" alt="Special Attack Skill">
+                    <p>Special Attack</p>
+                    <input type="number" id="current-special" min="1" max="12" placeholder="Current Level">
+                    <input type="number" id="target-special" min="1" max="12" placeholder="Target Level">
+                </div>
+                <div class="skill">
+                    <img src="images/chain.png" alt="Chain Attack Skill">
+                    <p>Chain Attack</p>
+                    <input type="number" id="current-chain" min="1" max="12" placeholder="Current Level">
+                    <input type="number" id="target-chain" min="1" max="12" placeholder="Target Level">
+                </div>
+            </div>
+            <button id="calculate-resources">Calculate Resources</button>
+            <div id="results-container">
+                <h3>Materials Needed:</h3>
+                <p id="dennies">Dennies: </p>
+                <p id="basic-chips">Basic Chips: </p>
+                <p id="advanced-chips">Advanced Chips: </p>
+                <p id="specialized-chips">Specialized Chips: </p>
+                <p id="hamster-pass">Hamster Cage Passes: </p>
+            </div>
+        </div>
+
+        <div id="planner-container">
+            <h2>Select a Character</h2>
+            <div id="character-grid">
+                <!-- Characters are dynamically inserted via JavaScript -->
+            </div>
+        </div>
+    
+        <div id="skill-planner" style="display: none;">
+            <h2 id="selected-character">Character Skills</h2>
+            <div id="skills-container">
+                <div class="skill">
+                    <img src="images/basic.png" alt="Basic Skill">
+                    <p>Basic</p>
+                    <input type="number" id="current-basic" min="1" max="12" placeholder="Current Level">
+                    <input type="number" id="target-basic" min="1" max="12" placeholder="Target Level">
+                </div>
+                <div class="skill">
+                    <img src="images/dodge.png" alt="Dodge Skill">
+                    <p>Dodge</p>
+                    <input type="number" id="current-dodge" min="1" max="12" placeholder="Current Level">
+                    <input type="number" id="target-dodge" min="1" max="12" placeholder="Target Level">
+                </div>
+                <div class="skill">
+                    <img src="images/assist.png" alt="Assist Skill">
+                    <p>Assist</p>
+                    <input type="number" id="current-assist" min="1" max="12" placeholder="Current Level">
+                    <input type="number" id="target-assist" min="1" max="12" placeholder="Target Level">
+                </div>
+                <div class="skill">
+                    <img src="images/special.png" alt="Special Attack Skill">
+                    <p>Special Attack</p>
+                    <input type="number" id="current-special" min="1" max="12" placeholder="Current Level">
+                    <input type="number" id="target-special" min="1" max="12" placeholder="Target Level">
+                </div>
+                <div class="skill">
+                    <img src="images/chain.png" alt="Chain Attack Skill">
+                    <p>Chain Attack</p>
+                    <input type="number" id="current-chain" min="1" max="12" placeholder="Current Level">
+                    <input type="number" id="target-chain" min="1" max="12" placeholder="Target Level">
+                </div>
+            </div>
+            <button id="calculate-resources">Calculate Resources</button>
+            <div id="results-container">
+                <h3>Materials Needed:</h3>
+                <p id="dennies">Dennies: </p>
+                <p id="basic-chips">Basic Chips: </p>
+                <p id="advanced-chips">Advanced Chips: </p>
+                <p id="specialized-chips">Specialized Chips: </p>
+                <p id="hamster-pass">Hamster Cage Passes: </p>
+            </div>
+        </div>
+
         
     </main>
+    
 
     <footer>
         <div data-include="../client_project/components/footer.html"></div>
