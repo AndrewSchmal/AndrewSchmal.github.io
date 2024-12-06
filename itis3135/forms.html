@@ -5,16 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Andrew Schmal's Acclaimed Squid 🦑 ITIS 3135 🦑 Forms </title>    <!-- Accumulus -->
+    <title>Andrew Schmal's Acclaimed Squid 🦑 ITIS 3135 🦑 Forms </title>
+    <!-- Accumulus -->
     <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
-    
     <link rel="stylesheet" href="styles/main.css">
 
     <style>
         /* General Page Styling */
         body {
             background-color: #E8F1F2;
-            /* Softer Light Teal */
             color: #333333;
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -28,7 +27,6 @@
             margin: 40px 0;
             padding-bottom: 20px;
             border-bottom: 2px solid #005F73;
-            /* Deep Teal */
         }
 
         h1 {
@@ -109,7 +107,6 @@
             color: white;
         }
 
-        /* Design firm stuff */
         .design-firm {
             margin-top: 15px;
             text-align: center;
@@ -118,7 +115,6 @@
 
         .design-firm a {
             color: #FAED27;
-            /* Bright Yellow */
             text-decoration: none;
             font-weight: bold;
         }
@@ -144,7 +140,6 @@
             color: white;
         }
 
-        /* Certification Container */
         .certification-container {
             display: flex;
             justify-content: center;
@@ -186,31 +181,136 @@
         }
 
         h4 {
-    color: #CA6702; /* Bright contrasting color to stand out */
-    font-size: 1.8rem;
-    margin-top: 15px;
-    text-transform: uppercase; /* Optional for emphasis */
-    font-weight: bold;
-}
+            color: #CA6702;
+            font-size: 1.8rem;
+            margin-top: 15px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
 
+        /* Forms Specific Styling */
+        form {
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 20px;
+            border: 2px solid #005F73;
+            border-radius: 12px;
+            background-color: #C3DCE3;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #005F73;
+            text-align: left;
+        }
+
+        input, select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #005F73;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        /* .form-group.inline div {
+            margin-bottom: 10px;
+        } */
+
+        button {
+            padding: 10px 20px;
+            margin: 10px 5px;
+            border: 2px solid #005F73;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"] {
+            background-color: #0A9396;
+            color: white;
+        }
+
+        button[type="reset"] {
+            background-color: #CA6702;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #005F73;
+            color: white;
+        }
     </style>
 </head>
 
 <body>
     <header>
-    <div data-include="components/header.html"></div>    
-    </header>    <main>
-        <p>Filler first submission. Finishing later.</p>
+        <div data-include="components/header.html"></div>
+    </header>
+    <main>
+        <h2>Activity #3 - HTML Form</h2>
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="123-456-7890" required>
+            </div>
+            <div class="form-group">
+                <label>What new games would you be interested in us adding? (Check all that apply)</label>
+                <div class="checkbox-group">
+                    <div><input type="checkbox" id="jojo" name="game-type" value="jojo"><label for="jojo">JoJo's Bizarre Adventure</label></div>
+                    <div><input type="checkbox" id="streetfighter" name="game-type" value="streetfighter"><label for="streetfighter">Street Fighter III: 3rd Strike</label></div>
+                    <div><input type="checkbox" id="pacman" name="game-type" value="pacman"><label for="pacman">Pac-Man</label></div>
+                    <div><input type="checkbox" id="mariokart" name="game-type" value="mariokart"><label for="mariokart">Mario Kart Arcade GP</label></div>
+                    <div><input type="checkbox" id="donkeykong" name="game-type" value="donkeykong"><label for="donkeykong">Donkey Kong</label></div>
+                    <div><input type="checkbox" id="pong" name="game-type" value="pong"><label for="pong">Pong</label></div>
+                </div>
+            </div>
+            <div class="form-group inline">
+                <label>Are you interested in receiving updates?</label>
+                <div><input type="radio" id="yes" name="updates" value="yes" required><label for="yes">Yes</label></div>
+                <div><input type="radio" id="no" name="updates" value="no"><label for="no">No</label></div>
+            </div>
+            <div class="form-group">
+                <label for="platform">How do you primarily play games?</label>
+                <select id="platform" name="platform" required>
+                    <option value="">--Select One--</option>
+                    <option value="phone">On Phone</option>
+                    <option value="pc">PC</option>
+                    <option value="console">Console</option>
+                    <option value="handheld">Handheld</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="reset">Reset</button>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
     </main>
-
-    <footer> 
-    <div data-include="components/footer.html"></div>
+    <footer>
+        <div data-include="components/footer.html"></div>
     </footer>
-    <script>
-        document.getElementById("validation_link_html").setAttribute("href", "https://validator.w3.org/nu/?doc=https://andrewschmal.github.io/itis3135/" + location.href);
-            document.getElementById("validation_link_css").setAttribute("href", "https://jigsaw.w3.org/css-validator/validator=" + location.href);
-    </script>
-<script src="scripts/HTMLInclude.min.js"></script>
+    <script src="scripts/HTMLInclude.min.js"></script>
 </body>
-
 </html>
