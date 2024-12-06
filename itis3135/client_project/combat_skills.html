@@ -3,115 +3,210 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zenless Zone Zero Skills Planner</title>
+    <title>Combat Skills Planner - Zenless Zone Zero Guide</title>
     <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
 
-    <!-- <link rel="stylesheet" href="styles/main.css"> -->
+    <!-- Inline CSS for Combat Skills Page -->
     <style>
-        /* Inline CSS specific to Home Page */
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             margin: 0;
             padding: 0;
         }
+
         header, footer {
             background-color: #222;
             color: #fff;
             text-align: center;
             padding: 10px;
         }
+
         nav a {
             margin: 0 15px;
             color: #00bcd4;
             text-decoration: none;
             font-weight: bold;
         }
+
         nav a:hover {
             color: #fff;
         }
+
         main {
             padding: 20px;
             text-align: center;
         }
-        
+
+        .planner-container {
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            max-width: 800px;
+        }
+
+        .planner-container h2 {
+            color: #333;
+        }
+
+        .character-select {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .character-box {
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            text-align: center;
+            padding: 10px;
+            width: 120px;
+            background-color: #e3e3e3;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .character-box img {
+            width: 80px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .character-box:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .character-box p {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .instructions {
+            font-size: 1.1rem;
+            margin-top: 20px;
+            color: #555;
+        }
     </style>
 </head>
 <body>
-    <h1>Combat Skills Planner</h1>
-    <p>Select an Agent:</p>
-    <div class="agent-container" id="agentContainer">
-        <!-- Agent cards will be dynamically added here -->
-    </div>
+    <header>
+        <div data-include="../client_project/components/header.html"></div>
+    </header>
 
-    <div class="skill-planner" id="skillPlanner" style="display: none;">
-        <h2 id="selectedAgentName"></h2>
-        <form id="skillForm">
-            <div class="skill-row">
-                <label>Basic Skill:</label>
-                <input type="number" id="basicSkill" value="1" min="1" max="12">
-                <input type="number" id="basicSkillTarget" placeholder="Target" min="1" max="12">
+    <main>
+        <div class="planner-container">
+            <h2>Combat Skills Planner</h2>
+            <p class="instructions">Select a character to begin planning skill upgrades.</p>
+            <div class="character-select">
+                <!-- Character Selection Boxes -->
+                <div class="character-box">
+                    <img src="images/anby.png" alt="Anby">
+                    <p>Anby</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/anton.png" alt="Anton">
+                    <p>Anton</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/ben.png" alt="Ben">
+                    <p>Ben</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/billy.png" alt="Billy">
+                    <p>Billy</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/burnice.png" alt="Burnice">
+                    <p>Burnice</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/caesar.png" alt="Caesar">
+                    <p>Caesar</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/corin.png" alt="Corin">
+                    <p>Corin</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/ellen.png" alt="Ellen">
+                    <p>Ellen</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/grace.png" alt="Grace">
+                    <p>Grace</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/jane.png" alt="Jane">
+                    <p>Jane</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/koleda.png" alt="Koleda">
+                    <p>Koleda</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/lighter.png" alt="Lighter">
+                    <p>Lighter</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/lucy.png" alt="Lucy">
+                    <p>Lucy</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/lycaon.png" alt="Lycaon">
+                    <p>Lycaon</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/nekomata.png" alt="Nekomata">
+                    <p>Nekomata</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/nicole.png" alt="Nicole">
+                    <p>Nicole</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/piper.png" alt="Piper">
+                    <p>Piper</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/qingyi.png" alt="Qingyi">
+                    <p>Qingyi</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/rina.png" alt="Rina">
+                    <p>Rina</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/seth.png" alt="Seth">
+                    <p>Seth</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/soldier11.png" alt="Soldier 11">
+                    <p>Soldier 11</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/soukaku.png" alt="Soukaku">
+                    <p>Soukaku</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/yanagi.png" alt="Yanagi">
+                    <p>Yanagi</p>
+                </div>
+                <div class="character-box">
+                    <img src="images/zhuyuan.png" alt="Zhu Yuan">
+                    <p>Zhu Yuan</p>
+                </div>
             </div>
-            <div class="skill-row">
-                <label>Dodge Skill:</label>
-                <input type="number" id="dodgeSkill" value="1" min="1" max="12">
-                <input type="number" id="dodgeSkillTarget" placeholder="Target" min="1" max="12">
-            </div>
-            <div class="skill-row">
-                <label>Assist Skill:</label>
-                <input type="number" id="assistSkill" value="1" min="1" max="12">
-                <input type="number" id="assistSkillTarget" placeholder="Target" min="1" max="12">
-            </div>
-            <div class="skill-row">
-                <label>Special Skill:</label>
-                <input type="number" id="specialSkill" value="1" min="1" max="12">
-                <input type="number" id="specialSkillTarget" placeholder="Target" min="1" max="12">
-            </div>
-            <div class="skill-row">
-                <label>Chain Skill:</label>
-                <input type="number" id="chainSkill" value="1" min="1" max="12">
-                <input type="number" id="chainSkillTarget" placeholder="Target" min="1" max="12">
-            </div>
-            <button type="button" id="calculateButton">Calculate Materials</button>
-        </form>
-    </div>
+        </div>
+        
+    </main>
 
-    <div class="material-summary" id="materialSummary" style="display: none;">
-        <h2>Materials Needed</h2>
-        <p id="materialResults"></p>
-    </div>
+    <footer>
+        <div data-include="../client_project/components/footer.html"></div>
+    </footer>
 
-    <script>
-        // Agent Data
-        const agents = [
-            "Anby", "Anton", "Ben", "Billy", "Burnice", "Caesar", "Corin", 
-            "Ellen", "Grace", "Jane", "Koleda", "Lighter", "Lucy", 
-            "Lycaon", "Nekomata", "Nicole", "Piper", "Qingyi", "Rina", 
-            "Seth", "Soldier 11", "Soukaku", "Yanagi", "Zhu Yuan"
-        ];
-
-        // Populate agent cards dynamically
-        const agentContainer = document.getElementById('agentContainer');
-        agents.forEach(agent => {
-            const card = document.createElement('div');
-            card.className = 'agent-card';
-            card.innerHTML = `
-                <img src="images/${agent.toLowerCase().replaceAll(' ', '_')}.png" alt="${agent}">
-                <p>${agent}</p>
-            `;
-            card.addEventListener('click', () => {
-                document.getElementById('selectedAgentName').innerText = agent;
-                document.getElementById('skillPlanner').style.display = 'block';
-            });
-            agentContainer.appendChild(card);
-        });
-
-        // Calculate materials (basic placeholder logic for now)
-        document.getElementById('calculateButton').addEventListener('click', () => {
-            const materialSummary = document.getElementById('materialSummary');
-            materialSummary.style.display = 'block';
-            document.getElementById('materialResults').innerText = "Materials will be calculated and shown here.";
-        });
-    </script>
+    <script src="../scripts/HTMLInclude.min.js"></script>
 </body>
 </html>
