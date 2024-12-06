@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zenless Zone Zero Guide - Home</title>
+    <title>Zenless Zone Zero Skills Planner</title>
+    <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
+
+    <!-- <link rel="stylesheet" href="styles/main.css"> -->
     <style>
         /* Inline CSS specific to Home Page */
         body {
@@ -31,28 +34,84 @@
             padding: 20px;
             text-align: center;
         }
+        
     </style>
 </head>
 <body>
-    <header>
-        <h1>Zenless Zone Zero Guide</h1>
-        <nav>
-            <a href="/itis3135/">ITIS-3135 Site</a>
-            <a href="index.html">Home</a>
-            <a href="combat_skills.html">Combat Skills Planner</a>
-            <a href="core_skills.html">Core Skills Planner</a>
-            <a href="character_slider.html">Character Slider</a>
-            <a href="tutorials.html">Tutorials</a>
-            <a href="about.html">About</a>
-        </nav>
-    </header>
-    <main>
-        <h2>Welcome to the Ultimate ZZZ Guide!</h2>
-        <p>Explore skills, characters, and strategies to master your gameplay.</p>
-        <a href="combat_skills.html">Start Planning Now</a>
-    </main>
-    <footer>
-        <p>&copy; 2024 ZZZ Guide. All Rights Reserved.</p>
-    </footer>
+    <h1>Combat Skills Planner</h1>
+    <p>Select an Agent:</p>
+    <div class="agent-container" id="agentContainer">
+        <!-- Agent cards will be dynamically added here -->
+    </div>
+
+    <div class="skill-planner" id="skillPlanner" style="display: none;">
+        <h2 id="selectedAgentName"></h2>
+        <form id="skillForm">
+            <div class="skill-row">
+                <label>Basic Skill:</label>
+                <input type="number" id="basicSkill" value="1" min="1" max="12">
+                <input type="number" id="basicSkillTarget" placeholder="Target" min="1" max="12">
+            </div>
+            <div class="skill-row">
+                <label>Dodge Skill:</label>
+                <input type="number" id="dodgeSkill" value="1" min="1" max="12">
+                <input type="number" id="dodgeSkillTarget" placeholder="Target" min="1" max="12">
+            </div>
+            <div class="skill-row">
+                <label>Assist Skill:</label>
+                <input type="number" id="assistSkill" value="1" min="1" max="12">
+                <input type="number" id="assistSkillTarget" placeholder="Target" min="1" max="12">
+            </div>
+            <div class="skill-row">
+                <label>Special Skill:</label>
+                <input type="number" id="specialSkill" value="1" min="1" max="12">
+                <input type="number" id="specialSkillTarget" placeholder="Target" min="1" max="12">
+            </div>
+            <div class="skill-row">
+                <label>Chain Skill:</label>
+                <input type="number" id="chainSkill" value="1" min="1" max="12">
+                <input type="number" id="chainSkillTarget" placeholder="Target" min="1" max="12">
+            </div>
+            <button type="button" id="calculateButton">Calculate Materials</button>
+        </form>
+    </div>
+
+    <div class="material-summary" id="materialSummary" style="display: none;">
+        <h2>Materials Needed</h2>
+        <p id="materialResults"></p>
+    </div>
+
+    <script>
+        // Agent Data
+        const agents = [
+            "Anby", "Anton", "Ben", "Billy", "Burnice", "Caesar", "Corin", 
+            "Ellen", "Grace", "Jane", "Koleda", "Lighter", "Lucy", 
+            "Lycaon", "Nekomata", "Nicole", "Piper", "Qingyi", "Rina", 
+            "Seth", "Soldier 11", "Soukaku", "Yanagi", "Zhu Yuan"
+        ];
+
+        // Populate agent cards dynamically
+        const agentContainer = document.getElementById('agentContainer');
+        agents.forEach(agent => {
+            const card = document.createElement('div');
+            card.className = 'agent-card';
+            card.innerHTML = `
+                <img src="images/${agent.toLowerCase().replaceAll(' ', '_')}.png" alt="${agent}">
+                <p>${agent}</p>
+            `;
+            card.addEventListener('click', () => {
+                document.getElementById('selectedAgentName').innerText = agent;
+                document.getElementById('skillPlanner').style.display = 'block';
+            });
+            agentContainer.appendChild(card);
+        });
+
+        // Calculate materials (basic placeholder logic for now)
+        document.getElementById('calculateButton').addEventListener('click', () => {
+            const materialSummary = document.getElementById('materialSummary');
+            materialSummary.style.display = 'block';
+            document.getElementById('materialResults').innerText = "Materials will be calculated and shown here.";
+        });
+    </script>
 </body>
 </html>
