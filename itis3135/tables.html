@@ -47,13 +47,7 @@
             max-width: 800px;
         }
 
-        .pet-image {
-            margin: 25px 0;
-            border: 2px solid #005F73;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
+        
         footer {
             margin-top: 30px;
             padding: 15px 0;
@@ -186,27 +180,230 @@
         }
 
         h4 {
-    color: #CA6702; /* Bright contrasting color to stand out */
+    color: #CA6702; 
     font-size: 1.8rem;
     margin-top: 15px;
-    text-transform: uppercase; /* Optional for emphasis */
+    text-transform: uppercase; 
     font-weight: bold;
 }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+
+        th, td {
+            border: 1px solid #333;
+            padding: 8px 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #005F73; 
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2; 
+        }
+
+        tr:nth-child(odd) {
+            background-color: #ffffff; 
+        }
+
+        tr:hover {
+            background-color: #c3dce3; 
+        }
+
+        caption {
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 10px;
+            text-align: center;
+            color: #005F73; /* Matches header color */
+        }
+
+        .total-row th {
+            background-color: #0A9396; /* Distinct color for total row */
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .highlight {
+            background-color: #94D2BD; /* Soft teal for emphasis */
+        }
+
+        /* Pseudo-classes for accessibility */
+        th[scope="col"] {
+            text-transform: uppercase;
+        }
+
+        td[headers] {
+            font-style: italic; /* Slight emphasis for data */
+        }
+
 
     </style>
 </head>
 
 <body>
     <header>
-    <div data-include="components/header.html"></div>    
+        <div data-include="components/header.html"></div>
     </header>
     <main>
-        <p>Filler first submission. Finishing later.</p>
-    </main>
+        <h2>Activity #2 - HTML Tables</h2>
 
-    <footer> 
-    <div data-include="components/footer.html"></div>
+        <h3>My Table Data</h3>
+        <ol>
+            <li>You, Specifically - ajshjaksjka@gmail.com - $25,000</li>
+            <li>Xi Jinping - yaboyjinping@chinamail.com - $400,000</li>
+            <li>Dr. Mario - drmario@nintendo.com - $300,000</li>
+            <li>D.I. von Briesen - dvonbri1@uncc.edu - $1,000,000.01</li>
+            <li>Jane Roe - janeroe@anothermail.com - $45,000</li>
+            <li>Dr. Michael Morbis - morbintime@gmail.com - $1 morbillion dollars</li>
+            <li>Alan Turing - alan.turing@genius.org - $500,000</li>
+            <li>Brandon Ewing - atrioc.glizzard@hotmail.com - $150,000</li>
+            <li>Scott Weaver - coolcat73@gmail.com - $40,000</li>
+            <li>John Doe - morelikejanedoe@hoyo.verse - $30,000</li>
+        </ol>
+
+        <h3>Employee Data in Simple Table</h3>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Salary</th>
+            </tr>
+            <tr>
+                <td>You, Specifically</td>
+                <td>ajshjaksjka@gmail.com</td>
+                <td>$25,000</td>
+            </tr>
+            <tr>
+                <td>Xi Jinping</td>
+                <td>yaboyjinping@chinamail.com</td>
+                <td>$400,000</td>
+            </tr>
+            <tr>
+                <td>Dr. Mario</td>
+                <td>drmario@nintendo.com</td>
+                <td>$300,000</td>
+            </tr>
+            <tr>
+                <td>D.I. von Briesen</td>
+                <td>dvonbri1@uncc.edu</td>
+                <td>$1,000,000.01</td>
+            </tr>
+            <tr>
+                <td>Jane Roe</td>
+                <td>janeroe@anothermail.com</td>
+                <td>$45,000</td>
+            </tr>
+            <tr>
+                <td>Dr. Michael Morbis</td>
+                <td>morbintime@gmail.com</td>
+                <td>$1 morbillion dollars</td>
+            </tr>
+            <tr>
+                <td>Alan Turing</td>
+                <td>alan.turing@genius.org</td>
+                <td>$500,000</td>
+            </tr>
+            <tr>
+                <td>Brandon Ewing</td>
+                <td>atrioc.glizzard@hotmail.com</td>
+                <td>$150,000</td>
+            </tr>
+            <tr>
+                <td>Scott Weaver</td>
+                <td>coolcat73@gmail.com</td>
+                <td>$40,000</td>
+            </tr>
+            <tr>
+                <td>John Doe</td>
+                <td>morelikejanedoe@hoyo.verse</td>
+                <td>$30,000</td>
+            </tr>
+        </table>
+
+        <h3>Employee Data in Complex Table</h3>
+        <figure>
+            <figcaption>Employee Information</figcaption>
+            <table>
+                <tr>
+                    <th>Category</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Salary</th>
+                </tr>
+                <tr>
+                    <td rowspan="1">Bosses</td>
+                    <td>D.I. von Briesen</td>
+                    <td>dvonbri1@uncc.edu</td>
+                    <td>$1,000,000.01</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">Minions</td>
+                    <td>You, Specifically</td>
+                    <td>ajshjaksjka@gmail.com</td>
+                    <td>$25,000</td>
+                </tr>
+                <tr>
+                    <td>Xi Jinping</td>
+                    <td>yaboyjinping@chinamail.com</td>
+                    <td>$400,000</td>
+                </tr>
+                <tr>
+                    <td>Dr. Mario</td>
+                    <td>drmario@nintendo.com</td>
+                    <td>$300,000</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">Sub Minions</td>
+                    <td>Jane Roe</td>
+                    <td>janeroe@anothermail.com</td>
+                    <td>$45,000</td>
+                </tr>
+                <tr>
+                    <td>Dr. Michael Morbis</td>
+                    <td>morbintime@gmail.com</td>
+                    <td>$1 morbillion dollars</td>
+                </tr>
+                <tr>
+                    <td>Alan Turing</td>
+                    <td>alan.turing@genius.org</td>
+                    <td>$500,000</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">Others</td>
+                    <td>Brandon Ewing</td>
+                    <td>atrioc.glizzard@hotmail.com</td>
+                    <td>$150,000</td>
+                </tr>
+                <tr>
+                    <td>Scott Weaver</td>
+                    <td>coolcat73@gmail.com</td>
+                    <td>$40,000</td>
+                </tr>
+                <tr>
+                    <td>John Doe</td>
+                    <td>morelikejanedoe@hoyo.verse</td>
+                    <td>$30,000</td>
+                </tr>
+                <tr class="total-row">
+                    <th colspan="3">Total Annual Salary Budget</th>
+                    <td>$2,890,000.01 + 1 morbillion dollars</td>
+                </tr>
+            </table>
+        </figure>
+    </main>
+    <footer>
+        <div data-include="components/footer.html"></div>
     </footer>
-<script src="scripts/HTMLInclude.min.js"></script></body>
+    <script src="scripts/HTMLInclude.min.js"></script>
 </body>
 </html>
