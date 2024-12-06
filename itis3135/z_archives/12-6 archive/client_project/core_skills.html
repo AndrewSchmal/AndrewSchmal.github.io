@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenless Zone Zero Guide - Core Skills Planner</title>
+    <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/itis3135/client_project/styles/styles.css">
+
+    <style>
+        /* Inline Styles Specific to Core Skills Planner */
+        .core-skills {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+        }
+
+        .core-skills h1 {
+            color: #0BAAAC;
+            margin-bottom: 20px;
+        }
+
+        .core-skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .core-skill-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #222;
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .core-skill-card:hover {
+            transform: scale(1.05);
+            background-color: #CA6702;
+        }
+
+        .core-skill-card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 10px;
+        }
+
+        .core-skill-card p {
+            margin: 0;
+            font-size: 1rem;
+            color: white;
+        }
+
+        .materials-display {
+            margin-top: 20px;
+            background-color: #FAF9F6;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            text-align: left;
+            width: 80%;
+        }
+
+        .materials-display h2 {
+            color: #005F73;
+        }
+
+        .materials-display ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .materials-display ul li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .materials-display ul li img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div data-include="../client_project/components/header.html"></div>
+    </header>
+    <main>
+        <div class="core-skills">
+            <h1>Core Skills Planner</h1>
+            <div class="core-skills-grid">
+                <div class="core-skill-card" data-core="A">
+                    <img src="images/Icon_Core_Skill_A.png" alt="Core Skill A">
+                    <p>Core Skill A</p>
+                </div>
+                <div class="core-skill-card" data-core="B">
+                    <img src="images/Icon_Core_Skill_B.png" alt="Core Skill B">
+                    <p>Core Skill B</p>
+                </div>
+                <div class="core-skill-card" data-core="C">
+                    <img src="images/Icon_Core_Skill_C.png" alt="Core Skill C">
+                    <p>Core Skill C</p>
+                </div>
+                <div class="core-skill-card" data-core="D">
+                    <img src="images/Icon_Core_Skill_D.png" alt="Core Skill D">
+                    <p>Core Skill D</p>
+                </div>
+                <div class="core-skill-card" data-core="E">
+                    <img src="images/Icon_Core_Skill_E.png" alt="Core Skill E">
+                    <p>Core Skill E</p>
+                </div>
+                <div class="core-skill-card" data-core="F">
+                    <img src="images/Icon_Core_Skill_F.png" alt="Core Skill F">
+                    <p>Core Skill F</p>
+                </div>
+            </div>
+        </div>
+        <div class="materials-display">
+            <h2>Materials Needed</h2>
+            <ul id="materials-list">
+                <li><img src="images/Item_Finale_Dance_Shoes.gif" alt="Item A"> Finale Dance Shoes: 0</li>
+                <li><img src="images/Item_Higher_Dimensional_Data_Crimson_Awe.gif" alt="Item B"> Crimson Awe: 0</li>
+                <li><img src="images/Item_Higher_Dimensional_Data_Destructive_Advance.gif" alt="Item C"> Destructive Advance: 0</li>
+                <li><img src="images/Item_Higher_Dimensional_Data_Ethereal_Pursuit.gif" alt="Item D"> Ethereal Pursuit: 0</li>
+                <li><img src="images/Item_Higher_Dimensional_Data_Falling_Fist.gif" alt="Item E"> Falling Fist: 0</li>
+                <li><img src="images/Item_Higher_Dimensional_Data_Murderous_Obituary.gif" alt="Item F"> Murderous Obituary: 0</li>
+            </ul>
+        </div>
+    </main>
+    <footer>
+        <div data-include="../client_project/components/footer.html"></div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const coreSkills = document.querySelectorAll(".core-skill-card");
+            const materialsList = document.getElementById("materials-list");
+
+            const materials = {
+                A: { name: "Finale Dance Shoes", count: 0, image: "Item_Finale_Dance_Shoes.gif" },
+                B: { name: "Crimson Awe", count: 0, image: "Item_Higher_Dimensional_Data_Crimson_Awe.gif" },
+                C: { name: "Destructive Advance", count: 0, image: "Item_Higher_Dimensional_Data_Destructive_Advance.gif" },
+                D: { name: "Ethereal Pursuit", count: 0, image: "Item_Higher_Dimensional_Data_Ethereal_Pursuit.gif" },
+                E: { name: "Falling Fist", count: 0, image: "Item_Higher_Dimensional_Data_Falling_Fist.gif" },
+                F: { name: "Murderous Obituary", count: 0, image: "Item_Higher_Dimensional_Data_Murderous_Obituary.gif" },
+            };
+
+            coreSkills.forEach(skill => {
+                skill.addEventListener("click", () => {
+                    const core = skill.getAttribute("data-core");
+                    if (materials[core].count === 0) {
+                        materials[core].count = 1;
+                        skill.classList.add("active");
+                    } else {
+                        materials[core].count = 0;
+                        skill.classList.remove("active");
+                    }
+                    updateMaterials();
+                });
+            });
+
+            function updateMaterials() {
+                materialsList.innerHTML = "";
+                for (const core in materials) {
+                    const material = materials[core];
+                    const li = document.createElement("li");
+                    li.innerHTML = `<img src="images/${material.image}" alt="${material.name}"> ${material.name}: ${material.count}`;
+                    materialsList.appendChild(li);
+                }
+            }
+        });
+    </script>
+    <script src="../scripts/HTMLInclude.min.js"></script>
+</body>
+</html>
