@@ -5,17 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Combat Skills Planner</title>
     <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
-    <script src="../../scripts/HTMLInclude.min.js"></script>
 
     <link rel="stylesheet" href="/itis3135/client_project/styles/styles.css">
-
-    <!-- asdf --></head>
+    <script src="../scripts/combatSkills.js" defer></script>
+</head>
 <body>
     <header>
         <div data-include="../client_project/components/header.html"></div>        
     </header>
     <main>
-      <!-- insert here -->
+        <h1>Combat Skills Planner</h1>
+        <p>Click a character to get started!</p>
+        <div id="planner-container" class="planner-container">
+            <!-- Characters will be dynamically loaded here -->
+        </div>
+        <div id="selected-character" class="selected-character">
+            <!-- Selected character and skills UI will load here -->
+        </div>
+        <div id="skill-planner" class="skill-planner">
+            <!-- Total skill cost will be displayed here -->
+        </div>
     </main>
     <footer>
         <div data-include="components/footer.html"></div>

@@ -31,18 +31,16 @@ const plannerContainer = document.getElementById("planner-container");
 const selectedCharacterContainer = document.getElementById("selected-character");
 const skillPlanner = document.getElementById("skill-planner");
 
-// Load Characters into Planner
-function loadCharacters() {
-    characters.forEach(character => {
-        const characterDiv = document.createElement("div");
-        characterDiv.className = "character-card";
-        characterDiv.innerHTML = `
-            <img src="${character.image}" alt="${character.name}">
-            <p>${character.name}</p>
-        `;
-        characterDiv.addEventListener("click", () => selectCharacter(character));
-        plannerContainer.appendChild(characterDiv);
-    });
+// Display Materials Needed
+function displayMaterials(dennies, basicChips, advancedChips, specializedChips, hamsterCagePass, element) {
+    skillPlanner.innerHTML = `
+        <h3>Materials Needed</h3>
+        <p>Dennies: ${dennies.toLocaleString()}</p>
+        <p>Basic ${element} Chips: ${basicChips}</p>
+        <p>Advanced ${element} Chips: ${advancedChips}</p>
+        <p>Specialized ${element} Chips: ${specializedChips}</p>
+        <p>Hamster Cage Passes: ${hamsterCagePass}</p>
+    `;
 }
 
 // Select a Character
@@ -85,12 +83,28 @@ function selectCharacter(character) {
     `;
 }
 
+// Load Characters into Planner
+function loadCharacters() {
+    characters.forEach((character) => {
+        const characterDiv = document.createElement("div");
+        characterDiv.className = "character-card";
+        characterDiv.innerHTML = `
+            <img src="${character.image}" alt="${character.name}">
+            <p>${character.name}</p>
+        `;
+        characterDiv.addEventListener("click", () => selectCharacter(character));
+        plannerContainer.appendChild(characterDiv);
+    });
+}
+
+
+
 // Calculate Materials Needed
 function calculateMaterials(element) {
     const skills = ["basic", "dodge", "assist", "special", "chain"];
     let totalDennies = 0, basicChips = 0, advancedChips = 0, specializedChips = 0, hamsterCagePass = 0;
 
-    skills.forEach(skill => {
+    skills.forEach((skill) => {
         const currentLevel = parseInt(document.getElementById(`${skill}-current`).value);
         const targetLevel = parseInt(document.getElementById(`${skill}-target`).value);
 
@@ -112,18 +126,6 @@ function calculateMaterials(element) {
     });
 
     displayMaterials(totalDennies, basicChips, advancedChips, specializedChips, hamsterCagePass, element);
-}
-
-// Display Materials Needed
-function displayMaterials(dennies, basicChips, advancedChips, specializedChips, hamsterCagePass, element) {
-    skillPlanner.innerHTML = `
-        <h3>Materials Needed</h3>
-        <p>Dennies: ${dennies.toLocaleString()}</p>
-        <p>Basic ${element} Chips: ${basicChips}</p>
-        <p>Advanced ${element} Chips: ${advancedChips}</p>
-        <p>Specialized ${element} Chips: ${specializedChips}</p>
-        <p>Hamster Cage Passes: ${hamsterCagePass}</p>
-    `;
 }
 
 // Initialize
