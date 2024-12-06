@@ -3,225 +3,309 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Combat Skills Planner</title>
+    <title>Zenless Zone Zero Guide - Home</title>
+    <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
+
     <link rel="stylesheet" href="/itis3135/client_project/styles/styles.css">
+
+
     <style>
-        .character-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin-top: 20px;
+        /* General Layout Adjustments */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .selected-character {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .planner-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            justify-items: center;
+            margin: 20px 0;
         }
 
         .character-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-end;
-    background-color: #2c2c2c;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    overflow: hidden;
-    width: 150px;
-    height: 200px; /* Adjusted height for better image fit */
-    margin: 10px;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.character-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-}
-
-.character-card img {
-    width: 100%;
-    height: 75%; /* Adjusted to take up most of the box */
-    object-fit: cover;
-    border-bottom: 2px solid #00bcd4;
-}
-
-.character-card p {
-    font-size: 1rem;
-    background-color: #0bd400;
-    color: black;
-    width: 100%;
-    text-align: center;
-    margin: 0;
-    padding: 5px;
-    font-weight: bold; /* This makes the font bold */
-    text-transform: uppercase;
-}
-
-
-        .skills-container {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .skill {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            margin: 10px 0;
-        }
-
-        .skill img {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 5px;
-        }
-
-        .button-container {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .btn {
-            padding: 10px 20px;
-            font-size: 16px;
+            background-color: #333;
             color: #fff;
-            background-color: #0078D4;
-            border: none;
-            border-radius: 5px;
+            text-align: center;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, background-color 0.3s;
+            width: 150px;
+            height: 150px;
             cursor: pointer;
         }
 
-        .btn:hover {
-            background-color: #005F9E;
+        .character-card:hover {
+            transform: scale(1.05);
+            background-color: #444;
+        }
+
+        .character-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .core-skills-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .core-skill img {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            border-radius: 50%;
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .core-skill img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .core-skill img.selected {
+            transform: scale(1.2);
+            box-shadow: 0 4px 15px rgba(10, 147, 150, 0.7);
+        }
+
+        .total-skill-cost {
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .total-skill-cost-heading {
+            margin-bottom: 15px;
+            color: #005F73;
+            text-transform: uppercase;
+            font-size: 1.8rem;
+        }
+
+        .total-skill-cost p {
+            margin: 5px 0;
+            font-weight: bold;
+        }
+
+        .item-icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .item-icons img {
+            width: 50px;
+            height: 50px;
         }
     </style>
 </head>
 <body>
     <header>
-        <div data-include="../client_project/components/header.html"></div>        
+        <div data-include="../client_project/components/header.html"></div>
     </header>
     <main>
-        <h1>Combat Skills Planner</h1>
-        <p>Click a character to get started!</p>
-        <div id="planner-container" class="character-grid"></div>
+    <h1>Core Skills Planner</h1>
+    <p>Click a character to select and calculate core skill costs!</p>
+    <div id="planner-container" class="planner-container"></div>
+    <div id="selected-character" class="selected-character"></div>
+    <div id="core-skills-container" class="core-skills-container"></div>
+    <div class="total-skill-cost">
+        <h3 class="total-skill-cost-heading">Total Core Skill Costs</h3>
+        <div class="total-cost-item">
+            <p id="dennies-cost">Dennies: 0</p>
+        </div>
+        <div class="total-cost-item">
 
-        <div id="selected-character" class="skills-container"></div>
+            <p id="expert-cost">Expert Challenge Items: 0</p>
+        </div>
+        <div class="total-cost-item">
+            <img id="notorious-icon" src="images/default-notorious-icon.png" alt="Notorious Icon" class="cost-icon">
+            <p id="notorious-cost">Notorious Hunt Items: 0</p>
+        </div>
+    </div>
+</main>
 
-        <div id="skill-planner" class="skills-container"></div>
-    </main>
+<script>
+    function updateTotals(dennies, expert, notorious, characterData) {
+        denniesCost.textContent = `Dennies: ${dennies}`;
+        expertCost.textContent = `Expert Challenge Items: ${expert}`;
+        notoriousCost.textContent = `Notorious Hunt Items: ${notorious}`;
+        
+        // Update Expert and Notorious icons based on character
+        const characterExpert = characterData.expert.toLowerCase().replace(/\s+/g, "_");
+        const characterNotorious = characterData.notorious.toLowerCase().replace(/\s+/g, "_");
+
+        document.getElementById("expert-icon").src = `images/Item_Higher_Dimensional_Data_${characterExpert}.gif`;
+        document.getElementById("notorious-icon").src = `images/Item_${characterNotorious}.gif`;
+    }
+
+    function loadCoreSkills(character) {
+        const data = characterData[character];
+        selectedCharacter.innerHTML = `
+            <h2>${character}</h2>
+            <p>Element: ${data.element}</p>
+            <p>Expert Item: ${data.expert}</p>
+            <p>Notorious Item: ${data.notorious}</p>
+        `;
+
+        coreSkillsContainer.innerHTML = "";
+        let totalDennies = 0, totalExpert = 0, totalNotorious = 0;
+
+        coreSkillCosts.forEach((cost) => {
+            const skillDiv = document.createElement("div");
+            skillDiv.className = "core-skill";
+            skillDiv.innerHTML = `
+                <img src="images/Icon_Core_Skill_${cost.level}.png" alt="Skill ${cost.level}">
+            `;
+            skillDiv.querySelector("img").addEventListener("click", (e) => {
+                const img = e.target;
+                img.classList.toggle("selected");
+                if (img.classList.contains("selected")) {
+                    totalDennies += cost.dennies;
+                    totalExpert += cost.expert;
+                    totalNotorious += cost.notorious;
+                } else {
+                    totalDennies -= cost.dennies;
+                    totalExpert -= cost.expert;
+                    totalNotorious -= cost.notorious;
+                }
+                updateTotals(totalDennies, totalExpert, totalNotorious, data);
+            });
+            coreSkillsContainer.appendChild(skillDiv);
+        });
+
+        updateTotals(0, 0, 0, data); // Reset totals on new character selection
+    }
+
+    // Load characters
+    Object.keys(characterData).forEach((character) => {
+        const charDiv = document.createElement("div");
+        charDiv.className = "character-card";
+        charDiv.innerHTML = `
+            <img src="images/${character.toLowerCase()}.png" alt="${character}">
+            <p>${character}</p>
+        `;
+        charDiv.addEventListener("click", () => loadCoreSkills(character));
+        plannerContainer.appendChild(charDiv);
+    });
+</script>
+
     <footer>
         <div data-include="components/footer.html"></div>
     </footer>
-    <script src="../scripts/HTMLInclude.min.js"></script>
     <script>
-        const characters = [
-            { name: "Anby", image: "images/anby.png", element: "Electric" },
-            { name: "Anton", image: "images/anton.png", element: "Electric" },
-            { name: "Ben", image: "images/ben.png", element: "Fire" },
-            { name: "Billy", image: "images/billy.png", element: "Physical" },
-            { name: "Burnice", image: "images/burnice.png", element: "Fire" },
-            { name: "Caesar", image: "images/caesar.png", element: "Physical" },
-            { name: "Corin", image: "images/corin.png", element: "Physical" },
-            { name: "Ellen", image: "images/ellen.png", element: "Ice" },
-            { name: "Grace", image: "images/grace.png", element: "Electric" },
-            { name: "Jane", image: "images/jane.png", element: "Physical" },
-            { name: "Koleda", image: "images/koleda.png", element: "Fire" },
-            { name: "Lighter", image: "images/lighter.png", element: "Fire" },
-            { name: "Lucy", image: "images/lucy.png", element: "Fire" },
-            { name: "Lycaon", image: "images/lycaon.png", element: "Ice" },
-            { name: "Nekomata", image: "images/nekomata.png", element: "Physical" },
-            { name: "Nicole", image: "images/nicole.png", element: "Ether" },
-            { name: "Piper", image: "images/piper.png", element: "Physical" },
-            { name: "Qingyi", image: "images/qingyi.png", element: "Electric" },
-            { name: "Rina", image: "images/rina.png", element: "Electric" },
-            { name: "Seth", image: "images/seth.png", element: "Electric" },
-            { name: "Soldier 11", image: "images/soldier11.png", element: "Fire" },
-            { name: "Soukaku", image: "images/soukaku.png", element: "Ice" },
-            { name: "Yanagi", image: "images/yanagi.png", element: "Electric" },
-            { name: "Zhu Yuan", image: "images/zhuyuan.png", element: "Ether" }
+        const characterData = {
+            "Anby": { element: "Electric", expert: "Murderous Obituary", notorious: "Ferocious Grip" },
+            "Anton": { element: "Electric", expert: "Destructive Advance", notorious: "Living Drive" },
+            "Ben": { element: "Fire", expert: "Steel Malice", notorious: "Living Drive" },
+            "Billy": { element: "Physical", expert: "Ethereal Pursuit", notorious: "Ferocious Grip" },
+            "Burnice": { element: "Fire", expert: "Stealth Phantom", notorious: "Scarlet Engine" },
+            "Caesar": { element: "Physical", expert: "Stealth Phantom", notorious: "Scarlet Engine" },
+            "Corin": { element: "Physical", expert: "Crimson Awe", notorious: "Finale Dance Shoes" },
+            "Ellen": { element: "Ice", expert: "Murderous Obituary", notorious: "Ferocious Grip" },
+            "Grace": { element: "Electric", expert: "Destructive Advance", notorious: "Living Drive" },
+            "Jane": { element: "Physical", expert: "Falling Fist", notorious: "Ferocious Grip" },
+            "Koleda": { element: "Fire", expert: "Steel Malice", notorious: "Living Drive" },
+            "Lighter": { element: "Fire", expert: "Crimson Awe", notorious: "Scarlet Engine" },
+            "Lucy": { element: "Fire", expert: "Steel Malice", notorious: "Ferocious Grip" },
+            "Lycaon": { element: "Ice", expert: "Ethereal Pursuit", notorious: "Finale Dance Shoes" },
+            "Nekomata": { element: "Physical", expert: "Crimson Awe", notorious: "Ferocious Grip" },
+            "Nicole": { element: "Ether", expert: "Murderous Obituary", notorious: "Ferocious Grip" },
+            "Piper": { element: "Physical", expert: "Crimson Awe", notorious: "Finale Dance Shoes" },
+            "Qingyi": { element: "Electric", expert: "Ethereal Pursuit", notorious: "Living Drive" },
+            "Rina": { element: "Electric", expert: "Destructive Advance", notorious: "Finale Dance Shoes" },
+            "Seth": { element: "Electric", expert: "Falling Fist", notorious: "Living Drive" },
+            "Soldier 11": { element: "Fire", expert: "Destructive Advance", notorious: "Finale Dance Shoes" },
+            "Soukaku": { element: "Ice", expert: "Murderous Obituary", notorious: "Finale Dance Shoes" },
+            "Yanagi": { element: "Electric", expert: "Destructive Advance", notorious: "Living Drive" },
+            "Zhu Yuan": { element: "Ether", expert: "Ethereal Pursuit", notorious: "Living Drive" }
+        };
+
+        const coreSkillCosts = [
+            { level: "A", dennies: 5000, expert: 0, notorious: 0 },
+            { level: "B", dennies: 12000, expert: 2, notorious: 0 },
+            { level: "C", dennies: 28000, expert: 4, notorious: 0 },
+            { level: "D", dennies: 60000, expert: 9, notorious: 2 },
+            { level: "E", dennies: 100000, expert: 15, notorious: 3 },
+            { level: "F", dennies: 200000, expert: 30, notorious: 4 }
         ];
 
         const plannerContainer = document.getElementById("planner-container");
-        const selectedCharacterContainer = document.getElementById("selected-character");
-        const skillPlanner = document.getElementById("skill-planner");
+        const selectedCharacter = document.getElementById("selected-character");
+        const coreSkillsContainer = document.getElementById("core-skills-container");
+        const denniesCost = document.getElementById("dennies-cost");
+        const expertCost = document.getElementById("expert-cost");
+        const notoriousCost = document.getElementById("notorious-cost");
 
-        function loadCharacters() {
-            characters.forEach(character => {
-                const characterDiv = document.createElement("div");
-                characterDiv.className = "character-card";
-                characterDiv.innerHTML = `
-                    <img src="${character.image}" alt="${character.name}">
-                    <p>${character.name}</p>
-                `;
-                characterDiv.addEventListener("click", () => selectCharacter(character));
-                plannerContainer.appendChild(characterDiv);
-            });
-        }
-
-        function selectCharacter(character) {
-            selectedCharacterContainer.innerHTML = `
-                <h2>${character.name} Character Skills</h2>
-                <div class="skills-container">
-                    <div class="skill">
-                        <img src="images/basic.png" alt="Basic Skill">
-                        <p>Basic</p>
-                        <label>Current Level: <input type="number" id="basic-current" min="1" max="12" value="1"></label>
-                        <label>Target Level: <input type="number" id="basic-target" min="1" max="12" value="1"></label>
-                    </div>
-                    <div class="skill">
-                        <img src="images/dodge.png" alt="Dodge Skill">
-                        <p>Dodge</p>
-                        <label>Current Level: <input type="number" id="dodge-current" min="1" max="12" value="1"></label>
-                        <label>Target Level: <input type="number" id="dodge-target" min="1" max="12" value="1"></label>
-                    </div>
-                    <div class="skill">
-                        <img src="images/assist.png" alt="Assist Skill">
-                        <p>Assist</p>
-                        <label>Current Level: <input type="number" id="assist-current" min="1" max="12" value="1"></label>
-                        <label>Target Level: <input type="number" id="assist-target" min="1" max="12" value="1"></label>
-                    </div>
-                    <div class="skill">
-                        <img src="images/special.png" alt="Special Attack Skill">
-                        <p>Special Attack</p>
-                        <label>Current Level: <input type="number" id="special-current" min="1" max="12" value="1"></label>
-                        <label>Target Level: <input type="number" id="special-target" min="1" max="12" value="1"></label>
-                    </div>
-                    <div class="skill">
-                        <img src="images/chain.png" alt="Chain Attack Skill">
-                        <p>Chain Attack</p>
-                        <label>Current Level: <input type="number" id="chain-current" min="1" max="12" value="1"></label>
-                        <label>Target Level: <input type="number" id="chain-target" min="1" max="12" value="1"></label>
-                    </div>
-                </div>
-                <button class="btn" onclick="calculateMaterials('${character.element}')">Calculate Materials</button>
+        function loadCoreSkills(character) {
+            const data = characterData[character];
+            selectedCharacter.innerHTML = `
+                <h2>${character}</h2>
+                <p>Element: ${data.element}</p>
+                <p>Expert Item: ${data.expert}</p>
+                <p>Notorious Item: ${data.notorious}</p>
             `;
-        }
 
-        function calculateMaterials(element) {
-            const skills = ["basic", "dodge", "assist", "special", "chain"];
-            let totalDennies = 0, basicChips = 0, advancedChips = 0, specializedChips = 0, hamsterCagePass = 0;
+            coreSkillsContainer.innerHTML = "";
+            let totalDennies = 0, totalExpert = 0, totalNotorious = 0;
 
-            skills.forEach(skill => {
-                const currentLevel = parseInt(document.getElementById(`${skill}-current`).value);
-                const targetLevel = parseInt(document.getElementById(`${skill}-target`).value);
-
-                for (let level = currentLevel; level < targetLevel; level++) {
-                    switch (level + 1) {
-                        case 2: basicChips += 2; totalDennies += 2000; break;
-                        case 3: basicChips += 3; totalDennies += 3000; break;
-                        case 4: advancedChips += 2; totalDennies += 6000; break;
-                        case 5: advancedChips += 3; totalDennies += 9000; break;
-                        case 6: advancedChips += 4; totalDennies += 12000; break;
-                        case 7: advancedChips += 6; totalDennies += 18000; break;
-                        case 8: specializedChips += 5; totalDennies += 45000; break;
-                        case 9: specializedChips += 8; totalDennies += 67500; break;
-                        case 10: specializedChips += 10; totalDennies += 90000; break;
-                        case 11: specializedChips += 12; totalDennies += 112500; break;
-                        case 12: specializedChips += 15; hamsterCagePass += 1; totalDennies += 135000; break;
+            coreSkillCosts.forEach((cost) => {
+                const skillDiv = document.createElement("div");
+                skillDiv.className = "core-skill";
+                skillDiv.innerHTML = `
+                    <img src="images/Icon_Core_Skill_${cost.level}.png" alt="Skill ${cost.level}">
+                `;
+                skillDiv.querySelector("img").addEventListener("click", (e) => {
+                    const img = e.target;
+                    img.classList.toggle("selected");
+                    if (img.classList.contains("selected")) {
+                        totalDennies += cost.dennies;
+                        totalExpert += cost.expert;
+                        totalNotorious += cost.notorious;
+                    } else {
+                        totalDennies -= cost.dennies;
+                        totalExpert -= cost.expert;
+                        totalNotorious -= cost.notorious;
                     }
-                }
+                    updateTotals(totalDennies, totalExpert, totalNotorious);
+                });
+                coreSkillsContainer.appendChild(skillDiv);
             });
 
-            displayMaterials(totalDennies, basicChips, advancedChips, specializedChips, hamsterCagePass, element);
+            updateTotals(0, 0, 0); // Reset totals on new character selection
         }
 
-        loadCharacters();
+        function updateTotals(dennies, expert, notorious) {
+            denniesCost.textContent = `Dennies: ${dennies}`;
+            expertCost.textContent = `Expert Challenge Items: ${expert}`;
+            notoriousCost.textContent = `Notorious Hunt Items: ${notorious}`;
+        }
+
+        Object.keys(characterData).forEach((character) => {
+            const charDiv = document.createElement("div");
+            charDiv.className = "character-card";
+            charDiv.innerHTML = `
+                <img src="images/${character.toLowerCase()}.png" alt="${character}">
+                <p>${character}</p>
+            `;
+            charDiv.addEventListener("click", () => loadCoreSkills(character));
+            plannerContainer.appendChild(charDiv);
+        });
     </script>
+    <script src="../scripts/HTMLInclude.min.js"></script>
 </body>
 </html>
