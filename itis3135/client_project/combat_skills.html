@@ -3,212 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Combat Skills Planner - Zenless Zone Zero Guide</title>
+    <title>Combat Skills Planner</title>
     <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
+    <script src="../../scripts/HTMLInclude.min.js"></script>
 
-    <!-- Inline CSS for Combat Skills Page -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
+    <link rel="stylesheet" href="/itis3135/client_project/styles/styles.css">
 
-        header, footer {
-            background-color: #222;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-        }
-
-        nav a {
-            margin: 0 15px;
-            color: #00bcd4;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            color: #fff;
-        }
-
-        main {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .planner-container {
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            max-width: 800px;
-        }
-
-        .planner-container h2 {
-            color: #333;
-        }
-
-        .character-select {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
-
-        .character-box {
-            border: 2px solid #ccc;
-            border-radius: 8px;
-            text-align: center;
-            padding: 10px;
-            width: 120px;
-            background-color: #e3e3e3;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .character-box img {
-            width: 80px;
-            height: auto;
-            margin-bottom: 10px;
-        }
-
-        .character-box:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .character-box p {
-            font-size: 1rem;
-            color: #333;
-        }
-
-        .instructions {
-            font-size: 1.1rem;
-            margin-top: 20px;
-            color: #555;
-        }
-    </style>
-</head>
+    <!-- asdf --></head>
 <body>
     <header>
-        <div data-include="../client_project/components/header.html"></div>
+        <div data-include="../client_project/components/header.html"></div>        
     </header>
-
     <main>
-        <div id="planner-container">
-            <h2>Select a Character</h2>
-            <div id="character-grid">
-                <!-- Characters are dynamically inserted via JavaScript -->
-            </div>
-        </div>
-    
-        <div id="skill-planner" style="display: none;">
-            <h2 id="selected-character">Character Skills</h2>
-            <div id="skills-container">
-                <div class="skill">
-                    <img src="images/basic.png" alt="Basic Skill">
-                    <p>Basic</p>
-                    <input type="number" id="current-basic" min="1" max="12" placeholder="Current Level">
-                    <input type="number" id="target-basic" min="1" max="12" placeholder="Target Level">
-                </div>
-                <div class="skill">
-                    <img src="images/dodge.png" alt="Dodge Skill">
-                    <p>Dodge</p>
-                    <input type="number" id="current-dodge" min="1" max="12" placeholder="Current Level">
-                    <input type="number" id="target-dodge" min="1" max="12" placeholder="Target Level">
-                </div>
-                <div class="skill">
-                    <img src="images/assist.png" alt="Assist Skill">
-                    <p>Assist</p>
-                    <input type="number" id="current-assist" min="1" max="12" placeholder="Current Level">
-                    <input type="number" id="target-assist" min="1" max="12" placeholder="Target Level">
-                </div>
-                <div class="skill">
-                    <img src="images/special.png" alt="Special Attack Skill">
-                    <p>Special Attack</p>
-                    <input type="number" id="current-special" min="1" max="12" placeholder="Current Level">
-                    <input type="number" id="target-special" min="1" max="12" placeholder="Target Level">
-                </div>
-                <div class="skill">
-                    <img src="images/chain.png" alt="Chain Attack Skill">
-                    <p>Chain Attack</p>
-                    <input type="number" id="current-chain" min="1" max="12" placeholder="Current Level">
-                    <input type="number" id="target-chain" min="1" max="12" placeholder="Target Level">
-                </div>
-            </div>
-            <button id="calculate-resources">Calculate Resources</button>
-            <div id="results-container">
-                <h3>Materials Needed:</h3>
-                <p id="dennies">Dennies: </p>
-                <p id="basic-chips">Basic Chips: </p>
-                <p id="advanced-chips">Advanced Chips: </p>
-                <p id="specialized-chips">Specialized Chips: </p>
-                <p id="hamster-pass">Hamster Cage Passes: </p>
-            </div>
-        </div>
-
-        <div id="planner-container">
-            <h2>Select a Character</h2>
-            <div id="character-grid">
-                <!-- Characters are dynamically inserted via JavaScript -->
-            </div>
-        </div>
-    
-        <div id="skill-planner" style="display: none;">
-            <h2 id="selected-character">Character Skills</h2>
-            <div id="skills-container">
-                <div class="skill">
-                    <img src="images/basic.png" alt="Basic Skill">
-                    <p>Basic</p>
-                    <input type="number" id="current-basic" min="1" max="12" placeholder="Current Level">
-                    <input type="number" id="target-basic" min="1" max="12" placeholder="Target Level">
-                </div>
-                <div class="skill">
-                    <img src="images/dodge.png" alt="Dodge Skill">
-                    <p>Dodge</p>
-                    <input type="number" id="current-dodge" min="1" max="12" placeholder="Current Level">
-                    <input type="number" id="target-dodge" min="1" max="12" placeholder="Target Level">
-                </div>
-                <div class="skill">
-                    <img src="images/assist.png" alt="Assist Skill">
-                    <p>Assist</p>
-                    <input type="number" id="current-assist" min="1" max="12" placeholder="Current Level">
-                    <input type="number" id="target-assist" min="1" max="12" placeholder="Target Level">
-                </div>
-                <div class="skill">
-                    <img src="images/special.png" alt="Special Attack Skill">
-                    <p>Special Attack</p>
-                    <input type="number" id="current-special" min="1" max="12" placeholder="Current Level">
-                    <input type="number" id="target-special" min="1" max="12" placeholder="Target Level">
-                </div>
-                <div class="skill">
-                    <img src="images/chain.png" alt="Chain Attack Skill">
-                    <p>Chain Attack</p>
-                    <input type="number" id="current-chain" min="1" max="12" placeholder="Current Level">
-                    <input type="number" id="target-chain" min="1" max="12" placeholder="Target Level">
-                </div>
-            </div>
-            <button id="calculate-resources">Calculate Resources</button>
-            <div id="results-container">
-                <h3>Materials Needed:</h3>
-                <p id="dennies">Dennies: </p>
-                <p id="basic-chips">Basic Chips: </p>
-                <p id="advanced-chips">Advanced Chips: </p>
-                <p id="specialized-chips">Specialized Chips: </p>
-                <p id="hamster-pass">Hamster Cage Passes: </p>
-            </div>
-        </div>
-
-        
+      <!-- insert here -->
     </main>
-    
-
     <footer>
-        <div data-include="../client_project/components/footer.html"></div>
+        <div data-include="components/footer.html"></div>
     </footer>
-
     <script src="../scripts/HTMLInclude.min.js"></script>
 </body>
 </html>
