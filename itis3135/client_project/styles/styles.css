@@ -119,9 +119,21 @@ button:hover {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s, background-color 0.3s;
     width: 150px;
-    height: 150px;
+    height: auto; 
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
 }
+
+.character-card p {
+    margin-top: 5px; 
+    font-size: 0.9rem; 
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
 
 .character-card:hover {
     transform: scale(1.05);
@@ -201,10 +213,11 @@ button:hover {
 
 .core-skills-grid {
     display: grid;
-    box-sizing: border-box;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* Uniformly distributes the columns */
     justify-content: center;
+    gap: 10px; /* Optional for spacing */
 }
+
 
 .core-skill-card {
     display: flex;
@@ -429,6 +442,14 @@ new type shit */
     gap: 15px;
     justify-items: center;
     margin: 20px 0;
+}
+
+.character-select header {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #0A9396;
+    text-transform: uppercase;
+    margin-bottom: 20px;
 }
 
 .character-display {
