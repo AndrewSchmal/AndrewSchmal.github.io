@@ -1,133 +1,73 @@
 // Core skill data
 const coreSkillData = {
-    A: {
-        name: 'Core Skill A',
-        image: 'Icon_Core_Skill_A.png',
-        materials: {
-            dennies: 5000
-        }
-    },
-    B: {
-        name: 'Core Skill B',
-        image: 'Icon_Core_Skill_B.png',
-        materials: {
-            expertChallengeItems: 2,
-            dennies: 12000
-        }
-    },
-    C: {
-        name: 'Core Skill C',
-        image: 'Icon_Core_Skill_C.png',
-        materials: {
-            expertChallengeItems: 4,
-            dennies: 28000
-        }
-    },
-    D: {
-        name: 'Core Skill D',
-        image: 'Icon_Core_Skill_D.png',
-        materials: {
-            notoriousHuntItems: 2,
-            expertChallengeItems: 9,
-            dennies: 60000
-        }
-    },
-    E: {
-        name: 'Core Skill E',
-        image: 'Icon_Core_Skill_E.png',
-        materials: {
-            notoriousHuntItems: 3,
-            expertChallengeItems: 15,
-            dennies: 100000
-        }
-    },
-    F: {
-        name: 'Core Skill F',
-        image: 'Icon_Core_Skill_F.png',
-        materials: {
-            notoriousHuntItems: 4,
-            expertChallengeItems: 30,
-            dennies: 200000
-        }
-    }
+    A: { name: 'Core Skill A', image: 'Item_Denny.png', materials: { dennies: 5000 } },
+    B: { name: 'Core Skill B', image: 'Item_Higher_Dimensional_Data_Murderous_Obituary.gif', materials: { expertChallengeItems: 2, dennies: 12000 } },
+    C: { name: 'Core Skill C', image: 'Item_Higher_Dimensional_Data_Steel_Malice.gif', materials: { expertChallengeItems: 4, dennies: 28000 } },
+    D: { name: 'Core Skill D', image: 'Item_Ferocious_Grip.gif', materials: { notoriousHuntItems: 2, expertChallengeItems: 9, dennies: 60000 } },
+    E: { name: 'Core Skill E', image: 'Item_Living_Drive.gif', materials: { notoriousHuntItems: 3, expertChallengeItems: 15, dennies: 100000 } },
+    F: { name: 'Core Skill F', image: 'Item_Scarlet_Engine.gif', materials: { notoriousHuntItems: 4, expertChallengeItems: 30, dennies: 200000 } }
 };
 
-// DOM elements
-const coreSkillCards = document.querySelectorAll('.core-skill-card');
-const materialsList = document.querySelector('.materials-list');
-
-// Materials tracker
-const materials = {
-    dennies: 0,
-    expertChallengeItems: 0,
-    notoriousHuntItems: 0
+// Character data
+const characterData = {
+    Anby: { name: 'Anby', coreMaterial: 'Item_Ferocious_Grip.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Murderous_Obituary.gif', image: 'anby.png' },
+    Billy: { name: 'Billy', coreMaterial: 'Item_Ferocious_Grip.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Ethereal_Pursuit.gif', image: 'billy.png' },
+    Ellen: { name: 'Ellen', coreMaterial: 'Item_Ferocious_Grip.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Murderous_Obituary.gif', image: 'ellen.png' },
+    Jane: { name: 'Jane', coreMaterial: 'Item_Ferocious_Grip.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Falling_Fist.gif', image: 'jane.png' },
+    Lucy: { name: 'Lucy', coreMaterial: 'Item_Ferocious_Grip.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Steel_Malice.gif', image: 'lucy.png' },
+    Nekomata: { name: 'Nekomata', coreMaterial: 'Item_Ferocious_Grip.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Crimson_Awe.gif', image: 'nekomata.png' },
+    Nicole: { name: 'Nicole', coreMaterial: 'Item_Ferocious_Grip.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Murderous_Obituary.gif', image: 'nicole.png' },
+    Anton: { name: 'Anton', coreMaterial: 'Item_Living_Drive.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Destructive_Advance.gif', image: 'anton.png' },
+    Ben: { name: 'Ben', coreMaterial: 'Item_Living_Drive.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Steel_Malice.gif', image: 'ben.png' },
+    Grace: { name: 'Grace', coreMaterial: 'Item_Living_Drive.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Destructive_Advance.gif', image: 'grace.png' },
+    Koleda: { name: 'Koleda', coreMaterial: 'Item_Living_Drive.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Steel_Malice.gif', image: 'koleda.png' },
+    Qingyi: { name: 'Qingyi', coreMaterial: 'Item_Living_Drive.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Ethereal_Pursuit.gif', image: 'qingyi.png' },
+    Seth: { name: 'Seth', coreMaterial: 'Item_Living_Drive.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Falling_Fist.gif', image: 'seth.png' },
+    Yanagi: { name: 'Yanagi', coreMaterial: 'Item_Living_Drive.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Destructive_Advance.gif', image: 'yanagi.png' },
+    ZhuYuan: { name: 'Zhu Yuan', coreMaterial: 'Item_Living_Drive.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Ethereal_Pursuit.gif', image: 'zhuyuan.png' },
+    Rina: { name: 'Rina', coreMaterial: 'Item_Finale_Dance_Shoes.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Destructive_Advance.gif', image: 'rina.png' },
+    Corin: { name: 'Corin', coreMaterial: 'Item_Finale_Dance_Shoes.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Crimson_Awe.gif', image: 'corin.png' },
+    Piper: { name: 'Piper', coreMaterial: 'Item_Finale_Dance_Shoes.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Crimson_Awe.gif', image: 'piper.png' },
+    Soldier11: { name: 'Soldier 11', coreMaterial: 'Item_Finale_Dance_Shoes.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Destructive_Advance.gif', image: 'soldier11.png' },
+    Soukaku: { name: 'Soukaku', coreMaterial: 'Item_Finale_Dance_Shoes.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Murderous_Obituary.gif', image: 'soukaku.png' },
+    Lycaon: { name: 'Lycaon', coreMaterial: 'Item_Finale_Dance_Shoes.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Ethereal_Pursuit.gif', image: 'lycaon.png' },
+    Caesar: { name: 'Caesar', coreMaterial: 'Item_Scarlet_Engine.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Stealth_Phantom.gif', image: 'caesar.png' },
+    Burnice: { name: 'Burnice', coreMaterial: 'Item_Scarlet_Engine.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Stealth_Phantom.gif', image: 'burnice.png' },
+    Lighter: { name: 'Lighter', coreMaterial: 'Item_Scarlet_Engine.gif', huntMaterial: 'Item_Higher_Dimensional_Data_Crimson_Awe.gif', image: 'lighter.png' }
 };
 
-// Function to add materials for a core skill
-function addMaterials(core) {
-    const coreSkill = coreSkillData[core];
-    for (const [material, amount] of Object.entries(coreSkill.materials)) {
-        materials[material] += amount;
-    }
+// Function to update character-specific material requirements
+function selectCharacter(characterKey) {
+    const selectedCharacter = characterData[characterKey];
+    const materialsDisplay = document.querySelector('.materials-list');
+    materialsDisplay.innerHTML = `
+        <h3>${selectedCharacter.name}</h3>
+        <div class="material">
+            <img src="images/${selectedCharacter.coreMaterial}" alt="Core Material">
+            <p>Core Material: ${selectedCharacter.coreMaterial.replace(/_/g, ' ').replace('.gif', '')}</p>
+        </div>
+        <div class="material">
+            <img src="images/${selectedCharacter.huntMaterial}" alt="Hunt Material">
+            <p>Hunt Material: ${selectedCharacter.huntMaterial.replace(/_/g, ' ').replace('.gif', '')}</p>
+        </div>
+    `;
 }
 
-// Function to subtract materials for a core skill
-function subtractMaterials(core) {
-    const coreSkill = coreSkillData[core];
-    for (const [material, amount] of Object.entries(coreSkill.materials)) {
-        materials[material] -= amount;
-    }
-}
-
-// Function to update the materials list dynamically
-function updateMaterialsList() {
-    materialsList.innerHTML = ''; // Clear the list
-    for (const [material, amount] of Object.entries(materials)) {
-        if (amount > 0) {
-            const materialElement = document.createElement('div');
-            materialElement.classList.add('material');
-            materialElement.innerHTML = `
-                <img src="images/${material}.png" alt="${material}">
-                <p>${material}: ${amount}</p>
-            `;
-            materialsList.appendChild(materialElement);
-        }
-    }
-}
-
-// Function to mark prerequisites as active
-function markActive(core) {
-    const prerequisites = Object.keys(coreSkillData).slice(
-        0,
-        Object.keys(coreSkillData).indexOf(core) + 1
-    );
-    prerequisites.forEach((prerequisite) => {
-        const card = document.querySelector(`.core-skill-card[data-core="${prerequisite}"]`);
-        if (card && !card.classList.contains('completed')) {
-            card.classList.add('active');
-        }
+// Function to dynamically display character selection
+function loadCharacters() {
+    const characterSelect = document.querySelector('.character-select');
+    Object.entries(characterData).forEach(([key, character]) => {
+        const card = document.createElement('div');
+        card.classList.add('character-card');
+        card.dataset.character = key;
+        card.innerHTML = `
+            <img src="images/${character.image}" alt="${character.name}">
+            <p>${character.name}</p>
+        `;
+        card.addEventListener('click', () => selectCharacter(key));
+        characterSelect.appendChild(card);
     });
 }
 
-// Function to handle core skill card clicks
-function handleCoreSkillClick(event) {
-    const clickedCard = event.currentTarget;
-    const core = clickedCard.dataset.core;
-
-    // Toggle completion state
-    if (!clickedCard.classList.contains('completed')) {
-        clickedCard.classList.add('completed'); // Mark as completed
-        addMaterials(core); // Add materials
-        markActive(core); // Mark prerequisites
-    } else {
-        clickedCard.classList.remove('completed'); // Unmark as completed
-        subtractMaterials(core); // Subtract materials
-    }
-
-    updateMaterialsList(); // Refresh materials display
-}
-
-// Attach click event listeners to all core skill cards
-coreSkillCards.forEach((card) => {
-    card.addEventListener('click', handleCoreSkillClick);
-});
+// Initialize characters on page load
+document.addEventListener('DOMContentLoaded', loadCharacters);
