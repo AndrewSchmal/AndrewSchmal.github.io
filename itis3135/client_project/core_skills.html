@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,15 +9,17 @@
 
     <link rel="stylesheet" href="/itis3135/client_project/styles/styles.css">
 
-    
+
 </head>
+
 <body>
     <header>
         <div data-include="../client_project/components/header.html"></div>
     </header>
     <main>
-        <div class="core-skills">
+        <div class="core-skills-container">
             <h1>Core Skills Planner</h1>
+            <p>Select the core skills to see the required materials for unlocking or upgrading them.</p>
             <div class="core-skills-grid">
                 <div class="core-skill-card" data-core="A">
                     <img src="images/Icon_Core_Skill_A.png" alt="Core Skill A">
@@ -44,60 +47,19 @@
                 </div>
             </div>
         </div>
-        <div class="materials-display">
+
+        <div class="materials-container">
             <h2>Materials Needed</h2>
-            <ul id="materials-list">
-                <li><img src="images/Item_Finale_Dance_Shoes.gif" alt="Item A"> Finale Dance Shoes: 0</li>
-                <li><img src="images/Item_Higher_Dimensional_Data_Crimson_Awe.gif" alt="Item B"> Crimson Awe: 0</li>
-                <li><img src="images/Item_Higher_Dimensional_Data_Destructive_Advance.gif" alt="Item C"> Destructive Advance: 0</li>
-                <li><img src="images/Item_Higher_Dimensional_Data_Ethereal_Pursuit.gif" alt="Item D"> Ethereal Pursuit: 0</li>
-                <li><img src="images/Item_Higher_Dimensional_Data_Falling_Fist.gif" alt="Item E"> Falling Fist: 0</li>
-                <li><img src="images/Item_Higher_Dimensional_Data_Murderous_Obituary.gif" alt="Item F"> Murderous Obituary: 0</li>
-            </ul>
+            <div class="materials-list">
+                <!-- Materials list will be dynamically generated here -->
+            </div>
         </div>
     </main>
     <footer>
         <div data-include="../client_project/components/footer.html"></div>
     </footer>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const coreSkills = document.querySelectorAll(".core-skill-card");
-            const materialsList = document.getElementById("materials-list");
-
-            const materials = {
-                A: { name: "Finale Dance Shoes", count: 0, image: "Item_Finale_Dance_Shoes.gif" },
-                B: { name: "Crimson Awe", count: 0, image: "Item_Higher_Dimensional_Data_Crimson_Awe.gif" },
-                C: { name: "Destructive Advance", count: 0, image: "Item_Higher_Dimensional_Data_Destructive_Advance.gif" },
-                D: { name: "Ethereal Pursuit", count: 0, image: "Item_Higher_Dimensional_Data_Ethereal_Pursuit.gif" },
-                E: { name: "Falling Fist", count: 0, image: "Item_Higher_Dimensional_Data_Falling_Fist.gif" },
-                F: { name: "Murderous Obituary", count: 0, image: "Item_Higher_Dimensional_Data_Murderous_Obituary.gif" },
-            };
-
-            coreSkills.forEach(skill => {
-                skill.addEventListener("click", () => {
-                    const core = skill.getAttribute("data-core");
-                    if (materials[core].count === 0) {
-                        materials[core].count = 1;
-                        skill.classList.add("active");
-                    } else {
-                        materials[core].count = 0;
-                        skill.classList.remove("active");
-                    }
-                    updateMaterials();
-                });
-            });
-
-            function updateMaterials() {
-                materialsList.innerHTML = "";
-                for (const core in materials) {
-                    const material = materials[core];
-                    const li = document.createElement("li");
-                    li.innerHTML = `<img src="images/${material.image}" alt="${material.name}"> ${material.name}: ${material.count}`;
-                    materialsList.appendChild(li);
-                }
-            }
-        });
-    </script>
+    <script src="core_skills.js"></script>
     <script src="../scripts/HTMLInclude.min.js"></script>
 </body>
+
 </html>
