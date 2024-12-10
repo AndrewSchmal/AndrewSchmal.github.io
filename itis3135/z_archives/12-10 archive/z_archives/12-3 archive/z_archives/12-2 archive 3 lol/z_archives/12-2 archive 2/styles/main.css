@@ -1,0 +1,56 @@
+/* Basic page setup */
+html, body {
+    font-size: 16px; /* Base font size */
+    background: #fdfdfd;
+}
+
+/* Main container setup */
+main {
+    width: 95%;       /* Responsive width */
+    max-width: 1200px; /* Prevents the content from stretching too wide */
+    margin: 0 auto;    /* Centers content horizontally */
+}
+
+/* Media query for large screens */
+@media screen and (min-width: 981px) and (max-width: 1400px) {
+    img {
+        width: 90%; /* Responsive image size */
+    }
+}
+
+/* Media query for tablets */
+@media screen and (min-width: 601px) and (max-width: 980px) {
+    img {
+        width: 90%; /* Same image sizing for tablets */
+    }
+}
+
+/* Media query for mobile devices */
+@media screen and (min-width: 370px) and (max-width: 600px) {
+    img {
+        width: 110%; /* Slightly larger images on small screens */
+    }
+    ul {
+        margin-left: 10%; /* Adjust list margin for mobile */
+    }
+    html, body {
+        font-size: 12pt; /* Smaller font size for mobile */
+    }
+}
+
+h1 {
+    text-align: center; 
+    color: #0A9396; 
+    font-size: 3rem; 
+    font-family: 'Arial', sans-serif;
+    text-shadow: 2px 2px #333; 
+}
+
+/* Add a tagline below the title */
+h2 {
+    text-align: center;
+    color: #0baaac; 
+    font-size: 1.5rem;
+    margin-top: -10px; /* Adjust spacing */
+    font-family: 'Arial', sans-serif;
+}
