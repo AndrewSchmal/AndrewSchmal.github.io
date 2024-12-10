@@ -36,23 +36,53 @@ const characterData = {
     Lighter: { name: 'Lighter', image: 'lighter.png' }
 };
 
-// Update materials display
-// Update materials display
-function updateMaterialsDisplay(selectedCharacter) {
+// Update materials display with hardcoded logic
+function updateMaterialsDisplay(characterName) {
+    let notoriousHuntItem = '';
+    let expertChallengeItem = '';
+
+    // Hardcoded logic for Notorious Hunt Item
+    if (['Anby', 'Billy', 'Ellen', 'Jane', 'Lucy', 'Nekomata', 'Nicole'].includes(characterName)) {
+        notoriousHuntItem = 'Item_Ferocious_Grip.gif';
+    } else if (['Anton', 'Ben', 'Grace', 'Koleda', 'Qingyi', 'Seth', 'Yanagi', 'Zhu Yuan'].includes(characterName)) {
+        notoriousHuntItem = 'Item_Living_Drive.gif';
+    } else if (['Rina', 'Corin', 'Piper', 'Soldier 11', 'Soukaku', 'Lycaon'].includes(characterName)) {
+        notoriousHuntItem = 'Item_Finale_Dance_Shoes.gif';
+    } else if (['Caesar', 'Burnice', 'Lighter'].includes(characterName)) {
+        notoriousHuntItem = 'Item_Scarlet_Engine.gif';
+    }
+
+    // Hardcoded logic for Expert Challenge Item
+    if (['Anby', 'Ellen', 'Nicole', 'Soukaku'].includes(characterName)) {
+        expertChallengeItem = 'Item_Higher_Dimensional_Data_Murderous_Obituary.gif';
+    } else if (['Corin', 'Lighter', 'Nekomata', 'Piper'].includes(characterName)) {
+        expertChallengeItem = 'Item_Higher_Dimensional_Data_Crimson_Awe.gif';
+    } else if (['Billy', 'Qingyi', 'Lycaon', 'Zhu Yuan'].includes(characterName)) {
+        expertChallengeItem = 'Item_Higher_Dimensional_Data_Ethereal_Pursuit.gif';
+    } else if (['Ben', 'Koleda', 'Lucy'].includes(characterName)) {
+        expertChallengeItem = 'Item_Higher_Dimensional_Data_Steel_Malice.gif';
+    } else if (['Rina', 'Anton', 'Grace', 'Soldier 11', 'Yanagi'].includes(characterName)) {
+        expertChallengeItem = 'Item_Higher_Dimensional_Data_Destructive_Advance.gif';
+    } else if (['Jane', 'Seth'].includes(characterName)) {
+        expertChallengeItem = 'Item_Higher_Dimensional_Data_Falling_Fist.gif';
+    } else if (['Burnice', 'Caesar'].includes(characterName)) {
+        expertChallengeItem = 'Item_Higher_Dimensional_Data_Stealth_Phantom.gif';
+    }
+
     const materialsDisplay = document.querySelector('.materials-list');
     materialsDisplay.innerHTML = `
-      <div class="material">
-        <img src="images/Item_Denny.png" alt="Dennies">
-        <p>Dennies: ${coreSkillData.A.materials.dennies + coreSkillData.B.materials.dennies + coreSkillData.C.materials.dennies + coreSkillData.D.materials.dennies + coreSkillData.E.materials.dennies + coreSkillData.F.materials.dennies}</p>
-      </div>
-      <div class="material">
-        <img src="images/${selectedCharacter.coreMaterial}" alt="Core Material">
-        <p>Core Material: ${selectedCharacter.coreMaterial.replace(/_/g, ' ').replace('.gif', '')}</p>
-      </div>
-      <div class="material">
-        <img src="images/${selectedCharacter.huntMaterial}" alt="Hunt Material">
-        <p>Hunt Material: ${selectedCharacter.huntMaterial.replace(/_/g, ' ').replace('.gif', '')}</p>
-      </div>
+        <div class="material">
+            <img src="images/Item_Denny.png" alt="Dennies">
+            <p>Dennies</p>
+        </div>
+        <div class="material">
+            <img src="images/${notoriousHuntItem}" alt="Notorious Hunt Item">
+            <p>Notorious Hunt Item</p>
+        </div>
+        <div class="material">
+            <img src="images/${expertChallengeItem}" alt="Expert Challenge Item">
+            <p>Expert Challenge Item</p>
+        </div>
     `;
 }
 

@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenless Zone Zero Guide - Home</title>
+    <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/itis3135/client_project/styles/styles.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+
+        img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+        }
+
+        h3 {
+            font-size: 2.2rem;
+        }
+
+        /* Table Descriptive Row */
+        .team-description {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: black;
+            /* Use black for readability over Ellen's colorscheme */
+            padding: 10px;
+        }
+
+        /* Role Containers */
+        .role-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5px;
+            font-weight: bold;
+            border-radius: 5px;
+            gap: 5px;
+            font-size: 13.9rem;
+        }
+
+        /* Icon Sizes */
+        .skill-icon {
+            width: 24px;
+            height: 24px;
+        }
+
+        .agent-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 25%;
+        }
+
+
+
+        .role-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            font-weight: bold;
+            border-radius: 5px;
+            gap: 5px;
+            font-size: 1rem;
+            color: white;
+            /* Default to white */
+        }
+
+        /* Role-Specific Styles */
+        .role-dps {
+            background-color: red;
+        }
+
+        .role-sub-dps {
+            background-color: #FF6347;
+            /* Tomato-like orange-red */
+        }
+
+        .role-support {
+            background-color: green;
+        }
+
+        .role-stun {
+            background-color: yellow;
+            color: black;
+        }
+
+        .role-bangboo {
+            background-color: blue;
+        }
+
+        /* Character-Specific Styles */
+        .role-ellen {
+            background-color: #98EFF0;
+            /* Light Cyan for Ice */
+            color: black;
+            /* Ensures readability on light backgrounds */
+        }
+
+        .role-zhuyuan {
+            background-color: #2EB6FF;
+            /* Bright Blue for Ether */
+            color: white;
+        }
+
+        .role-qingyi {
+            background-color: #345E4B;
+            color: white;
+            /* Better contrast on dark green */
+        }
+
+        .role-jane {
+            background-color: #88BDD0;
+            /* Light Teal for Physical */
+            color: black;
+        }
+
+        .role-burnice {
+            background-color: #AE413E;
+            /* Dark Red for Power */
+            color: white;
+        }
+
+        .role-caesar {
+            background-color: #879281;
+            /* Muted Green/Gray */
+            color: white;
+            /* Better contrast */
+        }
+
+        .role-lighter {
+            background-color: #D2691E;
+            /* Chocolate Brown */
+            color: white;
+        }
+
+        .role-yanagi {
+            background-color: #DB8B8E;
+            /* Soft Pink */
+            color: black;
+            /* Ensures readability on light pink */
+        }
+
+        .second-choice-icon {
+            width: 75px;
+            height: 75px;
+            margin-left: 5px;
+            border-radius: 25%;
+        }
+
+        .agent-label {
+            font-weight: bold;
+            font-size: 1.2rem;
+            /* Larger font size */
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div data-include="../client_project/components/header.html"></div>
+    </header>
+    <main>
+        <!-- Index Box -->
+        <aside>
+            <strong>Jump to:</strong>
+            <a href="#ellen">Ellen</a> |
+            <a href="#zhuyuan">Zhu Yuan</a> |
+            <a href="#qingyi">Qingyi</a> |
+            <a href="#jane">Jane</a> |
+            <a href="#caesar">Caesar</a> |
+            <a href="#burnice">Burnice</a> |
+            <a href="#yanagi">Yanagi</a> |
+            <a href="#lighter">Lighter</a> |
+        </aside>
+
+
+        <!-- Ellen -->
+        <h3 id="ellen">Ellen Joe Teams</h3>
+        <p>If a column has multiple characters, the <b>bigger</b> one is the priority choice for the team while the
+            smaller ones are alternatives. If they are the same size, either of them can be used.</p>
+        <table>
+            <!-- Descriptive Row -->
+            <tr class="role-ellen">
+                <td colspan="4" class="team-description">
+                    Mono Ice Team
+                </td>
+            </tr>
+            <!-- Team Members -->
+            <tr>
+                <td><img class="agent-icon" src="images/ellen.png" alt="Ellen"></td>
+                <td><img class="agent-icon" src="images/lycaon.png" alt="Lycaon"></td>
+                <td><img class="agent-icon" src="images/soukaku.png" alt="Soukaku"></td>
+                <td><img class="agent-icon" src="images/Bangboo_Sharkboo_Icon.png" alt="Sharkboo"></td>
+            </tr>
+            <tr>
+                <th>Ellen</th>
+                <th>Lycaon</th>
+                <th>Soukaku</th>
+                <th>Sharkboo</th>
+            </tr>
+            <!-- Roles -->
+            <tr>
+                <td>
+                    <div class="role-container role-dps">
+                        <img class="skill-icon" src="images/Icon_Attack.png" alt="DPS Icon">
+                        DPS
+                    </div>
+                </td>
+                <td>
+                    <div class="role-container role-stun">
+                        <img class="skill-icon" src="images/Icon_Stun.png" alt="Stun Icon">
+                        Stun
+                    </div>
+                </td>
+                <td>
+                    <div class="role-container role-support">
+                        <img class="skill-icon" src="images/Icon_Support.png" alt="Support Icon">
+                        Support
+                    </div>
+                </td>
+                <td>
+                    <div class="role-container role-bangboo">
+                        <img class="skill-icon" src="images/Icon_Bangboo.png" alt="Bangboo Icon">
+                        Bangboo
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <p class="description">
+            The best team in the game at launch, and while powercreep has made it less dominant, it's still the best ice
+            team by far. Ellen does insane damage, Lycaon is there to build stun and increase the enemy's ice weakness,
+            and Soukaku is there to just stay on the field with "Fly The Flag" and buff your on-field agent. Sharkboo is
+            the best offensive bangboo, but you can use Penguinboo if you don't have it.
+        </p>
+
+
+
+        <!-- Zhu Yuan -->
+        <h3 id="zhuyuan">Zhu Yuan Team</h3>
+        <p>If a column has multiple characters, the <b>bigger</b> one is the priority choice for the team while the
+            smaller ones are alternatives. If they are the same size, either of them can be used.</p>
+        <table>
+            <!-- Descriptive Row -->
+            <tr class="role-zhuyuan">
+                <td colspan="4" class="team-description">
+                    Zhu Yuan Ether
+                </td>
+            </tr>
+            <!-- Team Members -->
+            <tr>
+                <td><img class="agent-icon" src="images/zhuyuan.png" alt="Zhu Yuan"></td>
+                <td>
+                    <img class="agent-icon" src="images/qingyi.png" alt="Qingyi">
+                    <img class="second-choice-icon" src="images/anby.png" alt="Anby">
+                </td>
+                <td><img class="agent-icon" src="images/nicole.png" alt="Nicole"></td>
+                <td>
+                    <img class="agent-icon" src="images/Bangboo_Resonaboo_Icon.png" alt="Resonaboo">
+                    <img class="second-choice-icon" src="images/Bangboo_Devilboo_Icon.png" alt="Devilboo">
+                </td>
+            </tr>
+            <tr>
+                <th>Zhu Yuan</th>
+                <th>Qingyi/Anby</th>
+                <th>Nicole</th>
+                <th>Resonaboo / Devilboo</th>
+            </tr>
+            <!-- Roles -->
+            <tr>
+                <td>
+                    <div class="role-container role-dps">
+                        <img class="skill-icon" src="images/Icon_Attack.png" alt="DPS Icon">
+                        DPS
+                    </div>
+                </td>
+                <td>
+                    <div class="role-container role-stun">
+                        <img class="skill-icon" src="images/Icon_Stun.png" alt="Stun Icon">
+                        Stun
+                    </div>
+                </td>
+                <td>
+                    <div class="role-container role-support">
+                        <img class="skill-icon" src="images/Icon_Support.png" alt="Support Icon">
+                        Support
+                    </div>
+                </td>
+                <td>
+                    <div class="role-container role-bangboo">
+                        <img class="skill-icon" src="images/Icon_Bangboo.png" alt="Bangboo Icon">
+                        Bangboo
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <p class="description">
+            Zhu Yuan is probably the most f2p-friendly exclusive agent thus far, gaining synergy with the free Nicole.
+            If you happen to have Qingyi, she is the best choice, but if not just substitute her for Anby. Nicole is the
+            only other Ether agent in the game, and Qingyi and Anby both synergize with at least one of the other two
+            due to factions.
+        </p>
+
+
+        <!-- Qingyi -->
+        <h3 id="qingyi">Qingyi Team</h3>
+        <p>If a column has multiple characters, the <b>bigger</b> one is the priority choice for the team while the
+            smaller ones are alternatives. If they are the same size, either of them can be used.</p>
+        <table>
+            <!-- Descriptive Row -->
+            <tr class="role-qingyi">
+                <td colspan="4" class="team-description">
+                    Qingyi Electric
+                </td>
+            </tr>
+            <!-- Team Members -->
+            <tr>
+                <td><img class="agent-icon" src="images/qingyi.png" alt="Qingyi"></td>
+                <td>
+                    <img class="agent-icon" src="images/caesar.png" alt="Caesar">
+                    <img class="second-choice-icon" src="images/burnice.png" alt="Burnice">
+                </td>
+                <td><img class="agent-icon" src="images/lighter.png" alt="Lighter"></td>
+                <td><img class="agent-icon" src="images/Bangboo_Enhanceboo_Icon.png" alt="Enhanceboo"></td>
+            </tr>
+            <tr>
+                <th>Qingyi</th>
+                <th>Caesar / Burnice</th>
+                <th>Lighter</th>
+                <th>Enhanceboo</th>
+            </tr>
+            <!-- Roles -->
+            <tr>
+                <td>
+                    <div class="role-container role-dps">
+                        <img class="skill-icon" src="images/Icon_Attack.png" alt="DPS Icon">
+                        DPS
+                    </div>
+                </td>
+                <td>
+                    <div class="role-container role-support">
+                        <img class="skill-icon" src="images/Icon_Support.png" alt="Support Icon">
+                        Support
+                    </div>
+                </td>
+                <td>
+                    <div class="role-container role-support">
+                        <img class="skill-icon" src="images/Icon_Support.png" alt="Support Icon">
+                        Support
+                    </div>
+                </td>
+                <td>
+                    <div class="role-container role-bangboo">
+                        <img class="skill-icon" src="images/Icon_Bangboo.png" alt="Bangboo Icon">
+                        Bangboo
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <p class="description">
+            Qingyi shines as an Electric DPS, offering powerful critical hits and stun effects. Caesar provides energy
+            support, while Lighter amplifies utility. Enhanceboo boosts Qingyi's critical damage and further enhances
+            team synergy.
+        </p>
+
+
+
+        <!-- Jane -->
+        <h3 id="jane">Jane Team</h3>
+        <p>If a column has multiple characters, the <b>bigger</b> one is the priority choice for the team while the
+            smaller ones are alternatives. If they are the same size, either of them can be used.</p>
+        <table>
+            <!-- Descriptive Row -->
+            <tr class="role-jane">
+                <td colspan="4" class="team-description">
+                    Jane Physical
+                </td>
+            </tr>
+            <!-- Team Members -->
+            <tr>
+                <td><img class="agent-icon" src="images/jane.png" alt="Jane"></td>
+                <td>
+                    <img class="agent-icon" src="images/seth.png" alt="Seth">
+                    <img class="second-choice-icon" src="images/qingyi.png" alt="Qingyi">
+                </td>
+                <td><img class="agent-icon" src="images/caesar.png" alt="Caesar"></td>
+                <td><img class="agent-icon" src="images/Bangboo_Physiboo_Icon.png" alt="Physiboo"></td>
+            </tr>
+            <tr>
+                <th>Jane</th>
+                <th>Seth / Qingyi</th>
+                <th>Caesar</th>
+                <th>Physiboo</th>
+            </tr>
+            <!-- Roles -->
+            <tr>
+                <td>
+                    <div class="role-container role-dps">
+                        <img class="skill-icon" src="images/Icon_Attack.png" alt="DPS Icon">
+                        DPS
+                    </div>
+                </td>
+                <td>
+                    <div class="role-container role-stun">
+                        <img class="skill-icon" src="images/Icon_Stun.png" alt="Stun Icon">
+                        Stun
+                    </div>
+                </td>
+                <td>
+                    <div class="role-container role-support">
+                        <img class="skill-icon" src="images/Icon_Support.png" alt="Support Icon">
+                        Support
+                    </div>
+                </td>
+                <td>
+                    <div class="role-container role-bangboo">
+                        <img class="skill-icon" src="images/Bangboo_Officer_Cui_Icon.png" alt="Officer Cui Icon">
+                        Bangboo
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <p class="description">
+            Jane is a powerhouse Physical DPS who pairs well with Seth for survivability and Caesar for buffs. Qingyi
+            offers a viable Stun alternative if needed, while Physiboo boosts physical attack and critical rate.
+        </p>
+
+
+        <!-- Caesar -->
+        <h3 id="caesar">Caesar Team</h3>
+        <p>If a column has multiple characters, the <b>bigger</b> one is the priority choice for the team while the smaller ones are alternatives. If they are the same size, either of them can be used.</p>
+        <table>
+            <!-- Descriptive Row -->
+            <tr class="role-caesar">
+                <td colspan="4" class="team-description">
+                    Caesar Elemental
+                </td>
+            </tr>
+            <!-- Team Members -->
+            <tr>
+                <td><img class="agent-icon" src="images/caesar.png" alt="Caesar"></td>
+                <td>
+                    <img class="agent-icon" src="images/burnice.png" alt="Burnice">
+                    <img class="second-choice-icon" src="images/jane.png" alt="Jane">
+                </td>
+                <td><img class="agent-icon" src="images/lighter.png" alt="Lighter"></td>
+                <td><img class="agent-icon" src="images/Bangboo_Energiboo_Icon.png" alt="Energiboo"></td>
+            </tr>
+            <tr>
+                <th>Caesar</th>
+                <th>Burnice / Jane</th>
+                <th>Lighter</th>
+                <th>Energiboo</th>
+            </tr>
+            <!-- Roles -->
+            <tr>
+                <td>
+                    <div class="role-container role-dps">
+                        <img class="skill-icon" src="images/Icon_Attack.png" alt="DPS Icon">
+                        DPS
+                    </div>
+                </td>
+                <td>
+                    <div class="role-container role-support">
+                        <img class="skill-icon" src="images/Icon_Support.png" alt="Support Icon">
+                        Support
+                    </div>
+                </td>
+                <td>
+                    <div class="role-container role-support">
+                        <img class="skill-icon" src="images/Icon_Support.png" alt="Support Icon">
+                        Support
+                    </div>
+                </td>
+                <td>
+                    <div class="role-container role-bangboo">
+                        <img class="skill-icon" src="images/Icon_Bangboo.png" alt="Bangboo Icon">
+                        Bangboo
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <p class="description">
+            Caesar excels in elemental teams, amplifying energy recharge and elemental damage. Burnice provides defense and buffs, while Jane serves as an alternative Support. Energiboo complements the team perfectly.
+        </p>
+        
+
+        <!-- Burnice -->
+        <h3 id="burnice">Burnice Team</h3>
+<p>If a column has multiple characters, the <b>bigger</b> one is the priority choice for the team while the smaller ones are alternatives. If they are the same size, either of them can be used.</p>
+<table>
+    <!-- Descriptive Row -->
+    <tr class="role-burnice">
+        <td colspan="4" class="team-description">
+            Burnice Defensive
+        </td>
+    </tr>
+    <!-- Team Members -->
+    <tr>
+        <td><img class="agent-icon" src="images/burnice.png" alt="Burnice"></td>
+        <td>
+            <img class="agent-icon" src="images/caesar.png" alt="Caesar">
+            <img class="second-choice-icon" src="images/qingyi.png" alt="Qingyi">
+        </td>
+        <td><img class="agent-icon" src="images/seth.png" alt="Seth"></td>
+        <td><img class="agent-icon" src="images/Bangboo_Defendiboo_Icon.png" alt="Defendiboo"></td>
+    </tr>
+    <tr>
+        <th>Burnice</th>
+        <th>Caesar / Qingyi</th>
+        <th>Seth</th>
+        <th>Defendiboo</th>
+    </tr>
+    <!-- Roles -->
+    <tr>
+        <td>
+            <div class="role-container role-dps">
+                <img class="skill-icon" src="images/Icon_Attack.png" alt="DPS Icon">
+                DPS
+            </div>
+        </td>
+        <td>
+            <div class="role-container role-support">
+                <img class="skill-icon" src="images/Icon_Support.png" alt="Support Icon">
+                Support
+            </div>
+        </td>
+        <td>
+            <div class="role-container role-support">
+                <img class="skill-icon" src="images/Icon_Support.png" alt="Support Icon">
+                Support
+            </div>
+        </td>
+        <td>
+            <div class="role-container role-bangboo">
+                <img class="skill-icon" src="images/Icon_Bangboo.png" alt="Bangboo Icon">
+                Bangboo
+            </div>
+        </td>
+    </tr>
+</table>
+<p class="description">
+    Burnice is a defensive powerhouse with great synergy alongside Caesar for additional utility. Qingyi and Seth offer flexibility depending on the team’s needs. Defendiboo enhances team survivability.
+</p>
+
+
+        <!-- Yanagi -->
+        <h3 id="yanagi">Yanagi Team</h3>
+<p>If a column has multiple characters, the <b>bigger</b> one is the priority choice for the team while the smaller ones are alternatives. If they are the same size, either of them can be used.</p>
+<table>
+    <!-- Descriptive Row -->
+    <tr class="role-yanagi">
+        <td colspan="4" class="team-description">
+            Yanagi Evasion
+        </td>
+    </tr>
+    <!-- Team Members -->
+    <tr>
+        <td><img class="agent-icon" src="images/yanagi.png" alt="Yanagi"></td>
+        <td>
+            <img class="agent-icon" src="images/caesar.png" alt="Caesar">
+            <img class="second-choice-icon" src="images/burnice.png" alt="Burnice">
+        </td>
+        <td><img class="agent-icon" src="images/qingyi.png" alt="Qingyi"></td>
+        <td><img class="agent-icon" src="images/Bangboo_Speediboo_Icon.png" alt="Speediboo"></td>
+    </tr>
+    <tr>
+        <th>Yanagi</th>
+        <th>Caesar / Burnice</th>
+        <th>Qingyi</th>
+        <th>Speediboo</th>
+    </tr>
+    <!-- Roles -->
+    <tr>
+        <td>
+            <div class="role-container role-dps">
+                <img class="skill-icon" src="images/Icon_Attack.png" alt="DPS Icon">
+                DPS
+            </div>
+        </td>
+        <td>
+            <div class="role-container role-support">
+                <img class="skill-icon" src="images/Icon_Support.png" alt="Support Icon">
+                Support
+            </div>
+        </td>
+        <td>
+            <div class="role-container role-support">
+                <img class="skill-icon" src="images/Icon_Support.png" alt="Support Icon">
+                Support
+            </div>
+        </td>
+        <td>
+            <div class="role-container role-bangboo">
+                <img class="skill-icon" src="images/Icon_Bangboo.png" alt="Bangboo Icon">
+                Bangboo
+            </div>
+        </td>
+    </tr>
+</table>
+<p class="description">
+    Yanagi thrives as a DPS with exceptional evasion capabilities. Caesar provides buffs, Burnice offers defensive synergy, and Qingyi adds flexibility. Speediboo boosts Yanagi’s speed and effectiveness.
+</p>
+
+
+        <!-- Lighter -->
+        <h3 id="lighter">Lighter Team</h3>
+<p>If a column has multiple characters, the <b>bigger</b> one is the priority choice for the team while the smaller ones are alternatives. If they are the same size, either of them can be used.</p>
+<table>
+    <!-- Descriptive Row -->
+    <tr class="role-lighter">
+        <td colspan="4" class="team-description">
+            Lighter Fire
+        </td>
+    </tr>
+    <!-- Team Members -->
+    <tr>
+        <td><img class="agent-icon" src="images/lighter.png" alt="Lighter"></td>
+        <td>
+            <img class="agent-icon" src="images/caesar.png" alt="Caesar">
+            <img class="second-choice-icon" src="images/jane.png" alt="Jane">
+        </td>
+        <td><img class="agent-icon" src="images/burnice.png" alt="Burnice"></td>
+        <td><img class="agent-icon" src="images/Bangboo_Flamiboo_Icon.png" alt="Flamiboo"></td>
+    </tr>
+    <tr>
+        <th>Lighter</th>
+        <th>Caesar / Jane</th>
+        <th>Burnice</th>
+        <th>Flamiboo</th>
+    </tr>
+    <!-- Roles -->
+    <tr>
+        <td>
+            <div class="role-container role-dps">
+                <img class="skill-icon" src="images/Icon_Attack.png" alt="DPS Icon">
+                DPS
+            </div>
+        </td>
+        <td>
+            <div class="role-container role-support">
+                <img class="skill-icon" src="images/Icon_Support.png" alt="Support Icon">
+                Support
+            </div>
+        </td>
+        <td>
+            <div class="role-container role-support">
+                <img class="skill-icon" src="images/Icon_Support.png" alt="Support Icon">
+                Support
+            </div>
+        </td>
+        <td>
+            <div class="role-container role-bangboo">
+                <img class="skill-icon" src="images/Icon_Bangboo.png" alt="Bangboo Icon">
+                Bangboo
+            </div>
+        </td>
+    </tr>
+</table>
+<p class="description">
+    Lighter serves as a fiery DPS with explosive potential. Caesar adds synergy through elemental buffs, while Jane offers an alternative Support. Flamiboo amplifies Lighter’s critical rate and fire damage.
+</p>
+
+
+    </main>
+    <footer>
+        <div data-include="../client_project/components/footer.html"></div>
+    </footer>
+
+    <script src="../scripts/HTMLInclude.min.js"></script>
+</body>
+
+</html>
