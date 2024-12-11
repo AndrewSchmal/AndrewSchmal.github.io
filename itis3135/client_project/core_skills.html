@@ -65,9 +65,9 @@
             height: 50px;
         }
 
-        .core-skill.completed {
+        /* .core-skill.completed {
             background-color: #4caf50;
-        }
+        } */
 
         .materials-display {
             margin-top: 20px;
@@ -89,6 +89,15 @@
             margin: 5px 0;
             font-size: 1.1rem;
         }
+
+        .needed {
+    background-color: #ffa500; /* Orange for "needed" */
+}
+
+.complete {
+    background-color: #4caf50; /* Green for "complete" */
+}
+
     </style>
 </head>
 
@@ -160,41 +169,64 @@
         };
 
 
-        let selectedSkills = new Set();
+        let selectedSkills = new Map(); // Tracks the state of each skill: "not set", "needed", "complete"
 
-        const calculateMaterials = () => {
-            let totalDennies = 0, notoriousItems = 0, challengeItems = 0;
+const calculateMaterials = () => {
+    let totalDennies = 0, notoriousItems = 0, challengeItems = 0;
 
-            selectedSkills.forEach((skillId) => {
-                const skill = coreSkills.find((s) => s.id === skillId);
-                if (skill.materials.dennies) totalDennies += skill.materials.dennies;
-                if (skill.materials.notoriousHuntItems) notoriousItems += skill.materials.notoriousHuntItems;
-                if (skill.materials.expertChallengeItems) challengeItems += skill.materials.expertChallengeItems;
-            });
+    selectedSkills.forEach((state, skillId) => {
+        if (state === "needed") {
+            const skill = coreSkills.find((s) => s.id === skillId);
+            if (skill.materials.dennies) totalDennies += skill.materials.dennies;
+            if (skill.materials.notoriousHuntItems) notoriousItems += skill.materials.notoriousHuntItems;
+            if (skill.materials.expertChallengeItems) challengeItems += skill.materials.expertChallengeItems;
+        }
+    });
 
-            document.getElementById("materials-display").style.display = "block";
-            document.getElementById("dennies").innerText = `Dennies: ${totalDennies.toLocaleString()}`;
-            document.getElementById("notorious-items").innerText = `Notorious Hunt Items: ${notoriousItems}`;
-            document.getElementById("challenge-items").innerText = `Expert Challenge Items: ${challengeItems}`;
-        };
+    document.getElementById("materials-display").classList.remove("hidden");
+    document.getElementById("dennies").innerText = `Dennies: ${totalDennies.toLocaleString()}`;
+    document.getElementById("notorious-items").innerText = `Notorious Hunt Items: ${notoriousItems}`;
+    document.getElementById("challenge-items").innerText = `Expert Challenge Items: ${challengeItems}`;
+};
 
-        const toggleSkill = (skillId) => {
-    const skillDiv = document.querySelector(`.core-skill[data-skill-id='${skillId}']`);
+const updateSkillStates = (skillId, newState) => {
     const index = coreSkills.findIndex((skill) => skill.id === skillId);
 
-    if (!selectedSkills.has(skillId)) {
+    if (newState === "needed") {
+        // Set current and all preceding skills to "needed"
         for (let i = 0; i <= index; i++) {
-            selectedSkills.add(coreSkills[i].id);
-            document.querySelector(`.core-skill[data-skill-id='${coreSkills[i].id}']`).classList.add("completed");
+            selectedSkills.set(coreSkills[i].id, "needed");
+            document.querySelector(`[data-skill-id='${coreSkills[i].id}']`).classList.add("needed");
+            document.querySelector(`[data-skill-id='${coreSkills[i].id}']`).classList.remove("complete");
+        }
+    } else if (newState === "complete") {
+        // Set current and all preceding skills to "complete"
+        for (let i = 0; i <= index; i++) {
+            selectedSkills.set(coreSkills[i].id, "complete");
+            document.querySelector(`[data-skill-id='${coreSkills[i].id}']`).classList.add("complete");
+            document.querySelector(`[data-skill-id='${coreSkills[i].id}']`).classList.remove("needed");
         }
     } else {
-        for (let i = index + 1; i < coreSkills.length; i++) {
-            selectedSkills.delete(coreSkills[i].id);
-            document.querySelector(`.core-skill[data-skill-id='${coreSkills[i].id}']`).classList.remove("completed");
+        // Reset current skill and all following skills to "not set"
+        for (let i = index; i < coreSkills.length; i++) {
+            selectedSkills.set(coreSkills[i].id, "not set");
+            document.querySelector(`[data-skill-id='${coreSkills[i].id}']`).classList.remove("needed", "complete");
         }
     }
 
     calculateMaterials();
+};
+
+const toggleSkill = (skillId) => {
+    const currentState = selectedSkills.get(skillId) || "not set";
+
+    if (currentState === "not set") {
+        updateSkillStates(skillId, "needed");
+    } else if (currentState === "needed") {
+        updateSkillStates(skillId, "complete");
+    } else {
+        updateSkillStates(skillId, "not set");
+    }
 };
 
 const selectCharacter = (characterName) => {
@@ -235,7 +267,6 @@ const loadCharacters = () => {
     row += "</tr>";
     table.innerHTML = row;
 
-    // Attach event listeners after rendering characters
     document.querySelectorAll(".character").forEach((td) => {
         td.addEventListener("click", () => {
             const characterName = td.getAttribute("data-character");
