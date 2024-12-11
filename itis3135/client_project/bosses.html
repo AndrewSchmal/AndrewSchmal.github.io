@@ -24,7 +24,7 @@
             width: 95%;
             max-width: 1400px;
             margin: 0 auto;
-            padding: 20px;
+            /* padding: 20px; */
         }
 
         h1 {
@@ -89,6 +89,7 @@
             color: white;
             border-radius: 10px;
             padding: 20px;
+            box-sizing: border-box;
             z-index: 1000;
         }
 
@@ -115,7 +116,7 @@
             border-radius: 8px;
         }
 
-        .popup-section h3 {
+        h3 {
             color: #FFD700;
         }
 
@@ -170,6 +171,7 @@
             border: 1px solid gray;
             border-radius: 10px;
             padding: 5px;
+            box-sizing: border-box;
             width: 80px;
         }
 
@@ -187,7 +189,7 @@
             font-size: 0.8rem;
         }
 
-        /* Related Agent modal styling */
+        /* Related Agent modal styling
         .related-agent-modal {
             display: none;
             position: fixed;
@@ -218,9 +220,9 @@
             grid-template-columns: repeat(6, 1fr);
             gap: 10px;
             text-align: center;
-        }
+        } */
 
-        .agent-box {
+        /* .agent-box {
             position: relative;
         }
 
@@ -239,7 +241,7 @@
             bottom: 0;
             width: 100%;
             text-align: center;
-        }
+        } */
 
         .modal-close {
             background-color: #FF4500;
@@ -256,7 +258,6 @@
 <body>
     <header>
         <div data-include="../client_project/components/header.html"></div>
-        <!-- <img src="images/Notorious_Hunt.png" alt="Notorious Hunt Logo" class="logo">         -->
     </header>
     <main>
         <h1>Notorious Hunt Bosses</h1>
@@ -383,7 +384,7 @@
             // Weakness Section
             const weaknessContainer = document.getElementById("popup-weakness");
             weaknessContainer.innerHTML = "";
-            boss.weakness.forEach(weakness => {
+            boss.weakness.forEach((weakness) => {
                 const weaknessElement = document.createElement("div");
                 weaknessElement.className = `element ${weakness.class}`;
                 weaknessElement.innerHTML = `<img src="${weakness.icon}" alt="${weakness.name}"> ${weakness.name}`;
@@ -395,7 +396,7 @@
             // Intel Section
             const intelContainer = document.getElementById("popup-intel");
             intelContainer.innerHTML = "";
-            boss.intel.forEach(point => {
+            boss.intel.forEach((point) => {
                 const li = document.createElement("li");
                 li.textContent = point;
                 intelContainer.appendChild(li);
@@ -404,7 +405,7 @@
             // Rewards Section
             const rewardsContainer = document.getElementById("popup-rewards");
             rewardsContainer.innerHTML = "";
-            boss.rewards.forEach(reward => {
+            boss.rewards.forEach((reward) => {
                 const rewardItem = document.createElement("div");
                 rewardItem.className = "reward-item";
                 rewardItem.innerHTML = `<img src="${reward.img}" alt="${reward.name}"><div class="reward-quantity">${reward.quantity}</div>`;
