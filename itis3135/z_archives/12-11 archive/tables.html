@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Andrew Schmal's Acclaimed Squid 🦑 ITIS 3135 🦑 Tables </title>    <!-- Accumulus -->
+    <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="styles/main.css">
+
+    <style>
+        /* General Page Styling */
+        body {
+            background-color: #E8F1F2;
+            /* Softer Light Teal */
+            color: #333333;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            text-align: center;
+            font-size: 22px;
+        }
+
+        header {
+            margin: 40px 0;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #005F73;
+            /* Deep Teal */
+        }
+
+        h1 {
+            color: #0A9396;
+            font-size: 2.75rem;
+        }
+
+        h2 {
+            color: #0baaac;
+            font-size: 2.0rem;
+        }
+
+        main {
+            margin: 20px auto;
+            padding: 10px;
+            max-width: 800px;
+        }
+
+        
+        footer {
+            margin-top: 30px;
+            padding: 15px 0;
+            background-color: #005F73;
+            color: #F7FFF7;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: #CA6702;
+            margin: 0 15px;
+        }
+
+        .my-links {
+            display: inline-block;
+            padding: 8px 18px;
+            margin: 10px;
+            border: 2px solid #005F73;
+            border-radius: 8px;
+            background-color: #94D2BD;
+            color: #005F73;
+            font-size: 1.2rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .my-links:hover {
+            background-color: #005F73;
+            color: white;
+        }
+
+        .my-links img {
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        .back-home {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: 2px solid #0A3D40;
+            border-radius: 8px;
+            background-color: #C3DCE3;
+            color: #0D5C63;
+            font-size: 1.5rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .back-home:hover {
+            background-color: #0D5C63;
+            color: white;
+        }
+
+        /* Design firm stuff */
+        .design-firm {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .design-firm a {
+            color: #FAED27;
+            /* Bright Yellow */
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .design-firm a:hover {
+            text-decoration: underline;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 8px 18px;
+            border: 2px solid #0A3D40;
+            border-radius: 8px;
+            background-color: #C3DCE3;
+            color: #0D5C63;
+            text-decoration: none;
+            margin: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #0D5C63;
+            color: white;
+        }
+
+        /* Certification Container */
+        .certification-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .cert-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #0A3D40;
+            border-radius: 12px;
+            background-color: #C3DCE3;
+            padding: 20px;
+            width: 200px;
+            height: 250px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-sizing: border-box;
+        }
+
+        .cert-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .cert-box img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        .cert-box p {
+            color: #0D5C63;
+        }
+
+        h4 {
+    color: #CA6702; 
+    font-size: 1.8rem;
+    margin-top: 15px;
+    text-transform: uppercase; 
+    font-weight: bold;
+}
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+
+        th, td {
+            border: 1px solid #333;
+            padding: 8px 12px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #005F73; 
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2; 
+        }
+
+        tr:nth-child(odd) {
+            background-color: #ffffff; 
+        }
+
+        tr:hover {
+            background-color: #c3dce3; 
+        }
+
+        
+
+        .total-row th {
+            background-color: #0A9396; 
+            color: white;
+            font-size: 1.1rem;
+        }
+
+        .highlight {
+            background-color: #94D2BD; 
+        }
+
+        /* Pseudo-classes for accessibility */
+        th[scope="col"] {
+            text-transform: uppercase;
+        }
+
+        td[headers] {
+            font-style: italic; 
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div data-include="components/header.html"></div>
+    </header>
+    <main>
+        <h2>Activity #2 - HTML Tables</h2>
+
+        <h3>My Table Data</h3>
+        <ol>
+            <li>You, Specifically - ajshjaksjka@gmail.com - $25,000</li>
+            <li>Xi Jinping - wassupbeijing@china.com - $400,000</li>
+            <li>Dr. Mario - drmario@nintendo.com - $300,000</li>
+            <li>D.I. von Briesen - dvonbri1@uncc.edu - $1,000,000.01</li>
+            <li>Jane Roe - janeroe@anothermail.com - $45,000</li>
+            <li>Dr. Michael Morbis - morbintime@gmail.com - $1 morbillion dollars</li>
+            <li>Ryan Costco - ryanthecryptoleprechaun@costco.com - $15.000</li>
+            <li>Brandon Ewing - atrioc.glizzard@hotmail.com - $150,000</li>
+            <li>Scott Weaver - coolcat73@gmail.com - $40,000</li>
+            <li>John Doe - morelikejanedoe@hoyo.verse - $30,000</li>
+        </ol>
+
+        <h3>Employee Data in Simple Table</h3>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Salary</th>
+            </tr>
+            <tr>
+                <td>You, Specifically</td>
+                <td>ajshjaksjka@gmail.com</td>
+                <td>$25,000</td>
+            </tr>
+            <tr>
+                <td>Xi Jinping</td>
+                <td>yaboyjinping@chinamail.com</td>
+                <td>$400,000</td>
+            </tr>
+            <tr>
+                <td>Dr. Mario</td>
+                <td>drmario@nintendo.com</td>
+                <td>$300,000</td>
+            </tr>
+            <tr>
+                <td>D.I. von Briesen</td>
+                <td>dvonbri1@uncc.edu</td>
+                <td>$1,000,000.01</td>
+            </tr>
+            <tr>
+                <td>Jane Roe</td>
+                <td>janeroe@anothermail.com</td>
+                <td>$45,000</td>
+            </tr>
+            <tr>
+                <td>Dr. Michael Morbis</td>
+                <td>morbintime@gmail.com</td>
+                <td>$1 morbillion dollars</td>
+            </tr>
+            <tr>
+                <td>Ryan Costco</td>
+                <td>ryanthecryptoleprechaun@costco.com</td>
+                <td>$15.000</td>
+            </tr>
+            <tr>
+                <td>Brandon Ewing</td>
+                <td>atrioc.glizzard@hotmail.com</td>
+                <td>$150,000</td>
+            </tr>
+            <tr>
+                <td>Scott Weaver</td>
+                <td>coolcat73@gmail.com</td>
+                <td>$40,000</td>
+            </tr>
+            <tr>
+                <td>John Doe</td>
+                <td>morelikejanedoe@hoyo.verse</td>
+                <td>$30,000</td>
+            </tr>
+        </table>
+
+        <h3>Employee Data (but fancier)</h3>
+        <figure>
+            <!-- <figcaption>Employee Information</figcaption> -->
+            <table>
+                <tr>
+                    <th>Category</th>
+                    <th>Title</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Salary</th>
+                </tr>
+                <tr>
+                    <td rowspan="1">Boss</td>
+                    <td>Supreme Leader</td>
+                    <td>D.I. von Briesen</td>
+                    <td>dvonbri1@uncc.edu</td>
+                    <td>$1,000,000.01</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">Minions</td>
+                    <td>Chief Minion</td>
+                    <td>You, Specifically</td>
+                    <td>ajshjaksjka@gmail.com</td>
+                    <td>$25,000</td>
+                </tr>
+                <tr>
+                    <td>International Liaison</td>
+                    <td>Xi Jinping</td>
+                    <td>yaboyjinping@chinamail.com</td>
+                    <td>$400,000</td>
+                </tr>
+                <tr>
+                    <td>Medical Consultant</td>
+                    <td>Dr. Mario</td>
+                    <td>drmario@nintendo.com</td>
+                    <td>$300,000</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">Sub Minions</td>
+                    <td>Legal Advisor</td>
+                    <td>Jane Roe</td>
+                    <td>janeroe@anothermail.com</td>
+                    <td>$45,000</td>
+                </tr>
+                <tr>
+                    <td>Chief Morbologist</td>
+                    <td>Dr. Michael Morbis</td>
+                    <td>morbintime@gmail.com</td>
+                    <td>$1 morbillion dollars</td>
+                </tr>
+                <tr>
+                    <td>Cryptography Expert</td>
+                    <td>Ryan Costco</td>
+                    <td>ryanthecryptoleprechaun@costco.com</td>
+                    <td>$15.000</td>
+                </tr>
+                <tr>
+                    <td rowspan="3">Others</td>
+                    <td>Marketing Specialist</td>
+                    <td>Brandon Ewing</td>
+                    <td>atrioc.glizzard@hotmail.com</td>
+                    <td>$150,000</td>
+                </tr>
+                <tr>
+                    <td>Phillips Crab Meat Stocker</td>
+                    <td>Scott Weaver</td>
+                    <td>coolcat73@gmail.com</td>
+                    <td>$40,000</td>
+                </tr>
+                <tr>
+                    <td>Random Important Title</td>
+                    <td>John Doe</td>
+                    <td>morelikejanedoe@hoyo.verse</td>
+                    <td>$30,000</td>
+                </tr>
+                <tr class="total-row">
+                    <th colspan="4">Total Annual Salary Budget</th>
+                    <td>$2,420,000.01 + 1 morbillion dollars</td>
+                </tr>
+            </table>
+        </figure>
+    </main>
+    <footer>
+        <div data-include="components/footer.html"></div>
+    </footer>
+    <script src="scripts/HTMLInclude.min.js"></script>
+</body>
+</html>

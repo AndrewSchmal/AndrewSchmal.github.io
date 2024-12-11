@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zenless Zone Zero Guide - Home</title>
+    <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="styles/styles.css">
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #E5E4E2;
+            color: #2C2C2C;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height: 1.6;
+        }
+
+        main {
+            width: 95%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #005F73;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .boss-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .boss-box {
+            background-color: #FFFFFF;
+            border: 2px solid #005F73;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            box-sizing: border-box;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .boss-box:hover {
+            transform: scale(1.05);
+            background-color: #CA6702;
+            color: #FAFAFA;
+        }
+
+        .boss-header {
+            background-color: #d7f300;
+            color: #000000;
+            font-size: 1.5rem;
+            box-sizing: border-box;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 8px 8px 0 0;
+        }
+
+        .boss-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .info-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            box-sizing: border-box;
+            max-width: 900px;
+            background-color: #333333;
+            color: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .info-popup-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .info-popup-header h2 {
+            margin: 0;
+        }
+
+        .close-popup {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #FFFFFF;
+            cursor: pointer;
+        }
+
+        .popup-content {
+            display: flex;
+            gap: 20px;
+        }
+
+        .popup-content img {
+            width: 300px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .popup-details {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .popup-section {
+            background-color: #444444;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .popup-section h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #FFD700;
+        }
+
+        .popup-section p {
+            margin: 5px 0 0 0;
+        }
+
+       
+
+        .popup-icons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .popup-icons img {
+            width: 40px;
+            height: 40px;
+        }
+    </style>
+
+    <!-- asdf --></head>
+<body>
+    <header>
+        <div data-include="../client_project/components/header.html"></div>
+        <!-- <img src="images/Notorious_Hunt.png" alt="Notorious Hunt Logo" class="logo">         -->
+    </header>
+    <main>
+        <h1>Notorious Hunt Bosses</h1>
+        <div class="boss-grid">
+            <!-- Dead End Butcher -->
+            <div class="boss-box" onclick="showInfo('dead-end-butcher')">
+                <div class="boss-header">Newborn Dead End Butcher</div>
+                <img src="images/newborn_dead_end_butcher.png" alt="Newborn Dead End Butcher">
+            </div>
+
+            <!-- Corruption Complex -->
+            <div class="boss-box" onclick="showInfo('corruption-complex')">
+                <div class="boss-header">Unknown Corruption Complex</div>
+                <img src="images/unknown_corruption_complex.png" alt="Unknown Corruption Complex">
+            </div>
+
+            <!-- Twin Marionettes -->
+            <div class="boss-box" onclick="showInfo('twin-marionettes')">
+                <div class="boss-header">Twin Marionettes</div>
+                <img src="images/twin_marionettes.png" alt="Twin Marionettes">
+            </div>
+
+            <!-- Corrupted Overlord - Pompey -->
+            <div class="boss-box" onclick="showInfo('pompey')">
+                <div class="boss-header">Corrupted Overlord - Pompey</div>
+                <img src="images/corrupted_overlord_pompey.png" alt="Corrupted Overlord - Pompey">
+            </div>
+        </div>
+
+        <div class="info-popup" id="info-popup">
+            <div class="info-popup-header">
+                <h2 id="popup-title">Boss Name</h2>
+                <button class="close-popup" onclick="closePopup()">×</button>
+            </div>
+            <div class="popup-content">
+                <img id="popup-image" src="" alt="Boss Image">
+                <div class="popup-details">
+                    <div class="popup-section">
+                        <h3>Base Stats</h3>
+                        <p><strong>Weakness:</strong> <span id="popup-weakness"></span></p>
+                        <p><strong>Resistance:</strong> <span id="popup-resistance"></span></p>
+                    </div>
+                    <div class="popup-section">
+                        <h3>Current Intel</h3>
+                        <p id="popup-intel"></p>
+                    </div>
+                    <div class="popup-section">
+                        <h3>Challenge Rewards</h3>
+                        <p id="popup-rewards"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const bosses = {
+            "dead-end-butcher": {
+                title: "Newborn Dead End Butcher",
+                image: "images/newborn_dead_end_butcher.png",
+                weakness: "Ice, Ether",
+                resistance: "None",
+                intel: "Freeze, Duel, and Support Resonia are obtainable during this operation.",
+                rewards: "600 Coins, Ether Cores, and Rare Materials"
+            },
+            "corruption-complex": {
+                title: "Unknown Corruption Complex",
+                image: "images/unknown_corruption_complex.png",
+                weakness: "Electric, Ether",
+                resistance: "None",
+                intel: "Shock and Overcharge Resonia are obtainable during this operation.",
+                rewards: "Electric Cores, Ether Cores, Advanced Materials"
+            },
+            "twin-marionettes": {
+                title: "Twin Marionettes",
+                image: "images/twin_marionettes.png",
+                weakness: "Ice, Ether",
+                resistance: "None",
+                intel: "Careful coordination required to disrupt synergy. Stun Resonia obtainable.",
+                rewards: "600 Coins, Twin Marionette Core, Ether Materials"
+            },
+            "pompey": {
+                title: "Corrupted Overlord - Pompey",
+                image: "images/corrupted_overlord_pompey.png",
+                weakness: "Fire",
+                resistance: "Ice",
+                intel: "Ignite, Duel, and Assist Resonia obtainable during this operation.",
+                rewards: "Fire Cores, Advanced Ether Materials, Rare Equipment"
+            }
+        };
+
+        function showInfo(bossKey) {
+            const boss = bosses[bossKey];
+            document.getElementById("popup-title").textContent = boss.title;
+            document.getElementById("popup-image").src = boss.image;
+            document.getElementById("popup-weakness").textContent = boss.weakness;
+            document.getElementById("popup-resistance").textContent = boss.resistance;
+            document.getElementById("popup-intel").textContent = boss.intel;
+            document.getElementById("popup-rewards").textContent = boss.rewards;
+            document.getElementById("info-popup").style.display = "block";
+        }
+
+        function closePopup() {
+            document.getElementById("info-popup").style.display = "none";
+        }
+    </script>
+    
+    <script src="../scripts/HTMLInclude.min.js"></script>
+</body>
+</html>

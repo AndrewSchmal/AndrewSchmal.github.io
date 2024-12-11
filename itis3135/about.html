@@ -195,6 +195,29 @@
             font-weight: bold;
         }
 
+        figure {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    margin: 20px auto; 
+    max-width: 80%; }
+
+.arcade-image {
+    max-width: 100%; 
+    height: auto; 
+    border: 2px solid #005F73;
+    border-radius: 10px; 
+    box-sizing: border-box;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: adds a subtle shadow */
+}
+
+figcaption {
+    margin-top: 10px; /* Adds space between the image and caption */
+    font-size: 0.9rem; /* Adjusts font size */
+    color: #333333; /* Matches the color of your page content */
+    text-align: center; /* Centers the text within the caption */
+}
+
     
     </style>
 </head>
@@ -215,18 +238,23 @@
             ambiance of the ocean.</p>
 
         <figure>
-            <img src="https://media.vrbo.com/lodging/81000000/80260000/80257600/80257555/decfa8c5.jpg"
-                alt="Placeholder image for Acclaimed Squid Arcade" class="review-image">
+            <img class="arcade-image" src="images/acclaimed_squid_arcade.jpg"alt="Acclaimed Squid Arcade">
             <figcaption>
-                This is a placeholder image. The actual site will include custom images tailored to the Acclaimed Squid
-                Arcade. Original source: <a href="https://www.vrbo.com/9698118ha" target="_blank">VRBO</a>.
+                This is definitely my arcade and not the Galloping Ghost arcade in Brookfield,IL.
             </figcaption>
         </figure>
 
-        <p><strong>Slogan:</strong> <em>"Where gaming meets the ocean breeze!"</em></p>
+        
 
         <p>Plan your visit today and experience the joy of gaming by the shore. Don't forget to check out our weekend
             tournaments and special events!</p>
+
+            <figure>
+                <img class="arcade-image" src="images/galloping_ghost_brookfield.jpg"alt="Second Pic lol">
+                <figcaption>
+                    What better place to spend your time than the Acclaimed Squid Arcade?
+                </figcaption>
+            </figure>
     </main>
 
 
