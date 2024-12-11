@@ -10,40 +10,38 @@
     <link rel="stylesheet" href="/itis3135/client_project/styles/styles.css">
     <script src="styles/styles.css" defer></script>
     <style>
-        character-table {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            border-collapse: collapse;
-            table-layout: fixed;
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            max-height: 800px;
+            overflow-y: auto;
+            margin-bottom: 20px;
         }
 
-        .character-table td {
+        .character {
             text-align: center;
-            padding: 15px;
-            vertical-align: top;
             cursor: pointer;
         }
 
-        .character-table img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
+        .character img {
+            width: 100px;
+            height: 100px;
+            border-radius: 20%;
             object-fit: cover;
-        }
-
-        .character-table p {
-            margin: 10px 0 0;
-            font-weight: bold;
-            font-size: 0.9rem;
         }
 
         .core-skills-container {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .core-skill-row {
+            display: flex;
             gap: 20px;
-            margin: 20px 0;
+            justify-content: center;
         }
 
         .core-skill {
@@ -65,10 +63,6 @@
             height: 50px;
         }
 
-        /* .core-skill.completed {
-            background-color: #4caf50;
-        } */
-
         .materials-display {
             margin-top: 20px;
             padding: 20px;
@@ -76,6 +70,14 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
+        }
+
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            align-items: center;
+            justify-items: center;
         }
 
         .materials-display img {
@@ -91,13 +93,37 @@
         }
 
         .needed {
-    background-color: #ffa500; /* Orange for "needed" */
-}
+            background-color: #ffa500;
+            /* Orange for "needed" */
+        }
 
-.complete {
-    background-color: #4caf50; /* Green for "complete" */
-}
+        .complete {
+            background-color: #4caf50;
+            /* Green for "complete" */
+        }
 
+        .material-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 10px;
+            background-color: #ffffff;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .material-item img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 5px;
+        }
+
+        .hidden {
+            display: none;
+        }
+        
     </style>
 </head>
 
@@ -105,29 +131,45 @@
     <header>
         <div data-include="../client_project/components/header.html"></div>
     </header>
+
     <main>
         <h1>Core Skills Planner</h1>
         <p>Select a character below to view their core skills:</p>
-        <table class="character-table">
-            <tbody id="character-table">
-                <!-- Characters will dynamically load here -->
-            </tbody>
-        </table>
+        <div class="character-grid" id="character-grid">
+            <!-- Characters will dynamically load here -->
+        </div>
 
         <div id="core-skills-section" class="hidden">
             <h2 id="selected-character-name"></h2>
-            <div class="core-skills-container" id="core-skills-container">
-                <!-- Core skills will dynamically load here -->
+            <div class="core-skills-container">
+                <div class="core-skill-row">
+                    <div class="core-skill" data-skill-id="A"></div>
+                    <div class="core-skill" data-skill-id="C"></div>
+                    <div class="core-skill" data-skill-id="E"></div>
+                </div>
+                <div class="core-skill-row">
+                    <div class="core-skill" data-skill-id="B"></div>
+                    <div class="core-skill" data-skill-id="D"></div>
+                    <div class="core-skill" data-skill-id="F"></div>
+                </div>
             </div>
         </div>
 
         <div id="materials-display" class="materials-display hidden">
             <h3>Required Materials</h3>
-            <p id="dennies">Dennies: 0</p>
-            <p id="notorious-items">Notorious Hunt Items: 0</p>
-            <p id="challenge-items">Expert Challenge Items: 0</p>
+            <div class="materials-grid" id="materials-grid">
+                <!-- Materials will dynamically load here -->
+            </div>
+            <div id="energy-summary">
+                <h4>Energy Summary</h4>
+                <p id="total-energy"></p>
+                <p id="days-to-complete"></p>
+                <div id="battery-display"></div>
+            </div>
         </div>
+        
     </main>
+
     <footer>
         <div data-include="components/footer.html"></div>
     </footer>
@@ -169,113 +211,133 @@
         };
 
 
-        let selectedSkills = new Map(); // Tracks the state of each skill: "not set", "needed", "complete"
+        let selectedSkills = new Map();
 
-const calculateMaterials = () => {
-    let totalDennies = 0, notoriousItems = 0, challengeItems = 0;
 
-    selectedSkills.forEach((state, skillId) => {
-        if (state === "needed") {
-            const skill = coreSkills.find((s) => s.id === skillId);
-            if (skill.materials.dennies) totalDennies += skill.materials.dennies;
-            if (skill.materials.notoriousHuntItems) notoriousItems += skill.materials.notoriousHuntItems;
-            if (skill.materials.expertChallengeItems) challengeItems += skill.materials.expertChallengeItems;
-        }
-    });
+        const calculateMaterials = () => {
+            const materialsGrid = document.getElementById("materials-grid");
+            const energySummary = document.getElementById("energy-summary");
+            const totalEnergy = document.getElementById("total-energy");
+            const daysToComplete = document.getElementById("days-to-complete");
+            const batteryDisplay = document.getElementById("battery-display");
 
-    document.getElementById("materials-display").classList.remove("hidden");
-    document.getElementById("dennies").innerText = `Dennies: ${totalDennies.toLocaleString()}`;
-    document.getElementById("notorious-items").innerText = `Notorious Hunt Items: ${notoriousItems}`;
-    document.getElementById("challenge-items").innerText = `Expert Challenge Items: ${challengeItems}`;
-};
+            materialsGrid.innerHTML = "";
+            batteryDisplay.innerHTML = "";
 
-const updateSkillStates = (skillId, newState) => {
-    const index = coreSkills.findIndex((skill) => skill.id === skillId);
+            let materials = {};
+            let totalEnergyCost = 0;
 
-    if (newState === "needed") {
-        // Set current and all preceding skills to "needed"
-        for (let i = 0; i <= index; i++) {
-            selectedSkills.set(coreSkills[i].id, "needed");
-            document.querySelector(`[data-skill-id='${coreSkills[i].id}']`).classList.add("needed");
-            document.querySelector(`[data-skill-id='${coreSkills[i].id}']`).classList.remove("complete");
-        }
-    } else if (newState === "complete") {
-        // Set current and all preceding skills to "complete"
-        for (let i = 0; i <= index; i++) {
-            selectedSkills.set(coreSkills[i].id, "complete");
-            document.querySelector(`[data-skill-id='${coreSkills[i].id}']`).classList.add("complete");
-            document.querySelector(`[data-skill-id='${coreSkills[i].id}']`).classList.remove("needed");
-        }
-    } else {
-        // Reset current skill and all following skills to "not set"
-        for (let i = index; i < coreSkills.length; i++) {
-            selectedSkills.set(coreSkills[i].id, "not set");
-            document.querySelector(`[data-skill-id='${coreSkills[i].id}']`).classList.remove("needed", "complete");
-        }
-    }
+            selectedSkills.forEach((state, skillId) => {
+                if (state === "needed") {
+                    const skill = coreSkills.find((s) => s.id === skillId);
+                    for (let [material, amount] of Object.entries(skill.materials)) {
+                        if (!materials[material]) materials[material] = 0;
+                        materials[material] += amount;
+                    }
+                }
+            });
 
-    calculateMaterials();
-};
+            for (let [material, amount] of Object.entries(materials)) {
+                const materialDiv = document.createElement("div");
+                materialDiv.classList.add("material-item");
+                materialDiv.innerHTML = `
+                    <img src="images/Item_${material.replace(/ /g, "_")}.png" alt="${material}" title="${material}">
+                    <span>${amount}</span>
+                `;
+                materialsGrid.appendChild(materialDiv);
 
-const toggleSkill = (skillId) => {
-    const currentState = selectedSkills.get(skillId) || "not set";
+                if (material.includes("Notorious")) totalEnergyCost += amount * 60;
+                if (material.includes("Expert")) totalEnergyCost += amount * 40;
+            }
 
-    if (currentState === "not set") {
-        updateSkillStates(skillId, "needed");
-    } else if (currentState === "needed") {
-        updateSkillStates(skillId, "complete");
-    } else {
-        updateSkillStates(skillId, "not set");
-    }
-};
+            const batteryCount = Math.ceil((totalEnergyCost - 320) / 60);
+            totalEnergy.textContent = `Total Energy Required: ${totalEnergyCost}`;
+            daysToComplete.textContent = `Approximate Days to Complete: ${Math.ceil(totalEnergyCost / 320)}`;
+            for (let i = 0; i < batteryCount; i++) {
+                const batteryDiv = document.createElement("img");
+                batteryDiv.src = "images/Item_Ether_Battery.png";
+                batteryDiv.alt = "Ether Battery";
+                batteryDiv.title = "Ether Battery (60 Energy)";
+                batteryDisplay.appendChild(batteryDiv);
+            }
 
-const selectCharacter = (characterName) => {
-    const character = characterData[characterName];
-    document.getElementById("selected-character-name").innerText = `${character.name}'s Core Skills`;
-    document.getElementById("core-skills-section").classList.remove("hidden");
+            document.getElementById("materials-display").classList.remove("hidden");
+        };
 
-    const container = document.getElementById("core-skills-container");
-    container.innerHTML = "";
-    selectedSkills.clear();
+        const updateSkillStates = (skillId, newState) => {
+            const index = coreSkills.findIndex((skill) => skill.id === skillId);
 
-    coreSkills.forEach((skill) => {
-        const skillDiv = document.createElement("div");
-        skillDiv.classList.add("core-skill");
-        skillDiv.dataset.skillId = skill.id;
-        skillDiv.innerHTML = `<img src="${skill.image}" alt="${skill.name}">`;
-        skillDiv.addEventListener("click", () => toggleSkill(skill.id));
-        container.appendChild(skillDiv);
-    });
-};
+            if (newState === "needed") {
+                for (let i = 0; i <= index; i++) {
+                    selectedSkills.set(coreSkills[i].id, "needed");
+                    document.querySelector(`[data-skill-id='${coreSkills[i].id}']`).classList.add("needed");
+                    document.querySelector(`[data-skill-id='${coreSkills[i].id}']`).classList.remove("complete");
+                }
+            } else if (newState === "complete") {
+                for (let i = 0; i <= index; i++) {
+                    selectedSkills.set(coreSkills[i].id, "complete");
+                    document.querySelector(`[data-skill-id='${coreSkills[i].id}']`).classList.add("complete");
+                    document.querySelector(`[data-skill-id='${coreSkills[i].id}']`).classList.remove("needed");
+                }
+            } else {
+                for (let i = index; i < coreSkills.length; i++) {
+                    selectedSkills.set(coreSkills[i].id, "not set");
+                    document.querySelector(`[data-skill-id='${coreSkills[i].id}']`).classList.remove("needed", "complete");
+                }
+            }
 
-const loadCharacters = () => {
-    const table = document.getElementById("character-table");
-    let row = "<tr>";
-    let count = 0;
+            calculateMaterials();
+        };
 
-    for (const char in characterData) {
-        const character = characterData[char];
-        row += `
-            <td class="character" data-character="${char}">
-                <img src="${character.image}" alt="${character.name}">
-                <p>${character.name}</p>
-            </td>
-        `;
-        count++;
-        if (count % 3 === 0) row += "</tr><tr>";
-    }
-    row += "</tr>";
-    table.innerHTML = row;
+        const toggleSkill = (skillId) => {
+            const currentState = selectedSkills.get(skillId) || "not set";
 
-    document.querySelectorAll(".character").forEach((td) => {
-        td.addEventListener("click", () => {
-            const characterName = td.getAttribute("data-character");
-            selectCharacter(characterName);
-        });
-    });
-};
+            if (currentState === "not set") {
+                updateSkillStates(skillId, "needed");
+            } else if (currentState === "needed") {
+                updateSkillStates(skillId, "complete");
+            } else {
+                updateSkillStates(skillId, "not set");
+            }
+        };
 
-document.addEventListener("DOMContentLoaded", loadCharacters);
+        
+
+        const selectCharacter = (characterName) => {
+            const character = characterData[characterName];
+            document.getElementById("selected-character-name").innerText = `${character.name}'s Core Skills`;
+            document.getElementById("core-skills-section").classList.remove("hidden");
+
+            const coreSkillsContainer = document.querySelector(".core-skills-container");
+            coreSkillsContainer.innerHTML = "";
+
+            coreSkills.forEach((skill) => {
+                const skillDiv = document.createElement("div");
+                skillDiv.classList.add("core-skill");
+                skillDiv.dataset.skillId = skill.id;
+                skillDiv.innerHTML = `<img src="${skill.image}" alt="${skill.name}" title="${skill.name}">`;
+                skillDiv.addEventListener("click", () => toggleSkill(skill.id));
+                skillDiv.addEventListener("dblclick", () => updateSkillStates(skill.id, "not set"));
+                coreSkillsContainer.appendChild(skillDiv);
+            });
+        };
+
+        const loadCharacters = () => {
+            const characterGrid = document.getElementById("character-grid");
+            characterGrid.innerHTML = "";
+
+            for (const char in characterData) {
+                const character = characterData[char];
+                const charDiv = document.createElement("div");
+                charDiv.classList.add("character");
+                charDiv.dataset.character = char;
+                charDiv.innerHTML = `<img src="${character.image}" alt="${character.name}" title="${character.name}">`;
+                charDiv.addEventListener("click", () => selectCharacter(char));
+                characterGrid.appendChild(charDiv);
+            }
+        };
+
+        document.addEventListener("DOMContentLoaded", loadCharacters);
     </script>
     <script src="../scripts/HTMLInclude.min.js"></script>
 </body>

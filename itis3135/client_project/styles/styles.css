@@ -308,17 +308,8 @@ button:hover {
     color: #ffffff;
 }
 
-.core-skill-card:hover {
-    transform: scale(1.05);
-    background-color: #0A9396;
-}
 
-.core-skill-card img {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-}
+
 
 .core-skill-card p {
     margin: 0;
