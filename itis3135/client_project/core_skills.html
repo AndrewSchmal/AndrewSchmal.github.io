@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -90,9 +91,10 @@
         }
     </style>
 </head>
+
 <body>
     <header>
-        <div data-include="../client_project/components/header.html"></div>        
+        <div data-include="../client_project/components/header.html"></div>
     </header>
     <main>
         <h1>Core Skills Planner</h1>
@@ -103,14 +105,14 @@
             </tbody>
         </table>
 
-        <div id="core-skills-section" style="display: none;">
+        <div id="core-skills-section" class="hidden">
             <h2 id="selected-character-name"></h2>
             <div class="core-skills-container" id="core-skills-container">
                 <!-- Core skills will dynamically load here -->
             </div>
         </div>
 
-        <div id="materials-display" class="materials-display" style="display: none;">
+        <div id="materials-display" class="materials-display hidden">
             <h3>Required Materials</h3>
             <p id="dennies">Dennies: 0</p>
             <p id="notorious-items">Notorious Hunt Items: 0</p>
@@ -131,97 +133,40 @@
         ];
 
         const characterData = {
-    Anby: { name: 'Anby', image: 'images/anby.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Murderous Obituary' },
-    Billy: { name: 'Billy', image: 'images/billy.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Ethereal Pursuit' },
-    Ellen: { name: 'Ellen', image: 'images/ellen.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Murderous Obituary' },
-    Jane: { name: 'Jane', image: 'images/jane.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Falling Fist' },
-    Lucy: { name: 'Lucy', image: 'images/lucy.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Steel Malice' },
-    Nekomata: { name: 'Nekomata', image: 'images/nekomata.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Crimson Awe' },
-    Nicole: { name: 'Nicole', image: 'images/nicole.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Murderous Obituary' },
-    Anton: { name: 'Anton', image: 'images/anton.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Destructive Advance' },
-    Ben: { name: 'Ben', image: 'images/ben.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Steel Malice' },
-    Grace: { name: 'Grace', image: 'images/grace.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Destructive Advance' },
-    Koleda: { name: 'Koleda', image: 'images/koleda.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Steel Malice' },
-    Qingyi: { name: 'Qingyi', image: 'images/qingyi.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Ethereal Pursuit' },
-    Seth: { name: 'Seth', image: 'images/seth.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Falling Fist' },
-    Yanagi: { name: 'Yanagi', image: 'images/yanagi.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Destructive Advance' },
-    ZhuYuan: { name: 'Zhu Yuan', image: 'images/zhuyuan.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Ethereal Pursuit' },
-    Rina: { name: 'Rina', image: 'images/rina.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Destructive Advance' },
-    Corin: { name: 'Corin', image: 'images/corin.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Crimson Awe' },
-    Piper: { name: 'Piper', image: 'images/piper.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Crimson Awe' },
-    Soldier11: { name: 'Soldier 11', image: 'images/soldier11.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Destructive Advance' },
-    Soukaku: { name: 'Soukaku', image: 'images/soukaku.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Murderous Obituary' },
-    Lycaon: { name: 'Lycaon', image: 'images/lycaon.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Ethereal Pursuit' },
-    Caesar: { name: 'Caesar', image: 'images/caesar.png', notoriousHuntMaterial: 'Scarlet Engine', expertChallengeMaterial: 'Stealth Phantom' },
-    Burnice: { name: 'Burnice', image: 'images/burnice.png', notoriousHuntMaterial: 'Scarlet Engine', expertChallengeMaterial: 'Stealth Phantom' },
-    Lighter: { name: 'Lighter', image: 'images/lighter.png', notoriousHuntMaterial: 'Scarlet Engine', expertChallengeMaterial: 'Crimson Awe' }
-};
+            Anby: { name: 'Anby', image: 'images/anby.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Murderous Obituary' },
+            Billy: { name: 'Billy', image: 'images/billy.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Ethereal Pursuit' },
+            Ellen: { name: 'Ellen', image: 'images/ellen.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Murderous Obituary' },
+            Jane: { name: 'Jane', image: 'images/jane.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Falling Fist' },
+            Lucy: { name: 'Lucy', image: 'images/lucy.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Steel Malice' },
+            Nekomata: { name: 'Nekomata', image: 'images/nekomata.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Crimson Awe' },
+            Nicole: { name: 'Nicole', image: 'images/nicole.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Murderous Obituary' },
+            Anton: { name: 'Anton', image: 'images/anton.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Destructive Advance' },
+            Ben: { name: 'Ben', image: 'images/ben.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Steel Malice' },
+            Grace: { name: 'Grace', image: 'images/grace.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Destructive Advance' },
+            Koleda: { name: 'Koleda', image: 'images/koleda.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Steel Malice' },
+            Qingyi: { name: 'Qingyi', image: 'images/qingyi.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Ethereal Pursuit' },
+            Seth: { name: 'Seth', image: 'images/seth.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Falling Fist' },
+            Yanagi: { name: 'Yanagi', image: 'images/yanagi.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Destructive Advance' },
+            ZhuYuan: { name: 'Zhu Yuan', image: 'images/zhuyuan.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Ethereal Pursuit' },
+            Rina: { name: 'Rina', image: 'images/rina.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Destructive Advance' },
+            Corin: { name: 'Corin', image: 'images/corin.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Crimson Awe' },
+            Piper: { name: 'Piper', image: 'images/piper.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Crimson Awe' },
+            Soldier11: { name: 'Soldier 11', image: 'images/soldier11.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Destructive Advance' },
+            Soukaku: { name: 'Soukaku', image: 'images/soukaku.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Murderous Obituary' },
+            Lycaon: { name: 'Lycaon', image: 'images/lycaon.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Ethereal Pursuit' },
+            Caesar: { name: 'Caesar', image: 'images/caesar.png', notoriousHuntMaterial: 'Scarlet Engine', expertChallengeMaterial: 'Stealth Phantom' },
+            Burnice: { name: 'Burnice', image: 'images/burnice.png', notoriousHuntMaterial: 'Scarlet Engine', expertChallengeMaterial: 'Stealth Phantom' },
+            Lighter: { name: 'Lighter', image: 'images/lighter.png', notoriousHuntMaterial: 'Scarlet Engine', expertChallengeMaterial: 'Crimson Awe' }
+        };
 
 
         let selectedSkills = new Set();
 
-        const loadCharacters = () => {
-            const table = document.getElementById("character-table");
-            let row = "<tr>";
-            let count = 0;
-            for (const char in characterData) {
-                const character = characterData[char];
-                row += `
-                    <td onclick="selectCharacter('${char}')">
-                        <img src="${character.image}" alt="${character.name}">
-                        <p>${character.name}</p>
-                    </td>
-                `;
-                count++;
-                if (count % 3 === 0) row += "</tr><tr>";
-            }
-            row += "</tr>";
-            table.innerHTML = row;
-        };
-
-        const selectCharacter = (characterName) => {
-            const character = characterData[characterName];
-            document.getElementById("selected-character-name").innerText = `${character.name}'s Core Skills`;
-            document.getElementById("core-skills-section").style.display = "block";
-
-            const container = document.getElementById("core-skills-container");
-            container.innerHTML = "";
-            selectedSkills.clear();
-
-            coreSkills.forEach(skill => {
-                const skillDiv = document.createElement("div");
-                skillDiv.classList.add("core-skill");
-                skillDiv.dataset.skillId = skill.id;
-                skillDiv.innerHTML = `<img src="${skill.image}" alt="${skill.name}">`;
-                skillDiv.addEventListener("click", () => toggleSkill(skill.id));
-                container.appendChild(skillDiv);
-            });
-        };
-
-        const toggleSkill = (skillId) => {
-            const skillDiv = document.querySelector(`.core-skill[data-skill-id='${skillId}']`);
-            const index = coreSkills.findIndex(skill => skill.id === skillId);
-
-            if (!selectedSkills.has(skillId)) {
-                for (let i = 0; i <= index; i++) {
-                    selectedSkills.add(coreSkills[i].id);
-                    document.querySelector(`.core-skill[data-skill-id='${coreSkills[i].id}']`).classList.add("completed");
-                }
-            } else {
-                for (let i = index + 1; i < coreSkills.length; i++) {
-                    selectedSkills.delete(coreSkills[i].id);
-                    document.querySelector(`.core-skill[data-skill-id='${coreSkills[i].id}']`).classList.remove("completed");
-                }
-            }
-
-            calculateMaterials();
-        };
-
         const calculateMaterials = () => {
             let totalDennies = 0, notoriousItems = 0, challengeItems = 0;
 
-            selectedSkills.forEach(skillId => {
-                const skill = coreSkills.find(s => s.id === skillId);
+            selectedSkills.forEach((skillId) => {
+                const skill = coreSkills.find((s) => s.id === skillId);
                 if (skill.materials.dennies) totalDennies += skill.materials.dennies;
                 if (skill.materials.notoriousHuntItems) notoriousItems += skill.materials.notoriousHuntItems;
                 if (skill.materials.expertChallengeItems) challengeItems += skill.materials.expertChallengeItems;
@@ -233,8 +178,75 @@
             document.getElementById("challenge-items").innerText = `Expert Challenge Items: ${challengeItems}`;
         };
 
-        loadCharacters();
+        const toggleSkill = (skillId) => {
+    const skillDiv = document.querySelector(`.core-skill[data-skill-id='${skillId}']`);
+    const index = coreSkills.findIndex((skill) => skill.id === skillId);
+
+    if (!selectedSkills.has(skillId)) {
+        for (let i = 0; i <= index; i++) {
+            selectedSkills.add(coreSkills[i].id);
+            document.querySelector(`.core-skill[data-skill-id='${coreSkills[i].id}']`).classList.add("completed");
+        }
+    } else {
+        for (let i = index + 1; i < coreSkills.length; i++) {
+            selectedSkills.delete(coreSkills[i].id);
+            document.querySelector(`.core-skill[data-skill-id='${coreSkills[i].id}']`).classList.remove("completed");
+        }
+    }
+
+    calculateMaterials();
+};
+
+const selectCharacter = (characterName) => {
+    const character = characterData[characterName];
+    document.getElementById("selected-character-name").innerText = `${character.name}'s Core Skills`;
+    document.getElementById("core-skills-section").classList.remove("hidden");
+
+    const container = document.getElementById("core-skills-container");
+    container.innerHTML = "";
+    selectedSkills.clear();
+
+    coreSkills.forEach((skill) => {
+        const skillDiv = document.createElement("div");
+        skillDiv.classList.add("core-skill");
+        skillDiv.dataset.skillId = skill.id;
+        skillDiv.innerHTML = `<img src="${skill.image}" alt="${skill.name}">`;
+        skillDiv.addEventListener("click", () => toggleSkill(skill.id));
+        container.appendChild(skillDiv);
+    });
+};
+
+const loadCharacters = () => {
+    const table = document.getElementById("character-table");
+    let row = "<tr>";
+    let count = 0;
+
+    for (const char in characterData) {
+        const character = characterData[char];
+        row += `
+            <td class="character" data-character="${char}">
+                <img src="${character.image}" alt="${character.name}">
+                <p>${character.name}</p>
+            </td>
+        `;
+        count++;
+        if (count % 3 === 0) row += "</tr><tr>";
+    }
+    row += "</tr>";
+    table.innerHTML = row;
+
+    // Attach event listeners after rendering characters
+    document.querySelectorAll(".character").forEach((td) => {
+        td.addEventListener("click", () => {
+            const characterName = td.getAttribute("data-character");
+            selectCharacter(characterName);
+        });
+    });
+};
+
+document.addEventListener("DOMContentLoaded", loadCharacters);
     </script>
     <script src="../scripts/HTMLInclude.min.js"></script>
 </body>
+
 </html>
