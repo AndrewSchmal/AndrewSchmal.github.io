@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
     <link rel="stylesheet" href="styles/styles.css">
 
     <style>
+        /* General styling */
         body {
             font-family: 'Arial', sans-serif;
             background-color: #E5E4E2;
@@ -32,6 +34,7 @@
             font-weight: bold;
         }
 
+        /* Boss grid styling */
         .boss-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -43,7 +46,7 @@
             border: 2px solid #005F73;
             border-radius: 12px;
             text-align: center;
-            padding: 15px;
+            position: relative;
             transition: transform 0.3s;
             cursor: pointer;
         }
@@ -53,9 +56,18 @@
         }
 
         .boss-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             background-color: #d7f300;
             padding: 10px;
             font-weight: bold;
+            position: relative;
+        }
+
+        .boss-header img {
+            width: 20px;
+            cursor: pointer;
         }
 
         .boss-box img {
@@ -64,6 +76,7 @@
             margin: 10px 0;
         }
 
+        /* Info popup styling */
         .info-popup {
             display: none;
             position: fixed;
@@ -106,6 +119,7 @@
             color: #FFD700;
         }
 
+        /* Element styling added for weakness and resistance */
         .element {
             font-weight: bold;
             padding: 5px 10px;
@@ -144,7 +158,8 @@
             color: #FFD700;
             text-shadow: 0 0 5px #FFD700;
         }
-        
+
+        /* Challenge rewards styling */
         .challenge-rewards {
             display: flex;
             gap: 20px;
@@ -171,9 +186,74 @@
             border-radius: 15px;
             font-size: 0.8rem;
         }
+
+        /* Related Agent modal styling */
+        .related-agent-modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 800px;
+            background-color: #333333;
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            z-index: 1100;
+            text-align: center;
+        }
+
+        .modal-header {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .modal-description {
+            margin-bottom: 20px;
+        }
+
+        .related-agent-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 10px;
+            text-align: center;
+        }
+
+        .agent-box {
+            position: relative;
+        }
+
+        .agent-box img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+        }
+
+        .agent-box .agent-name {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            font-size: 0.8rem;
+            padding: 3px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        .modal-close {
+            background-color: #FF4500;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
     </style>
 
-    </head>
+</head>
+
 <body>
     <header>
         <div data-include="../client_project/components/header.html"></div>
@@ -187,7 +267,10 @@
                 <img src="images/newborn_dead_end_butcher.png" alt="Newborn Dead End Butcher">
             </div>
             <div class="boss-box" onclick="showInfo('corruption-complex')">
-                <div class="boss-header">Unknown Corruption Complex</div>
+                <div class="boss-header">
+                    Unknown Corruption Complex
+                
+                </div>
                 <img src="images/unknown_corruption_complex.png" alt="Unknown Corruption Complex">
             </div>
             <div class="boss-box" onclick="showInfo('twin-marionettes')">
@@ -210,7 +293,7 @@
                     </div>
                     <div class="popup-section">
                         <h3>Current Intel</h3>
-                        <p id="popup-intel"></p>
+                        <ul id="popup-intel"></ul> <!-- Display intel as bullet points -->
                     </div>
                     <div class="popup-section">
                         <h3>Challenge Rewards</h3>
@@ -222,12 +305,19 @@
         </div>
     </main>
     <script>
+        // boss info
         const bosses = {
             "dead-end-butcher": {
                 image: "images/newborn_dead_end_butcher.png",
-                weakness: "Ice, Ether",
+                weakness: [
+                    { name: "Ice", class: "element-ice", icon: "images/Icon_Ice.png" },
+                    { name: "Ether", class: "element-ether", icon: "images/Icon_Ether.png" }
+                ],
                 resistance: "None",
-                intel: "Freeze, Duel, and Support Resonia are obtainable.",
+                intel: [
+                    "The target of this hunt is a horrific beast lurking in the depts of the metro that has two forms.",
+                    "Freeze, Duel, and Support Resonia are obtainable during this operation."
+                ],
                 rewards: [
                     { img: "images/Item_Inter-Knot_Credit.png", quantity: "600" },
                     { img: "images/Item_Scarlet_Engine.gif", quantity: "1" },
@@ -237,9 +327,15 @@
             },
             "corruption-complex": {
                 image: "images/unknown_corruption_complex.png",
-                weakness: "Electric, Ether",
+                weakness: [
+                    { name: "Electric", class: "element-electric", icon: "images/Icon_Electric.png" },
+                    { name: "Ether", class: "element-ether", icon: "images/Icon_Ether.png" }
+                ],
                 resistance: "None",
-                intel: "Shock and Overcharge Resonia obtainable.",
+                intel: [
+                    "The target of this hunt is a massive, heavy corruption complex with a diverse array of attacks.",
+                    "Shock, Duel, and Support Resonia are obtainable during this operation."
+                ],
                 rewards: [
                     { img: "images/Item_Inter-Knot_Credit.png", quantity: "600" },
                     { img: "images/Item_Scarlet_Engine.gif", quantity: "1" },
@@ -249,9 +345,15 @@
             },
             "twin-marionettes": {
                 image: "images/twin_marionettes.png",
-                weakness: "Ice, Ether",
+                weakness: [
+                    { name: "Ice", class: "element-ice", icon: "images/Icon_Ice.png" },
+                    { name: "Ether", class: "element-ether", icon: "images/Icon_Ether.png" }
+                ],
                 resistance: "None",
-                intel: "The targets of this hunt are the elegant but treacherous Twin Dancers, who protect each other.",
+                intel: [
+                    "The targets of this hunt are the elegant but treacherous Twin Danceras, who protect each other.",
+                    "Ether, Duel, and Support Resonia are obtainable during this operation."
+                ],
                 rewards: [
                     { img: "images/Item_Inter-Knot_Credit.png", quantity: "600" },
                     { img: "images/Item_Finale_Dance_Shoes.gif", quantity: "1" },
@@ -261,9 +363,14 @@
             },
             "pompey": {
                 image: "images/corrupted_overlord_pompey.png",
-                weakness: "Fire",
-                resistance: "Ice",
-                intel: "Ignite, Duel, and Assist Resonia obtainable.",
+                weakness: [
+                    { name: "Fire", class: "element-fire", icon: "images/Icon_Fire.png" }
+                ],
+                resistance: "Electric",
+                intel: [
+                    "The target of this hunt is Corrupted Overlord - Pompey, who has two forms and many methods of attack.",
+                    "Ignite, Duel, and Assist Resonia are obtainable during this operation."
+                ],
                 rewards: [
                     { img: "images/Item_Inter-Knot_Credit.png", quantity: "600" },
                     { img: "images/Item_Scarlet_Engine.gif", quantity: "1" },
@@ -276,19 +383,35 @@
         function showInfo(key) {
             const boss = bosses[key];
             document.getElementById("popup-image").src = boss.image;
-            document.getElementById("popup-weakness").textContent = boss.weakness;
-            document.getElementById("popup-resistance").textContent = boss.resistance;
-            document.getElementById("popup-intel").textContent = boss.intel;
 
+            // Weakness Section
+            const weaknessContainer = document.getElementById("popup-weakness");
+            weaknessContainer.innerHTML = "";
+            boss.weakness.forEach(weakness => {
+                const weaknessElement = document.createElement("div");
+                weaknessElement.className = `element ${weakness.class}`;
+                weaknessElement.innerHTML = `<img src="${weakness.icon}" alt="${weakness.name}"> ${weakness.name}`;
+                weaknessContainer.appendChild(weaknessElement);
+            });
+
+            document.getElementById("popup-resistance").textContent = boss.resistance;
+
+            // Intel Section
+            const intelContainer = document.getElementById("popup-intel");
+            intelContainer.innerHTML = "";
+            boss.intel.forEach(point => {
+                const li = document.createElement("li");
+                li.textContent = point;
+                intelContainer.appendChild(li);
+            });
+
+            // Rewards Section
             const rewardsContainer = document.getElementById("popup-rewards");
             rewardsContainer.innerHTML = "";
             boss.rewards.forEach(reward => {
                 const rewardItem = document.createElement("div");
                 rewardItem.className = "reward-item";
-                rewardItem.innerHTML = `
-                    <img src="${reward.img}" alt="Reward">
-                    <div class="reward-quantity">${reward.quantity}</div>
-                `;
+                rewardItem.innerHTML = `<img src="${reward.img}" alt="${reward.name}"><div class="reward-quantity">${reward.quantity}</div>`;
                 rewardsContainer.appendChild(rewardItem);
             });
 
@@ -298,6 +421,8 @@
         function closePopup() {
             document.getElementById("info-popup").style.display = "none";
         }
-    </script>    <script src="../scripts/HTMLInclude.min.js"></script>
+    </script>
+    <script src="../scripts/HTMLInclude.min.js"></script>
 </body>
+
 </html>
