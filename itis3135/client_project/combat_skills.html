@@ -62,7 +62,66 @@
         .skill img {
             width: 50px;
             height: 50px;
-            margin-bottom: 10px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .skill p {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .skill label {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 5px;
+        }
+
+        /* .skill input {
+            width: 50px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        } */
+        
+        .element {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .element img {
+            width: 20px;
+            height: 20px;
+        }
+
+        .element-ice {
+            color: #00BFFF;
+            text-shadow: 0 0 5px #00BFFF;
+        }
+
+        .element-ether {
+            color: #8A2BE2;
+            text-shadow: 0 0 5px #8A2BE2;
+        }
+
+        .element-fire {
+            color: #FF4500;
+            text-shadow: 0 0 5px #FF4500;
+        }
+
+        .element-electric {
+            color: #1E90FF;
+            text-shadow: 0 0 5px #1E90FF;
+        }
+
+        .element-phys {
+            color: #FFD700;
+            text-shadow: 0 0 5px #FFD700;
         }
 
         button {
@@ -77,6 +136,10 @@
 
         button:hover {
             background-color: #005F73;
+        }
+
+        .hidden {
+            display: none;
         }
 
         #material-results {
@@ -101,8 +164,8 @@
             <!-- Characters will dynamically load here -->
         </div>
 
-        <!-- style="display: none;" -->
-        <div id="selected-character" style="display: none;">
+
+        <div id="selected-character" class="hidden">
             <h2 id="selected-character-name"></h2>
             <div class="skills-container">
                 <div class="skills-row">
@@ -174,33 +237,50 @@
             { name: "Zhu Yuan", image: "images/zhuyuan.png", element: "Ether" }
         ];
 
+
+        function scrollToHeader() {
+            const headerSection = document.querySelector("header");
+            headerSection.scrollIntoView({ behavior: "smooth" });
+        }
+
+        function selectCharacter(name, element) {
+            const elementClass = `element-${element.toLowerCase()}`;
+            document.getElementById("selected-character-name").innerHTML = `
+                ${name} <span class="element ${elementClass}">
+                    <img src="images/Icon_${element}.png" alt="${element}">
+                    ${element}
+                </span>
+            `;
+            document.getElementById("selected-character").classList.remove("hidden");
+            scrollToHeader();
+        }
+
+        
+
         // Load characters into the table
-        const loadCharacters = () => {
+        function loadCharacters() {
             const grid = document.getElementById("character-grid");
             characters.forEach((character) => {
                 const charDiv = document.createElement("div");
                 charDiv.classList.add("character");
+                const elementClass = `element-${character.element.toLowerCase()}`;
                 charDiv.innerHTML = `
                     <img src="${character.image}" alt="${character.name}">
                     <p>${character.name}</p>
+                    <div class="element ${elementClass}">
+                        <img src="images/Icon_${character.element}.png" alt="${character.element}">
+                        ${character.element}
+                    </div>
                 `;
                 charDiv.addEventListener("click", () => selectCharacter(character.name, character.element));
                 grid.appendChild(charDiv);
             });
-        };
+        }
 
-        const selectCharacter = (name, element) => {
-            document.getElementById("selected-character-name").innerText = `${name} (${element})`;
-            document.getElementById("selected-character").style.display = "block";
-            scrollToHeader();
-        };
+        
+        
 
-        const scrollToHeader = () => {
-            const headerSection = document.querySelector("header");
-            headerSection.scrollIntoView({ behavior: "smooth" });
-        };
-
-        const calculateMaterials = () => {
+        function calculateMaterials() {
             const skills = ["basic", "dodge", "assist", "special", "chain"];
             let totalDennies = 0, basicChips = 0, advancedChips = 0, specializedChips = 0, hamsterCagePass = 0;
 
@@ -233,12 +313,12 @@
                 <p>Specialized Chips: ${specializedChips}</p>
                 <p>Hamster Cage Passes: ${hamsterCagePass}</p>
             `;
-        };
+        }
 
         document.getElementById("calculate-button").addEventListener("click", calculateMaterials);
 
         loadCharacters();
-    </script>
+            </script>
     <script src="../scripts/HTMLInclude.min.js"></script>
 </body>
 </html>
