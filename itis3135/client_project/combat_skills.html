@@ -33,17 +33,30 @@
         .skills-container {
             margin: 20px auto;
             max-width: 800px;
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background-color: #f8f8f8;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        .skills-row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            gap: 10px;
         }
 
         .skill {
             text-align: center;
             padding: 10px;
-            background-color: #f8f8f8;
-            border: 1px solid #ddd;
+            background-color: #fff;
+            border: 1px solid #ccc;
             border-radius: 8px;
+            flex: 1;
+            box-sizing: border-box;
         }
 
         .skill img {
@@ -75,6 +88,7 @@
             text-align: left;
         }
     </style>
+    
 </head>
 <body>
     <header>
@@ -87,42 +101,44 @@
             <!-- Characters will dynamically load here -->
         </div>
 
-        
-        <div id="selected-character">
+        <!-- style="display: none;" -->
+        <div id="selected-character" style="display: none;">
             <h2 id="selected-character-name"></h2>
             <div class="skills-container">
-                <div class="skill">
-                    <img src="images/basic.png" alt="Basic Skill">
-                    <p>Basic</p>
-                    <label>Current Level: <input type="number" id="basic-current" min="1" max="12" value="1"></label>
-                    <label>Target Level: <input type="number" id="basic-target" min="1" max="12" value="1"></label>
+                <div class="skills-row">
+                    <div class="skill">
+                        <img src="images/basic.png" alt="Basic Skill">
+                        <p>Basic</p>
+                        <label>Current Level: <input type="number" id="basic-current" min="1" max="12" value="1"></label>
+                        <label>Target Level: <input type="number" id="basic-target" min="1" max="12" value="1"></label>
+                    </div>
+                    <div class="skill">
+                        <img src="images/dodge.png" alt="Dodge Skill">
+                        <p>Dodge</p>
+                        <label>Current Level: <input type="number" id="dodge-current" min="1" max="12" value="1"></label>
+                        <label>Target Level: <input type="number" id="dodge-target" min="1" max="12" value="1"></label>
+                    </div>
+                    <div class="skill">
+                        <img src="images/assist.png" alt="Assist Skill">
+                        <p>Assist</p>
+                        <label>Current Level: <input type="number" id="assist-current" min="1" max="12" value="1"></label>
+                        <label>Target Level: <input type="number" id="assist-target" min="1" max="12" value="1"></label>
+                    </div>
+                    <div class="skill">
+                        <img src="images/special.png" alt="Special Attack Skill">
+                        <p>Special Attack</p>
+                        <label>Current Level: <input type="number" id="special-current" min="1" max="12" value="1"></label>
+                        <label>Target Level: <input type="number" id="special-target" min="1" max="12" value="1"></label>
+                    </div>
+                    <div class="skill">
+                        <img src="images/chain.png" alt="Chain Attack Skill">
+                        <p>Chain Attack</p>
+                        <label>Current Level: <input type="number" id="chain-current" min="1" max="12" value="1"></label>
+                        <label>Target Level: <input type="number" id="chain-target" min="1" max="12" value="1"></label>
+                    </div>
                 </div>
-                <div class="skill">
-                    <img src="images/dodge.png" alt="Dodge Skill">
-                    <p>Dodge</p>
-                    <label>Current Level: <input type="number" id="dodge-current" min="1" max="12" value="1"></label>
-                    <label>Target Level: <input type="number" id="dodge-target" min="1" max="12" value="1"></label>
-                </div>
-                <div class="skill">
-                    <img src="images/assist.png" alt="Assist Skill">
-                    <p>Assist</p>
-                    <label>Current Level: <input type="number" id="assist-current" min="1" max="12" value="1"></label>
-                    <label>Target Level: <input type="number" id="assist-target" min="1" max="12" value="1"></label>
-                </div>
-                <div class="skill">
-                    <img src="images/special.png" alt="Special Attack Skill">
-                    <p>Special Attack</p>
-                    <label>Current Level: <input type="number" id="special-current" min="1" max="12" value="1"></label>
-                    <label>Target Level: <input type="number" id="special-target" min="1" max="12" value="1"></label>
-                </div>
-                <div class="skill">
-                    <img src="images/chain.png" alt="Chain Attack Skill">
-                    <p>Chain Attack</p>
-                    <label>Current Level: <input type="number" id="chain-current" min="1" max="12" value="1"></label>
-                    <label>Target Level: <input type="number" id="chain-target" min="1" max="12" value="1"></label>
-                </div>
+                <button id="calculate-button">Calculate Materials</button>
             </div>
-            <button id="calculate-button">Calculate Materials</button>
         </div>
 
         <div id="material-results"></div>
@@ -176,12 +192,12 @@
         const selectCharacter = (name, element) => {
             document.getElementById("selected-character-name").innerText = `${name} (${element})`;
             document.getElementById("selected-character").style.display = "block";
-            scrollToMaterials();
+            scrollToHeader();
         };
 
-        const scrollToMaterials = () => {
-            const materialsSection = document.getElementById("material-results");
-            materialsSection.scrollIntoView({ behavior: "smooth" });
+        const scrollToHeader = () => {
+            const headerSection = document.querySelector("header");
+            headerSection.scrollIntoView({ behavior: "smooth" });
         };
 
         const calculateMaterials = () => {
