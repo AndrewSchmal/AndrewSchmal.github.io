@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combat Skills Planner</title>
+    <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/itis3135/client_project/styles/styles.css">
+    <script src="styles/styles.css" defer></script>
+    <style>
+        /* Style adjustments for the table */
+        .character-table {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+
+        .character-table td {
+            text-align: center;
+            padding: 15px;
+            vertical-align: top;
+        }
+
+        .character-table img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .character-table p {
+            margin: 10px 0 0;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .skills-container {
+            margin: 20px auto;
+            max-width: 800px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .skill {
+            text-align: center;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+
+        .skill img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 10px;
+        }
+
+        .skill label {
+            display: block;
+            margin: 5px 0;
+        }
+
+        button {
+            margin-top: 20px;
+            background-color: #00788A;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005F73;
+        }
+
+        #planner-container, #skill-planner {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        #material-results {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div data-include="../client_project/components/header.html"></div>        
+    </header>
+    <main>
+        <h1>Combat Skills Planner</h1>
+        <p>Select a character below:</p>
+        <table class="character-table">
+            <tbody id="character-table">
+                <!-- Characters will dynamically load here -->
+            </tbody>
+        </table>
+
+        <div id="selected-character" style="display: none;">
+            <h2 id="selected-character-name"></h2>
+            <div class="skills-container">
+                <div class="skill">
+                    <img src="images/basic.png" alt="Basic Skill">
+                    <p>Basic</p>
+                    <label>Current Level: <input type="number" id="basic-current" min="1" max="12" value="1"></label>
+                    <label>Target Level: <input type="number" id="basic-target" min="1" max="12" value="1"></label>
+                </div>
+                <div class="skill">
+                    <img src="images/dodge.png" alt="Dodge Skill">
+                    <p>Dodge</p>
+                    <label>Current Level: <input type="number" id="dodge-current" min="1" max="12" value="1"></label>
+                    <label>Target Level: <input type="number" id="dodge-target" min="1" max="12" value="1"></label>
+                </div>
+                <div class="skill">
+                    <img src="images/assist.png" alt="Assist Skill">
+                    <p>Assist</p>
+                    <label>Current Level: <input type="number" id="assist-current" min="1" max="12" value="1"></label>
+                    <label>Target Level: <input type="number" id="assist-target" min="1" max="12" value="1"></label>
+                </div>
+                <div class="skill">
+                    <img src="images/special.png" alt="Special Attack Skill">
+                    <p>Special Attack</p>
+                    <label>Current Level: <input type="number" id="special-current" min="1" max="12" value="1"></label>
+                    <label>Target Level: <input type="number" id="special-target" min="1" max="12" value="1"></label>
+                </div>
+                <div class="skill">
+                    <img src="images/chain.png" alt="Chain Attack Skill">
+                    <p>Chain Attack</p>
+                    <label>Current Level: <input type="number" id="chain-current" min="1" max="12" value="1"></label>
+                    <label>Target Level: <input type="number" id="chain-target" min="1" max="12" value="1"></label>
+                </div>
+            </div>
+            <button onclick="calculateMaterials()">Calculate Materials</button>
+        </div>
+
+        <div id="material-results"></div>
+    </main>
+    <footer>
+        <div data-include="components/footer.html"></div>
+    </footer>
+    <script>
+        const characters = [
+            { name: "Anby", image: "images/anby.png", element: "Electric" },
+            { name: "Anton", image: "images/anton.png", element: "Electric" },
+            { name: "Ben", image: "images/ben.png", element: "Fire" },
+            { name: "Billy", image: "images/billy.png", element: "Physical" },
+            { name: "Burnice", image: "images/burnice.png", element: "Fire" },
+            { name: "Caesar", image: "images/caesar.png", element: "Physical" },
+            { name: "Corin", image: "images/corin.png", element: "Physical" },
+            { name: "Ellen", image: "images/ellen.png", element: "Ice" },
+            { name: "Grace", image: "images/grace.png", element: "Electric" },
+            { name: "Jane", image: "images/jane.png", element: "Physical" },
+            { name: "Koleda", image: "images/koleda.png", element: "Fire" },
+            { name: "Lighter", image: "images/lighter.png", element: "Fire" },
+            { name: "Lucy", image: "images/lucy.png", element: "Fire" },
+            { name: "Lycaon", image: "images/lycaon.png", element: "Ice" },
+            { name: "Nekomata", image: "images/nekomata.png", element: "Physical" },
+            { name: "Nicole", image: "images/nicole.png", element: "Ether" },
+            { name: "Piper", image: "images/piper.png", element: "Physical" },
+            { name: "Qingyi", image: "images/qingyi.png", element: "Electric" },
+            { name: "Rina", image: "images/rina.png", element: "Electric" },
+            { name: "Seth", image: "images/seth.png", element: "Electric" },
+            { name: "Soldier 11", image: "images/soldier11.png", element: "Fire" },
+            { name: "Soukaku", image: "images/soukaku.png", element: "Ice" },
+            { name: "Yanagi", image: "images/yanagi.png", element: "Electric" },
+            { name: "Zhu Yuan", image: "images/zhuyuan.png", element: "Ether" }
+        ];
+
+        // Load characters into the table
+        const loadCharacters = () => {
+            const table = document.getElementById("character-table");
+            let row = "<tr>";
+            characters.forEach((character, index) => {
+                row += `
+                    <td onclick="selectCharacter('${character.name}', '${character.element}')">
+                        <img src="${character.image}" alt="${character.name}">
+                        <p>${character.name}</p>
+                    </td>
+                `;
+                if ((index + 1) % 3 === 0) {
+                    row += "</tr><tr>";
+                }
+            });
+            row += "</tr>";
+            table.innerHTML = row;
+        };
+
+        const selectCharacter = (name, element) => {
+            document.getElementById("selected-character-name").innerText = `${name} (${element})`;
+            document.getElementById("selected-character").style.display = "block";
+        };
+
+        const calculateMaterials = () => {
+            const skills = ["basic", "dodge", "assist", "special", "chain"];
+            let totalDennies = 0, basicChips = 0, advancedChips = 0, specializedChips = 0, hamsterCagePass = 0;
+
+            skills.forEach((skill) => {
+                const currentLevel = parseInt(document.getElementById(`${skill}-current`).value);
+                const targetLevel = parseInt(document.getElementById(`${skill}-target`).value);
+
+                for (let level = currentLevel; level < targetLevel; level++) {
+                    switch (level + 1) {
+                        case 2: basicChips += 2; totalDennies += 2000; break;
+                        case 3: basicChips += 3; totalDennies += 3000; break;
+                        case 4: advancedChips += 2; totalDennies += 6000; break;
+                        case 5: advancedChips += 3; totalDennies += 9000; break;
+                        case 6: advancedChips += 4; totalDennies += 12000; break;
+                        case 7: advancedChips += 6; totalDennies += 18000; break;
+                        case 8: specializedChips += 5; totalDennies += 45000; break;
+                        case 9: specializedChips += 8; totalDennies += 67500; break;
+                        case 10: specializedChips += 10; totalDennies += 90000; break;
+                        case 11: specializedChips += 12; totalDennies += 112500; break;
+                        case 12: specializedChips += 15; hamsterCagePass += 1; totalDennies += 135000; break;
+                    }
+                }
+            });
+
+            document.getElementById("material-results").innerHTML = `
+                <h3>Materials Needed</h3>
+                <p>Dennies: ${totalDennies.toLocaleString()}</p>
+                <p>Basic Chips: ${basicChips}</p>
+                <p>Advanced Chips: ${advancedChips}</p>
+                <p>Specialized Chips: ${specializedChips}</p>
+                <p>Hamster Cage Passes: ${hamsterCagePass}</p>
+            `;
+        };
+
+        loadCharacters();
+    </script>
+    <script src="../scripts/HTMLInclude.min.js"></script>
+</body>
+</html>

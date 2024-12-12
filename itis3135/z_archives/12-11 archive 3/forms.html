@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Andrew Schmal's Acclaimed Squid 🦑 ITIS 3135 🦑 Forms </title>
+    <!-- Accumulus -->
+    <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles/main.css">
+
+    <style>
+        /* General Page Styling */
+        body {
+            background-color: #E8F1F2;
+            color: #333333;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            text-align: center;
+            font-size: 22px;
+        }
+
+        header {
+            margin: 40px 0;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #005F73;
+        }
+
+        h1 {
+            color: #0A9396;
+            font-size: 2.75rem;
+        }
+
+        h2 {
+            color: #0baaac;
+            font-size: 2.0rem;
+        }
+
+        main {
+            margin: 20px auto;
+            padding: 10px;
+            max-width: 800px;
+        }
+
+        .pet-image {
+            margin: 25px 0;
+            border: 2px solid #005F73;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            margin-top: 30px;
+            padding: 15px 0;
+            background-color: #005F73;
+            color: #F7FFF7;
+        }
+
+        footer p {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: #CA6702;
+            margin: 0 15px;
+        }
+
+        .my-links {
+            display: inline-block;
+            padding: 8px 18px;
+            margin: 10px;
+            border: 2px solid #005F73;
+            border-radius: 8px;
+            background-color: #94D2BD;
+            color: #005F73;
+            font-size: 1.2rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .my-links:hover {
+            background-color: #005F73;
+            color: white;
+        }
+
+        .my-links img {
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+
+        .back-home {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            border: 2px solid #0A3D40;
+            border-radius: 8px;
+            background-color: #C3DCE3;
+            color: #0D5C63;
+            font-size: 1.5rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .back-home:hover {
+            background-color: #0D5C63;
+            color: white;
+        }
+
+        .design-firm {
+            margin-top: 15px;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        .design-firm a {
+            color: #FAED27;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .design-firm a:hover {
+            text-decoration: underline;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 8px 18px;
+            border: 2px solid #0A3D40;
+            border-radius: 8px;
+            background-color: #C3DCE3;
+            color: #0D5C63;
+            text-decoration: none;
+            margin: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #0D5C63;
+            color: white;
+        }
+
+        .certification-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .cert-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #0A3D40;
+            border-radius: 12px;
+            background-color: #C3DCE3;
+            padding: 20px;
+            width: 200px;
+            height: 250px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-sizing: border-box;
+        }
+
+        .cert-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .cert-box img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        .cert-box p {
+            color: #0D5C63;
+        }
+
+        h4 {
+            color: #CA6702;
+            font-size: 1.8rem;
+            margin-top: 15px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        /* Forms Specific Styling */
+        form {
+            margin: 20px auto;
+            max-width: 600px;
+            padding: 20px;
+            border: 2px solid #005F73;
+            border-radius: 12px;
+            background-color: #C3DCE3;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+            color: #005F73;
+            text-align: left;
+        }
+
+        input, select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #005F73;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        /* .form-group.inline div {
+            margin-bottom: 10px;
+        } */
+
+        button {
+            padding: 10px 20px;
+            margin: 10px 5px;
+            border: 2px solid #005F73;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"] {
+            background-color: #0A9396;
+            color: white;
+        }
+
+        button[type="reset"] {
+            background-color: #CA6702;
+            color: white;
+        }
+
+        button:hover {
+            background-color: #005F73;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div data-include="components/header.html"></div>
+    </header>
+    <main>
+        <h2>Activity #3 - HTML Form</h2>
+        <form action="#" method="POST">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" placeholder="123-456-7890" required>
+            </div>
+            <div class="form-group">
+                <label>What new games would you be interested in us adding? (Check all that apply)</label>
+                <div class="checkbox-group">
+                    <div><input type="checkbox" id="jojo" name="game-type" value="jojo"><label for="jojo">JoJo's Bizarre Adventure</label></div>
+                    <div><input type="checkbox" id="streetfighter" name="game-type" value="streetfighter"><label for="streetfighter">Street Fighter III: 3rd Strike</label></div>
+                    <div><input type="checkbox" id="pacman" name="game-type" value="pacman"><label for="pacman">Pac-Man</label></div>
+                    <div><input type="checkbox" id="mariokart" name="game-type" value="mariokart"><label for="mariokart">Mario Kart Arcade GP</label></div>
+                    <div><input type="checkbox" id="donkeykong" name="game-type" value="donkeykong"><label for="donkeykong">Donkey Kong</label></div>
+                    <div><input type="checkbox" id="pong" name="game-type" value="pong"><label for="pong">Pong</label></div>
+                </div>
+            </div>
+            <div class="form-group inline">
+                <label>Are you interested in receiving updates?</label>
+                <div><input type="radio" id="yes" name="updates" value="yes" required><label for="yes">Yes</label></div>
+                <div><input type="radio" id="no" name="updates" value="no"><label for="no">No</label></div>
+            </div>
+            <div class="form-group">
+                <label for="platform">How do you primarily play games?</label>
+                <select id="platform" name="platform" required>
+                    <option value="">--Select One--</option>
+                    <option value="phone">On Phone</option>
+                    <option value="pc">PC</option>
+                    <option value="console">Console</option>
+                    <option value="handheld">Handheld</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="reset">Reset</button>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </main>
+    <footer>
+        <div data-include="components/footer.html"></div>
+    </footer>
+    <script src="scripts/HTMLInclude.min.js"></script>
+</body>
+</html>
