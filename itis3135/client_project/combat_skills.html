@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,23 +11,92 @@
     <style>
         .character-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 15px;
             max-height: 800px;
             overflow-y: auto;
             margin-bottom: 20px;
         }
 
         .character {
+            position: relative;
             text-align: center;
             cursor: pointer;
+            background: #f8f8f8;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
         }
 
         .character img {
-            width: 120px;
-            height: 120px;
-            border-radius: 20%;
-            object-fit: cover;
+            width: 100%;
+            height: auto;
+        }
+
+        .character-banner {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: #000;
+            color: #fff;
+            padding: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 25px;
+        }
+
+        .character-name {
+            font-size: 1.rem;
+            font-weight: bold;
+            margin-left: 10px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        
+
+        .element {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+
+        .element img {
+            width: 25px;
+            height: 25px;
+            margin-left: 5px;
+        }
+
+        .element-ice {
+            color: #00BFFF;
+            --hover-color: #00BFFF;
+            text-shadow: 0 0 5px #00BFFF;
+        }
+
+        .element-ether {
+            color: #8A2BE2;
+            --hover-color: #8A2BE2;
+            text-shadow: 0 0 5px #8A2BE2;
+        }
+
+        .element-fire {
+            color: #FF4500;
+            --hover-color: #FF4500;
+            text-shadow: 0 0 5px #FF4500;
+        }
+
+        .element-electric {
+            color: #1E90FF;
+            --hover-color: #1E90FF;
+            text-shadow: 0 0 5px #1E90FF;
+        }
+
+        .element-physical {
+            color: #FFD700;
+            --hover-color: #FFD700;
+            text-shadow: 0 0 5px #FFD700;
         }
 
         .skills-container {
@@ -76,53 +146,6 @@
             margin-top: 5px;
         }
 
-        /* .skill input {
-            width: 50px;
-            padding: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            text-align: center;
-        } */
-        
-        .element {
-            font-weight: bold;
-            padding: 5px 10px;
-            border-radius: 5px;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .element img {
-            width: 20px;
-            height: 20px;
-        }
-
-        .element-ice {
-            color: #00BFFF;
-            text-shadow: 0 0 5px #00BFFF;
-        }
-
-        .element-ether {
-            color: #8A2BE2;
-            text-shadow: 0 0 5px #8A2BE2;
-        }
-
-        .element-fire {
-            color: #FF4500;
-            text-shadow: 0 0 5px #FF4500;
-        }
-
-        .element-electric {
-            color: #1E90FF;
-            text-shadow: 0 0 5px #1E90FF;
-        }
-
-        .element-phys {
-            color: #FFD700;
-            text-shadow: 0 0 5px #FFD700;
-        }
-
         button {
             margin-top: 20px;
             background-color: #00788A;
@@ -150,11 +173,12 @@
             text-align: left;
         }
     </style>
-    
+
 </head>
+
 <body>
     <header>
-        <div data-include="components/header.html"></div>        
+        <div data-include="components/header.html"></div>
     </header>
     <main>
         <h1>Combat Skills Planner</h1>
@@ -164,6 +188,7 @@
         </div>
 
 
+
         <div id="selected-character" class="hidden">
             <h2 id="selected-character-name"></h2>
             <div class="skills-container">
@@ -171,31 +196,37 @@
                     <div class="skill">
                         <img src="images/basic.png" alt="Basic Skill">
                         <p>Basic</p>
-                        <label>Current Level: <input type="number" id="basic-current" min="1" max="12" value="1"></label>
+                        <label>Current Level: <input type="number" id="basic-current" min="1" max="12"
+                                value="1"></label>
                         <label>Target Level: <input type="number" id="basic-target" min="1" max="12" value="1"></label>
                     </div>
                     <div class="skill">
                         <img src="images/dodge.png" alt="Dodge Skill">
                         <p>Dodge</p>
-                        <label>Current Level: <input type="number" id="dodge-current" min="1" max="12" value="1"></label>
+                        <label>Current Level: <input type="number" id="dodge-current" min="1" max="12"
+                                value="1"></label>
                         <label>Target Level: <input type="number" id="dodge-target" min="1" max="12" value="1"></label>
                     </div>
                     <div class="skill">
                         <img src="images/assist.png" alt="Assist Skill">
                         <p>Assist</p>
-                        <label>Current Level: <input type="number" id="assist-current" min="1" max="12" value="1"></label>
+                        <label>Current Level: <input type="number" id="assist-current" min="1" max="12"
+                                value="1"></label>
                         <label>Target Level: <input type="number" id="assist-target" min="1" max="12" value="1"></label>
                     </div>
                     <div class="skill">
                         <img src="images/special.png" alt="Special Attack Skill">
                         <p>Special Attack</p>
-                        <label>Current Level: <input type="number" id="special-current" min="1" max="12" value="1"></label>
-                        <label>Target Level: <input type="number" id="special-target" min="1" max="12" value="1"></label>
+                        <label>Current Level: <input type="number" id="special-current" min="1" max="12"
+                                value="1"></label>
+                        <label>Target Level: <input type="number" id="special-target" min="1" max="12"
+                                value="1"></label>
                     </div>
                     <div class="skill">
                         <img src="images/chain.png" alt="Chain Attack Skill">
                         <p>Chain Attack</p>
-                        <label>Current Level: <input type="number" id="chain-current" min="1" max="12" value="1"></label>
+                        <label>Current Level: <input type="number" id="chain-current" min="1" max="12"
+                                value="1"></label>
                         <label>Target Level: <input type="number" id="chain-target" min="1" max="12" value="1"></label>
                     </div>
                 </div>
@@ -205,11 +236,14 @@
 
         <div id="material-results"></div>
     </main>
+
     <footer>
         <div data-include="components/footer.html"></div>
     </footer>
+
     <script>
         const characters = [
+
             { name: "Anby", image: "images/anby.png", element: "Electric" },
             { name: "Anton", image: "images/anton.png", element: "Electric" },
             { name: "Ben", image: "images/ben.png", element: "Fire" },
@@ -237,10 +271,10 @@
         ];
 
 
-        function scrollToHeader() {
-            const headerSection = document.querySelector("header");
-            headerSection.scrollIntoView({ behavior: "smooth" });
-        }
+        // function scrollToHeader() {
+        //     const headerSection = document.querySelector("header");
+        //     headerSection.scrollIntoView({ behavior: "smooth" });
+        // }
 
         function selectCharacter(name, element) {
             const elementClass = `element-${element.toLowerCase()}`;
@@ -251,33 +285,32 @@
                 </span>
             `;
             document.getElementById("selected-character").classList.remove("hidden");
-            scrollToHeader();
         }
 
-        
 
-        // Load characters into the table
+
         function loadCharacters() {
-            const grid = document.getElementById("character-grid");
-            characters.forEach((character) => {
-                const charDiv = document.createElement("div");
-                charDiv.classList.add("character");
-                const elementClass = `element-${character.element.toLowerCase()}`;
-                charDiv.innerHTML = `
-                    <img src="${character.image}" alt="${character.name}">
-                    <p>${character.name}</p>
-                    <div class="element ${elementClass}">
-                        <img src="images/Icon_${character.element}.png" alt="${character.element}">
-                        ${character.element}
-                    </div>
-                `;
-                charDiv.addEventListener("click", () => selectCharacter(character.name, character.element));
-                grid.appendChild(charDiv);
-            });
-        }
+    const grid = document.getElementById("character-grid");
+    characters.forEach((character) => {
+        const charDiv = document.createElement("div");
+        charDiv.classList.add("character");
+        const elementClass = `element-${character.element.toLowerCase()}`;
+        charDiv.innerHTML = `
+            <img src="${character.image}" alt="${character.name}">
+            <div class="character-banner">
+                <span class="character-name ${elementClass}">${character.name}</span>
+                <div class="element ${elementClass}">
+                    <img src="images/Icon_${character.element}.png" alt="${character.element}">
+                </div>
+            </div>
+        `;
+        charDiv.addEventListener("click", () => selectCharacter(character.name, character.element));
+        grid.appendChild(charDiv);
+    });
+}
 
-        
-        
+
+
 
         function calculateMaterials() {
             const skills = ["basic", "dodge", "assist", "special", "chain"];
@@ -317,7 +350,8 @@
         document.getElementById("calculate-button").addEventListener("click", calculateMaterials);
 
         loadCharacters();
-            </script>
+    </script>
     <script src="../scripts/HTMLInclude.min.js"></script>
 </body>
+
 </html>
