@@ -18,7 +18,6 @@
         /* General Page Styling */
         body {
             background-color: #E8F1F2;
-            /* Softer Light Teal */
             color: #333333;
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -28,11 +27,20 @@
             font-size: 22px;
         }
 
+        .sketch-container {
+            margin: 20px auto;
+            width: 620px; /* Slightly larger than canvas size */
+            height: 620px;
+            border: 2px solid #005F73;
+            border-radius: 12px;
+            background-color: #EAF6F6;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
         header {
             margin: 40px 0;
             padding-bottom: 20px;
             border-bottom: 2px solid #005F73;
-            /* Deep Teal */
         }
 
         h1 {
@@ -182,13 +190,18 @@
     <div data-include="components/header.html"></div>    
     </header>
     <main>
-        <main>
-            <h2>Interactive Drawing</h2>
-            <p>Here is an interactive .js file, gotten from <a href="https://p5js.org/examples/angles-and-motion-sine-cosine/" target="_blank">p5js.org</a> 👀</p>
-            <div id="drawing-container">
-                <!-- The p5.js canvas will automatically insert here -->
-            </div>
-        </main>
+        <h2>Interactive Drawing</h2>
+        <p>Enjoy multiple interactive experiences using p5.js. Each canvas has its own unique interaction!</p>
+
+        <!-- Container for the first sketch -->
+        <div id="drawing-container-1" class="canvas-container">
+            <h3>Sketch 1</h3>
+        </div>
+
+        <!-- Container for the second sketch -->
+        <div id="drawing-container-2" class="canvas-container">
+            <h3>Sketch 2</h3>
+        </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.8.0/lib/p5.js"></script>
     <script src="scripts/sketch.js"></script>
