@@ -9,32 +9,25 @@
     <link rel="stylesheet" href="./styles/styles.css">
     <script src="./styles/styles.css" defer></script>
     <style>
-        /* Style adjustments for the table */
-        .character-table {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            border-collapse: collapse;
-            table-layout: fixed;
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            max-height: 800px;
+            overflow-y: auto;
+            margin-bottom: 20px;
         }
 
-        .character-table td {
+        .character {
             text-align: center;
-            padding: 15px;
-            vertical-align: top;
+            cursor: pointer;
         }
 
-        .character-table img {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
+        .character img {
+            width: 100px;
+            height: 100px;
+            border-radius: 20%;
             object-fit: cover;
-        }
-
-        .character-table p {
-            margin: 10px 0 0;
-            font-weight: bold;
-            font-size: 0.9rem;
         }
 
         .skills-container {
@@ -59,11 +52,6 @@
             margin-bottom: 10px;
         }
 
-        .skill label {
-            display: block;
-            margin: 5px 0;
-        }
-
         button {
             margin-top: 20px;
             background-color: #00788A;
@@ -76,11 +64,6 @@
 
         button:hover {
             background-color: #005F73;
-        }
-
-        #planner-container, #skill-planner {
-            margin: 20px auto;
-            text-align: center;
         }
 
         #material-results {
@@ -100,13 +83,12 @@
     <main>
         <h1>Combat Skills Planner</h1>
         <p>Select a character below:</p>
-        <table class="character-table">
-            <tbody id="character-table">
-                <!-- Characters will dynamically load here -->
-            </tbody>
-        </table>
+        <div class="character-grid" id="character-grid">
+            <!-- Characters will dynamically load here -->
+        </div>
 
-        <div id="selected-character" style="display: none;">
+        
+        <div id="selected-character">
             <h2 id="selected-character-name"></h2>
             <div class="skills-container">
                 <div class="skill">
@@ -140,7 +122,7 @@
                     <label>Target Level: <input type="number" id="chain-target" min="1" max="12" value="1"></label>
                 </div>
             </div>
-            <button onclick="calculateMaterials()">Calculate Materials</button>
+            <button id="calculate-button">Calculate Materials</button>
         </div>
 
         <div id="material-results"></div>
@@ -178,26 +160,28 @@
 
         // Load characters into the table
         const loadCharacters = () => {
-            const table = document.getElementById("character-table");
-            let row = "<tr>";
-            characters.forEach((character, index) => {
-                row += `
-                    <td onclick="selectCharacter('${character.name}', '${character.element}')">
-                        <img src="${character.image}" alt="${character.name}">
-                        <p>${character.name}</p>
-                    </td>
+            const grid = document.getElementById("character-grid");
+            characters.forEach((character) => {
+                const charDiv = document.createElement("div");
+                charDiv.classList.add("character");
+                charDiv.innerHTML = `
+                    <img src="${character.image}" alt="${character.name}">
+                    <p>${character.name}</p>
                 `;
-                if ((index + 1) % 3 === 0) {
-                    row += "</tr><tr>";
-                }
+                charDiv.addEventListener("click", () => selectCharacter(character.name, character.element));
+                grid.appendChild(charDiv);
             });
-            row += "</tr>";
-            table.innerHTML = row;
         };
 
         const selectCharacter = (name, element) => {
             document.getElementById("selected-character-name").innerText = `${name} (${element})`;
             document.getElementById("selected-character").style.display = "block";
+            scrollToMaterials();
+        };
+
+        const scrollToMaterials = () => {
+            const materialsSection = document.getElementById("material-results");
+            materialsSection.scrollIntoView({ behavior: "smooth" });
         };
 
         const calculateMaterials = () => {
@@ -234,6 +218,8 @@
                 <p>Hamster Cage Passes: ${hamsterCagePass}</p>
             `;
         };
+
+        document.getElementById("calculate-button").addEventListener("click", calculateMaterials);
 
         loadCharacters();
     </script>
