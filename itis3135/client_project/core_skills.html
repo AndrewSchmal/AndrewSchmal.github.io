@@ -11,118 +11,271 @@
     <style>
         .character-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 15px;
             max-height: 800px;
             overflow-y: auto;
             margin-bottom: 20px;
         }
 
         .character {
+            position: relative;
             text-align: center;
             cursor: pointer;
+            background: #f8f8f8;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+
+            /* Add the following */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
         }
 
         .character img {
-            width: 100px;
-            height: 100px;
-            border-radius: 20%;
+            width: 100%;
+            height: 100%;
+            /* Ensure the image fills the container */
             object-fit: cover;
+            /* Prevent image distortion */
+        }
+
+        .character-banner {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: #000;
+            color: #fff;
+            padding: 5px;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 25px;
+        }
+
+        .character-name {
+            font-size: 1rem;
+            font-weight: bold;
+            margin-left: 5px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .character-name img {
+            width: 25px;
+            height: 25px;
+            margin-left: 5px;
+            vertical-align: middle;
+            /* Align with text */
+        }
+
+
+        .element {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+
+        .element img {
+            width: 25px;
+            height: 25px;
+            margin-left: 5px;
+        }
+
+        .element-ice {
+            color: #00BFFF;
+            --hover-color: #00BFFF;
+            text-shadow: 0 0 5px #00BFFF;
+        }
+
+        .element-ether {
+            color: #8A2BE2;
+            --hover-color: #8A2BE2;
+            text-shadow: 0 0 5px #8A2BE2;
+        }
+
+        .element-fire {
+            color: #FF4500;
+            --hover-color: #FF4500;
+            text-shadow: 0 0 5px #FF4500;
+        }
+
+        .element-electric {
+            color: #1E90FF;
+            --hover-color: #1E90FF;
+            text-shadow: 0 0 5px #1E90FF;
+        }
+
+        /* Physical element style for the character grid (black background) */
+        .element-physical-grid {
+            color: #FFD700;
+            --hover-color: #FFD700;
+            text-shadow: 0 0 5px #FFD700, 0 0 10px rgba(255, 255, 255, 0.8);
+            padding: 2px;
+            border-radius: 4px;
+        }
+
+        /* Physical element style for the brighter background (brighter background shadow) */
+        .element-physical {
+            color: #FFD700;
+            --hover-color: #FFD700;
+            text-shadow: 0 0 3px #8B7500;
+            padding: 2px;
+            border-radius: 4px;
         }
 
         .core-skills-container {
             display: flex;
-            flex-direction: column;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .core-skill-row {
-            display: flex;
-            gap: 20px;
             justify-content: center;
+            align-items: center;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-items: center;
         }
 
         .core-skill {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100px;
-            height: 100px;
-            background-color: #f0f0f0;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .core-skill img {
-            width: 50px;
-            height: 50px;
-        }
-
-        .materials-display {
-            margin-top: 20px;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             text-align: center;
+            padding: 5px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
         }
 
         .materials-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            align-items: center;
-            justify-items: center;
+            /* Responsive grid */
+            gap: 20px;
+            /* Space between items */
+            justify-content: center;
+            /* Center the items */
+            margin-top: 20px;
+            /* Add spacing above */
         }
 
-        .materials-display img {
-            width: 40px;
-            height: 40px;
-            margin-right: 10px;
-            vertical-align: middle;
-        }
-
-        .materials-display p {
-            margin: 5px 0;
-            font-size: 1.1rem;
+        .core-skill img {
+            width: 120px;
+            height: 120px;
+            margin-bottom: 10px;
         }
 
         .needed {
             background-color: #ffa500;
-            /* Orange for "needed" */
         }
 
         .complete {
             background-color: #4caf50;
-            /* Green for "complete" */
+        }
+
+
+        .materials-container {
+            display: flex;
+            /* Align items side by side */
+            flex-wrap: wrap;
+            /* Allow wrapping if needed */
+            gap: 20px;
+            /* Space between items */
+            justify-content: center;
+            /* Center align items */
+            align-items: flex-start;
+            /* Align items to the top */
+            margin-top: 20px;
+            /* Add space above */
         }
 
         .material-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             text-align: center;
             padding: 10px;
-            background-color: #ffffff;
-            border: 2px solid #ddd;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
             border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            background-color: #f9f9f9;
+            width: 120px;
+            /* Fixed width */
+            height: auto;
+            /* Dynamic height */
+            display: flex;
+            flex-direction: column;
+            /* Stack content vertically */
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow */
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .material-item p {
+            margin: 0;
+            /* Remove default margins */
+            font-size: 0.9rem;
+            /* Font size for readability */
+            color: #333;
+            /* Text color */
+            text-align: center;
         }
 
         .material-item img {
-            width: 50px;
-            height: 50px;
-            margin-bottom: 5px;
+            width: 90px;
+            /* Adjust icon size */
+            height: 90px;
+            margin-bottom: 10px;
+            /* Space below the image */
+        }
+
+
+        button {
+            margin-top: 20px;
+            background-color: #00788A;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005F73;
         }
 
         .hidden {
             display: none;
         }
-        
+
+        #material-results {
+            margin-top: 20px;
+        }
+
+
+
+        .material-item div {
+            font-size: 0.85rem;
+            text-align: center;
+            margin: 5px 0;
+            word-wrap: break-word;
+        }
+
+        .material-quantity {
+            background-color: #00788A;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 1rem;
+            font-weight: bold;
+            margin-top: auto;
+            text-align: center;
+        }
+
+        .element-style {
+            text-shadow: 0 0 5px currentColor;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -141,32 +294,15 @@
         <div id="core-skills-section" class="hidden">
             <h2 id="selected-character-name"></h2>
             <div class="core-skills-container">
-                <div class="core-skill-row">
-                    <div class="core-skill" data-skill-id="A"></div>
-                    <div class="core-skill" data-skill-id="C"></div>
-                    <div class="core-skill" data-skill-id="E"></div>
-                </div>
-                <div class="core-skill-row">
-                    <div class="core-skill" data-skill-id="B"></div>
-                    <div class="core-skill" data-skill-id="D"></div>
-                    <div class="core-skill" data-skill-id="F"></div>
-                </div>
+                <!-- Core skills grid -->
             </div>
         </div>
 
-        <div id="materials-display" class="materials-display hidden">
+        <div id="materials-display" class="materials-container hidden">
             <h3>Required Materials</h3>
-            <div class="materials-grid" id="materials-grid">
-                <!-- Materials will dynamically load here -->
-            </div>
-            <div id="energy-summary">
-                <h4>Energy Summary</h4>
-                <p id="total-energy"></p>
-                <p id="days-to-complete"></p>
-                <div id="battery-display"></div>
-            </div>
+            <div id="materials-grid" class="materials-grid"></div>
         </div>
-        
+
     </main>
 
     <footer>
@@ -183,110 +319,107 @@
         ];
 
         const characterData = {
-            Anby: { name: 'Anby', image: 'images/anby.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Murderous Obituary' },
-            Billy: { name: 'Billy', image: 'images/billy.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Ethereal Pursuit' },
-            Ellen: { name: 'Ellen', image: 'images/ellen.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Murderous Obituary' },
-            Jane: { name: 'Jane', image: 'images/jane.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Falling Fist' },
-            Lucy: { name: 'Lucy', image: 'images/lucy.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Steel Malice' },
-            Nekomata: { name: 'Nekomata', image: 'images/nekomata.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Crimson Awe' },
-            Nicole: { name: 'Nicole', image: 'images/nicole.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Murderous Obituary' },
-            Anton: { name: 'Anton', image: 'images/anton.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Destructive Advance' },
-            Ben: { name: 'Ben', image: 'images/ben.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Steel Malice' },
-            Grace: { name: 'Grace', image: 'images/grace.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Destructive Advance' },
-            Koleda: { name: 'Koleda', image: 'images/koleda.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Steel Malice' },
-            Qingyi: { name: 'Qingyi', image: 'images/qingyi.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Ethereal Pursuit' },
-            Seth: { name: 'Seth', image: 'images/seth.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Falling Fist' },
-            Yanagi: { name: 'Yanagi', image: 'images/yanagi.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Destructive Advance' },
-            ZhuYuan: { name: 'Zhu Yuan', image: 'images/zhuyuan.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Ethereal Pursuit' },
-            Rina: { name: 'Rina', image: 'images/rina.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Destructive Advance' },
-            Corin: { name: 'Corin', image: 'images/corin.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Crimson Awe' },
-            Piper: { name: 'Piper', image: 'images/piper.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Crimson Awe' },
-            Soldier11: { name: 'Soldier 11', image: 'images/soldier11.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Destructive Advance' },
-            Soukaku: { name: 'Soukaku', image: 'images/soukaku.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Murderous Obituary' },
-            Lycaon: { name: 'Lycaon', image: 'images/lycaon.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Ethereal Pursuit' },
-            Caesar: { name: 'Caesar', image: 'images/caesar.png', notoriousHuntMaterial: 'Scarlet Engine', expertChallengeMaterial: 'Stealth Phantom' },
-            Burnice: { name: 'Burnice', image: 'images/burnice.png', notoriousHuntMaterial: 'Scarlet Engine', expertChallengeMaterial: 'Stealth Phantom' },
-            Lighter: { name: 'Lighter', image: 'images/lighter.png', notoriousHuntMaterial: 'Scarlet Engine', expertChallengeMaterial: 'Crimson Awe' }
+            Anby: { name: 'Anby', image: 'images/anby.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Murderous Obituary', element: "Electric" },
+            Billy: { name: 'Billy', image: 'images/billy.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Ethereal Pursuit', element: "Physical" },
+            Ellen: { name: 'Ellen', image: 'images/ellen.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Murderous Obituary', element: "Ice" },
+            Jane: { name: 'Jane', image: 'images/jane.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Falling Fist', element: "Physical" },
+            Lucy: { name: 'Lucy', image: 'images/lucy.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Steel Malice', element: "Fire" },
+            Nekomata: { name: 'Nekomata', image: 'images/nekomata.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Crimson Awe', element: "Physical" },
+            Nicole: { name: 'Nicole', image: 'images/nicole.png', notoriousHuntMaterial: 'Ferocious Grip', expertChallengeMaterial: 'Murderous Obituary', element: "Ether" },
+            Anton: { name: 'Anton', image: 'images/anton.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Destructive Advance', element: "Electric" },
+            Ben: { name: 'Ben', image: 'images/ben.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Steel Malice', element: "Fire" },
+            Grace: { name: 'Grace', image: 'images/grace.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Destructive Advance', element: "Electric" },
+            Koleda: { name: 'Koleda', image: 'images/koleda.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Steel Malice', element: "Fire" },
+            Qingyi: { name: 'Qingyi', image: 'images/qingyi.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Ethereal Pursuit', element: "Electric" },
+            Seth: { name: 'Seth', image: 'images/seth.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Falling Fist', element: "Electric" },
+            Yanagi: { name: 'Yanagi', image: 'images/yanagi.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Destructive Advance', element: "Electric" },
+            ZhuYuan: { name: 'Zhu Yuan', image: 'images/zhuyuan.png', notoriousHuntMaterial: 'Living Drive', expertChallengeMaterial: 'Ethereal Pursuit', element: "Ether" },
+            Rina: { name: 'Rina', image: 'images/rina.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Destructive Advance', element: "Electric" },
+            Corin: { name: 'Corin', image: 'images/corin.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Crimson Awe', element: "Physical" },
+            Piper: { name: 'Piper', image: 'images/piper.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Crimson Awe', element: "Physical" },
+            Soldier11: { name: 'Soldier 11', image: 'images/soldier11.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Destructive Advance', element: "Fire" },
+            Soukaku: { name: 'Soukaku', image: 'images/soukaku.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Murderous Obituary', element: "Ice" },
+            Lycaon: { name: 'Lycaon', image: 'images/lycaon.png', notoriousHuntMaterial: 'Finale Dance Shoes', expertChallengeMaterial: 'Ethereal Pursuit', element: "Ice" },
+            Caesar: { name: 'Caesar', image: 'images/caesar.png', notoriousHuntMaterial: 'Scarlet Engine', expertChallengeMaterial: 'Stealth Phantom', element: "Physical" },
+            Burnice: { name: 'Burnice', image: 'images/burnice.png', notoriousHuntMaterial: 'Scarlet Engine', expertChallengeMaterial: 'Stealth Phantom', element: "Fire" },
+            Lighter: { name: 'Lighter', image: 'images/lighter.png', notoriousHuntMaterial: 'Scarlet Engine', expertChallengeMaterial: 'Crimson Awe', element: "Fire" }
         };
 
 
-        let selectedSkills = new Map();
-
+        const selectedSkills = new Map();
+        let selectedCharacter = null;
 
         const calculateMaterials = () => {
             const materialsGrid = document.getElementById("materials-grid");
-            const energySummary = document.getElementById("energy-summary");
-            const totalEnergy = document.getElementById("total-energy");
-            const daysToComplete = document.getElementById("days-to-complete");
-            const batteryDisplay = document.getElementById("battery-display");
+            materialsGrid.innerHTML = ""; // Clear the grid
 
-            materialsGrid.innerHTML = "";
-            batteryDisplay.innerHTML = "";
-
-            let materials = {};
-            let totalEnergyCost = 0;
+            let totalDennies = 0;
+            let notoriousHuntItems = 0;
+            let expertChallengeItems = 0;
 
             selectedSkills.forEach((state, skillId) => {
                 if (state === "needed") {
                     const skill = coreSkills.find((s) => s.id === skillId);
-                    for (let [material, amount] of Object.entries(skill.materials)) {
-                        if (!materials[material]) materials[material] = 0;
-                        materials[material] += amount;
-                    }
+                    totalDennies += skill.materials.dennies || 0;
+                    notoriousHuntItems += skill.materials.notoriousHuntItems || 0;
+                    expertChallengeItems += skill.materials.expertChallengeItems || 0;
                 }
             });
 
-            for (let [material, amount] of Object.entries(materials)) {
-                const materialDiv = document.createElement("div");
-                materialDiv.classList.add("material-item");
-                materialDiv.innerHTML = `
-                    <img src="images/Item_${material.replace(/ /g, "_")}.png" alt="${material}" title="${material}">
-                    <span>${amount}</span>
-                `;
-                materialsGrid.appendChild(materialDiv);
+            if (selectedCharacter) {
+                const notoriousHuntMaterialImg = `images/Item_${selectedCharacter.notoriousHuntMaterial.replace(/ /g, "_")}.gif`;
+                const expertChallengeMaterialImg = `images/Item_Higher_Dimensional_Data_${selectedCharacter.expertChallengeMaterial.replace(/ /g, "_")}.gif`;
 
-                if (material.includes("Notorious")) totalEnergyCost += amount * 60;
-                if (material.includes("Expert")) totalEnergyCost += amount * 40;
-            }
+                const materials = [
+                    { name: "Dennies", img: "images/Item_Denny.png", quantity: totalDennies.toLocaleString() },
+                    { name: selectedCharacter.notoriousHuntMaterial, img: notoriousHuntMaterialImg, quantity: notoriousHuntItems },
+                    { name: selectedCharacter.expertChallengeMaterial, img: expertChallengeMaterialImg, quantity: expertChallengeItems }
+                ];
 
-            const batteryCount = Math.ceil((totalEnergyCost - 320) / 60);
-            totalEnergy.textContent = `Total Energy Required: ${totalEnergyCost}`;
-            daysToComplete.textContent = `Approximate Days to Complete: ${Math.ceil(totalEnergyCost / 320)}`;
-            for (let i = 0; i < batteryCount; i++) {
-                const batteryDiv = document.createElement("img");
-                batteryDiv.src = "images/Item_Ether_Battery.png";
-                batteryDiv.alt = "Ether Battery";
-                batteryDiv.title = "Ether Battery (60 Energy)";
-                batteryDisplay.appendChild(batteryDiv);
+                materials.forEach((material) => {
+                    const materialDiv = document.createElement("div");
+                    materialDiv.classList.add("material-item");
+                    materialDiv.innerHTML = `
+                <img src="${material.img}" alt="${material.name}">
+                <p>${material.name}</p>
+                <p>x ${material.quantity}</p>
+            `;
+                    materialsGrid.appendChild(materialDiv);
+                });
             }
 
             document.getElementById("materials-display").classList.remove("hidden");
         };
 
+
         const updateSkillStates = (skillId, newState) => {
-            const index = coreSkills.findIndex((skill) => skill.id === skillId);
+            const skillIndex = coreSkills.findIndex((skill) => skill.id === skillId);
 
             if (newState === "needed") {
-                for (let i = 0; i <= index; i++) {
+                for (let i = 0; i <= skillIndex; i++) {
                     selectedSkills.set(coreSkills[i].id, "needed");
-                    document.querySelector(`[data-skill-id='${coreSkills[i].id}']`).classList.add("needed");
-                    document.querySelector(`[data-skill-id='${coreSkills[i].id}']`).classList.remove("complete");
+                    const skillElement = document.querySelector(`[data-skill-id="${coreSkills[i].id}"]`);
+                    skillElement.classList.add("needed");
+                    skillElement.classList.remove("complete");
                 }
             } else if (newState === "complete") {
-                for (let i = 0; i <= index; i++) {
+                for (let i = 0; i <= skillIndex; i++) {
                     selectedSkills.set(coreSkills[i].id, "complete");
-                    document.querySelector(`[data-skill-id='${coreSkills[i].id}']`).classList.add("complete");
-                    document.querySelector(`[data-skill-id='${coreSkills[i].id}']`).classList.remove("needed");
+                    const skillElement = document.querySelector(`[data-skill-id="${coreSkills[i].id}"]`);
+                    skillElement.classList.add("complete");
+                    skillElement.classList.remove("needed");
                 }
             } else {
-                for (let i = index; i < coreSkills.length; i++) {
+                for (let i = skillIndex; i < coreSkills.length; i++) {
                     selectedSkills.set(coreSkills[i].id, "not set");
-                    document.querySelector(`[data-skill-id='${coreSkills[i].id}']`).classList.remove("needed", "complete");
+                    const skillElement = document.querySelector(`[data-skill-id="${coreSkills[i].id}"]`);
+                    skillElement.classList.remove("needed", "complete");
                 }
             }
 
             calculateMaterials();
         };
+
 
         const toggleSkill = (skillId) => {
             const currentState = selectedSkills.get(skillId) || "not set";
@@ -300,11 +433,9 @@
             }
         };
 
-        
-
         const selectCharacter = (characterName) => {
-            const character = characterData[characterName];
-            document.getElementById("selected-character-name").innerText = `${character.name}'s Core Skills`;
+            selectedCharacter = characterData[characterName];
+            document.getElementById("selected-character-name").innerText = `${selectedCharacter.name}'s Core Skills`;
             document.getElementById("core-skills-section").classList.remove("hidden");
 
             const coreSkillsContainer = document.querySelector(".core-skills-container");
@@ -314,7 +445,10 @@
                 const skillDiv = document.createElement("div");
                 skillDiv.classList.add("core-skill");
                 skillDiv.dataset.skillId = skill.id;
-                skillDiv.innerHTML = `<img src="${skill.image}" alt="${skill.name}" title="${skill.name}">`;
+                skillDiv.innerHTML = `
+                    <img src="${skill.image}" alt="${skill.name}" title="${skill.name}">
+                    <p>${skill.name}</p>
+                `;
                 skillDiv.addEventListener("click", () => toggleSkill(skill.id));
                 skillDiv.addEventListener("dblclick", () => updateSkillStates(skill.id, "not set"));
                 coreSkillsContainer.appendChild(skillDiv);
@@ -325,15 +459,23 @@
             const characterGrid = document.getElementById("character-grid");
             characterGrid.innerHTML = "";
 
-            for (const char in characterData) {
+            Object.keys(characterData).forEach((char) => {
                 const character = characterData[char];
                 const charDiv = document.createElement("div");
                 charDiv.classList.add("character");
-                charDiv.dataset.character = char;
-                charDiv.innerHTML = `<img src="${character.image}" alt="${character.name}" title="${character.name}">`;
+                const elementClass = `element-${character.element.toLowerCase()}`;
+                charDiv.innerHTML = `
+                    <img src="${character.image}" alt="${character.name}" title="${character.name}">
+                    <div class="character-banner">
+                        <span class="character-name ${elementClass}">
+                            ${character.name}
+                            <img src="images/Icon_${character.element}.png" alt="${character.element}" title="${character.element}">
+                        </span>
+                    </div>
+                `;
                 charDiv.addEventListener("click", () => selectCharacter(char));
                 characterGrid.appendChild(charDiv);
-            }
+            });
         };
 
         document.addEventListener("DOMContentLoaded", loadCharacters);
