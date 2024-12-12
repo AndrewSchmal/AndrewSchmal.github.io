@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Andrew Schmal's Acclaimed Squid 🦑 ITIS 3135 🦑 BYO Intro </title>    <!-- Accumulus -->
+    <title>Andrew Schmal's Acclaimed Squid 🦑 ITIS 3135 🦑 BYO Intro </title> <!-- Accumulus -->
     <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
-    
+
     <link rel="stylesheet" href="styles/main.css">
 
     <style>
@@ -47,11 +47,22 @@
             max-width: 800px;
         }
 
-        .pet-image {
-            margin: 25px 0;
-            border: 2px solid #005F73;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        /* Styling for preview image */
+        #preview-image-container img {
+            max-width: 500px; /* Increase the size of preview image */
+            margin-top: 10px;
+            border: 2px solid #333; /* Optional border */
+            border-radius: 8px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Shadow effect */
+        }
+
+        /* Styling for returned image */
+        main img {
+            max-width: 500px;
+            margin: 20px 0;
+            border: 2px solid #333; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
         }
 
         footer {
@@ -186,29 +197,115 @@
         }
 
         h4 {
-    color: #CA6702; /* Bright contrasting color to stand out */
-    font-size: 1.8rem;
-    margin-top: 15px;
-    text-transform: uppercase; /* Optional for emphasis */
-    font-weight: bold;
-}
-
+            color: #CA6702;
+            /* Bright contrasting color to stand out */
+            font-size: 1.8rem;
+            margin-top: 15px;
+            text-transform: uppercase;
+            /* Optional for emphasis */
+            font-weight: bold;
+        }
     </style>
 </head>
 
 <body>
     <header>
-    <div data-include="components/header.html"></div>    
+        <div data-include="components/header.html"></div>
     </header>
     <main>
         <h2>BYO Intro</h2>
-        <p>Filler first submission. Finishing later.</p>
+        <h3>Time to BYO Intro page! Please fill out the form below so we can create your own page.</h3>
+        <form id="byo-intro-form">
+            <!-- Name -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <br><br>
+
+            <!-- Mascot -->
+            <label for="mascot">Mascot:</label>
+            <input type="text" id="mascot" name="mascot" placeholder="Your Mascot" required>
+            <br><br>
+
+            <!-- Image Upload -->
+            <label for="image">Image:</label>
+            <input type="file" id="image" name="image" accept=".jpg,.jpeg,.png" required>
+            <button type="button" id="preview-image-btn">Click here to load</button>
+            <div id="preview-image-container"></div>
+            <br><br>
+
+            <!-- Image Caption -->
+            <label for="image-caption">Image Caption:</label>
+            <input type="text" id="image-caption" name="image-caption" placeholder="Image Caption" required>
+            <br><br>
+
+            <!-- Background Fields -->
+            <label for="personal-background">Personal Background:</label>
+            <textarea id="personal-background" name="personal-background" rows="4"
+                placeholder="Tell us about your personal background" required></textarea>
+            <br><br>
+
+            <label for="professional-background">Professional Background:</label>
+            <textarea id="professional-background" name="professional-background" rows="4"
+                placeholder="Tell us about your professional background" required></textarea>
+            <br><br>
+
+            <label for="academic-background">Academic Background:</label>
+            <textarea id="academic-background" name="academic-background" rows="4"
+                placeholder="Tell us about your academic background" required></textarea>
+            <br><br>
+
+            <label for="web-background">Background in Web Development:</label>
+            <textarea id="web-background" name="web-background" rows="4"
+                placeholder="Tell us about your web development background" required></textarea>
+            <br><br>
+
+            <!-- Computer Platform -->
+            <label for="computer-platform">Primary Computer Platform:</label>
+            <input type="text" id="computer-platform" name="computer-platform" placeholder="Windows/Mac/Linux"
+                required>
+            <br><br>
+
+            <!-- Courses -->
+            <label>Courses Currently Taking:</label>
+            <div id="courses-container">
+                <input type="text" name="courses[]" placeholder="Course Name">
+            </div>
+            <button type="button" id="add-course">Add Course</button>
+            <br><br>
+
+            <!-- Funny Thing -->
+            <label for="funny-thing">Funny Thing:</label>
+            <textarea id="funny-thing" name="funny-thing" rows="4" placeholder="Share something funny"></textarea>
+            <br><br>
+
+            <!-- Additional Info -->
+            <label for="additional-info">Anything Else?</label>
+            <textarea id="additional-info" name="additional-info" rows="4"
+                placeholder="Additional information"></textarea>
+            <br><br>
+
+            <!-- Agreement -->
+            <label>
+                <input type="checkbox" id="agreement" required>
+                I understand that what is on this page is not password protected and I will not put anything here
+                that I don’t want publicly available.
+            </label>
+            <br><br>
+
+            <!-- Submit and Reset -->
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+        </form>
     </main>
 
-    <footer> 
+
+
+    <footer>
         <div data-include="components/footer.html"></div>
-        </footer>
+    </footer>
     <script src="scripts/HTMLInclude.min.js"></script>
+    <script src="scripts/survey.js"></script>
+    <!-- <script src="scripts/dynamicload.js"></script> -->
 </body>
 
 </html>
