@@ -227,6 +227,7 @@
             border: 3px solid #ddd;
             /* Border around the image */
             border-radius: 10px;
+            box-sizing: border-box;
             /* Rounded edges */
             display: block;
             margin-bottom: 10px;
@@ -330,195 +331,196 @@
 
     <script>
         const characters = [
+    { name: "Anby", image: "images/anby.png", element: "Electric" },
+    { name: "Anton", image: "images/anton.png", element: "Electric" },
+    { name: "Ben", image: "images/ben.png", element: "Fire" },
+    { name: "Billy", image: "images/billy.png", element: "Physical" },
+    { name: "Burnice", image: "images/burnice.png", element: "Fire" },
+    { name: "Caesar", image: "images/caesar.png", element: "Physical" },
+    { name: "Corin", image: "images/corin.png", element: "Physical" },
+    { name: "Ellen", image: "images/ellen.png", element: "Ice" },
+    { name: "Grace", image: "images/grace.png", element: "Electric" },
+    { name: "Jane", image: "images/jane.png", element: "Physical" },
+    { name: "Koleda", image: "images/koleda.png", element: "Fire" },
+    { name: "Lighter", image: "images/lighter.png", element: "Fire" },
+    { name: "Lucy", image: "images/lucy.png", element: "Fire" },
+    { name: "Lycaon", image: "images/lycaon.png", element: "Ice" },
+    { name: "Nekomata", image: "images/nekomata.png", element: "Physical" },
+    { name: "Nicole", image: "images/nicole.png", element: "Ether" },
+    { name: "Piper", image: "images/piper.png", element: "Physical" },
+    { name: "Qingyi", image: "images/qingyi.png", element: "Electric" },
+    { name: "Rina", image: "images/rina.png", element: "Electric" },
+    { name: "Seth", image: "images/seth.png", element: "Electric" },
+    { name: "Soldier 11", image: "images/soldier11.png", element: "Fire" },
+    { name: "Soukaku", image: "images/soukaku.png", element: "Ice" },
+    { name: "Yanagi", image: "images/yanagi.png", element: "Electric" },
+    { name: "Zhu Yuan", image: "images/zhuyuan.png", element: "Ether" }
+];
 
-            { name: "Anby", image: "images/anby.png", element: "Electric" },
-            { name: "Anton", image: "images/anton.png", element: "Electric" },
-            { name: "Ben", image: "images/ben.png", element: "Fire" },
-            { name: "Billy", image: "images/billy.png", element: "Physical" },
-            { name: "Burnice", image: "images/burnice.png", element: "Fire" },
-            { name: "Caesar", image: "images/caesar.png", element: "Physical" },
-            { name: "Corin", image: "images/corin.png", element: "Physical" },
-            { name: "Ellen", image: "images/ellen.png", element: "Ice" },
-            { name: "Grace", image: "images/grace.png", element: "Electric" },
-            { name: "Jane", image: "images/jane.png", element: "Physical" },
-            { name: "Koleda", image: "images/koleda.png", element: "Fire" },
-            { name: "Lighter", image: "images/lighter.png", element: "Fire" },
-            { name: "Lucy", image: "images/lucy.png", element: "Fire" },
-            { name: "Lycaon", image: "images/lycaon.png", element: "Ice" },
-            { name: "Nekomata", image: "images/nekomata.png", element: "Physical" },
-            { name: "Nicole", image: "images/nicole.png", element: "Ether" },
-            { name: "Piper", image: "images/piper.png", element: "Physical" },
-            { name: "Qingyi", image: "images/qingyi.png", element: "Electric" },
-            { name: "Rina", image: "images/rina.png", element: "Electric" },
-            { name: "Seth", image: "images/seth.png", element: "Electric" },
-            { name: "Soldier 11", image: "images/soldier11.png", element: "Fire" },
-            { name: "Soukaku", image: "images/soukaku.png", element: "Ice" },
-            { name: "Yanagi", image: "images/yanagi.png", element: "Electric" },
-            { name: "Zhu Yuan", image: "images/zhuyuan.png", element: "Ether" }
-        ];
+let selectedCharacterElement = "";
 
-        let selectedCharacterElement = "";
+// 1. Define `calculateMaterials` first
+function calculateMaterials() {
+    const skills = ["basic", "dodge", "assist", "special", "chain"];
+    let totalDennies = 0,
+        basicChips = 0,
+        advancedChips = 0,
+        specializedChips = 0,
+        hamsterCagePass = 0;
 
+    // Iterate over skills and calculate materials based on current and target levels
+    skills.forEach((skill) => {
+        const currentLevel = parseInt(document.getElementById(`${skill}-current`).value) || 1;
+        const targetLevel = parseInt(document.getElementById(`${skill}-target`).value) || 1;
 
-        function selectCharacter(name, element) {
-            selectedCharacterElement = element; // Store the selected character's element for later
-            const elementClass = `element-${element.toLowerCase()}`;
-            document.getElementById("selected-character-name").innerHTML = `
-            ${name} <span class="element ${elementClass}">
-                <img src="images/Icon_${element}.png" alt="${element}">
-                ${element}
-            </span>`;
-            document.getElementById("selected-character").classList.remove("hidden");
-            document.getElementById("selected-character").scrollIntoView({ behavior: "smooth", block: "start" });
-
-            // Attach dynamic calculation listeners to all inputs
-            attachDynamicListeners();
+        for (let level = currentLevel; level < targetLevel; level++) {
+            switch (level + 1) {
+                case 2:
+                    basicChips += 2;
+                    totalDennies += 2000;
+                    break;
+                case 3:
+                    basicChips += 3;
+                    totalDennies += 3000;
+                    break;
+                case 4:
+                    advancedChips += 2;
+                    totalDennies += 6000;
+                    break;
+                case 5:
+                    advancedChips += 3;
+                    totalDennies += 9000;
+                    break;
+                case 6:
+                    advancedChips += 4;
+                    totalDennies += 12000;
+                    break;
+                case 7:
+                    advancedChips += 6;
+                    totalDennies += 18000;
+                    break;
+                case 8:
+                    specializedChips += 5;
+                    totalDennies += 45000;
+                    break;
+                case 9:
+                    specializedChips += 8;
+                    totalDennies += 67500;
+                    break;
+                case 10:
+                    specializedChips += 10;
+                    totalDennies += 90000;
+                    break;
+                case 11:
+                    specializedChips += 12;
+                    totalDennies += 112500;
+                    break;
+                case 12:
+                    specializedChips += 15;
+                    hamsterCagePass += 1;
+                    totalDennies += 135000;
+                    break;
+            }
         }
+    });
 
-        function loadCharacters() {
-            const grid = document.getElementById("character-grid");
-            characters.forEach((character) => {
-                const charDiv = document.createElement("div");
-                charDiv.classList.add("character");
-                const elementClass = `element-${character.element.toLowerCase()}`;
-                charDiv.innerHTML = `
-                <img src="${character.image}" alt="${character.name}">
-                <div class="character-banner">
-                    <span class="character-name ${elementClass}">${character.name}</span>
-                </div>
-            `;
-                charDiv.addEventListener("click", () => selectCharacter(character.name, character.element));
-                grid.appendChild(charDiv);
-            });
-        }
+    // Map custom chip names
+    const chipNames = {
+        Ice: "Freeze",
+        Electric: "Shock",
+        Fire: "Burn",
+        Physical: "Physical",
+        Ether: "Ether"
+    };
 
+    // Get dynamic chip name based on the selected character's element
+    const chipTypeName = chipNames[selectedCharacterElement] || selectedCharacterElement;
 
-        function calculateMaterials() {
-            const skills = ["basic", "dodge", "assist", "special", "chain"];
-            let totalDennies = 0,
-                basicChips = 0,
-                advancedChips = 0,
-                specializedChips = 0,
-                hamsterCagePass = 0;
+    // Dynamically display the materials
+    const basicChipImg = `images/Item_Basic_${selectedCharacterElement}_Chip.png`;
+    const advancedChipImg = `images/Item_Advanced_${selectedCharacterElement}_Chip.png`;
+    const specializedChipImg = `images/Item_Specialized_${selectedCharacterElement}_Chip.png`;
 
-            // Iterate over skills and calculate materials based on current and target levels
-            skills.forEach((skill) => {
-                const currentLevel = parseInt(document.getElementById(`${skill}-current`).value) || 1;
-                const targetLevel = parseInt(document.getElementById(`${skill}-target`).value) || 1;
+    const materials = [
+        { name: "Dennies", img: "images/Item_Denny.png", quantity: totalDennies.toLocaleString() },
+        { name: `Basic ${chipTypeName} Chips`, img: basicChipImg, quantity: basicChips },
+        { name: `Advanced ${chipTypeName} Chips`, img: advancedChipImg, quantity: advancedChips },
+        { name: `Specialized ${chipTypeName} Chips`, img: specializedChipImg, quantity: specializedChips },
+        { name: "Hamster Cage Passes", img: "images/Item_Hamster_Cage_Pass.png", quantity: hamsterCagePass }
+    ];
 
-                for (let level = currentLevel; level < targetLevel; level++) {
-                    switch (level + 1) {
-                        case 2:
-                            basicChips += 2;
-                            totalDennies += 2000;
-                            break;
-                        case 3:
-                            basicChips += 3;
-                            totalDennies += 3000;
-                            break;
-                        case 4:
-                            advancedChips += 2;
-                            totalDennies += 6000;
-                            break;
-                        case 5:
-                            advancedChips += 3;
-                            totalDennies += 9000;
-                            break;
-                        case 6:
-                            advancedChips += 4;
-                            totalDennies += 12000;
-                            break;
-                        case 7:
-                            advancedChips += 6;
-                            totalDennies += 18000;
-                            break;
-                        case 8:
-                            specializedChips += 5;
-                            totalDennies += 45000;
-                            break;
-                        case 9:
-                            specializedChips += 8;
-                            totalDennies += 67500;
-                            break;
-                        case 10:
-                            specializedChips += 10;
-                            totalDennies += 90000;
-                            break;
-                        case 11:
-                            specializedChips += 12;
-                            totalDennies += 112500;
-                            break;
-                        case 12:
-                            specializedChips += 15;
-                            hamsterCagePass += 1;
-                            totalDennies += 135000;
-                            break;
-                    }
-                }
-            });
+    const materialResults = document.getElementById("material-results");
+    materialResults.innerHTML = "";
 
-            // Map custom chip names
-            const chipNames = {
-                Ice: "Freeze",
-                Electric: "Shock",
-                Fire: "Burn",
-                Physical: "Physical",
-                Ether: "Ether"
-            };
+    materials.forEach((material, index) => {
+        const materialItem = document.createElement("div");
+        materialItem.className = "material-item";
 
-            // Get dynamic chip name based on the selected character's element
-            const chipTypeName = chipNames[selectedCharacterElement] || selectedCharacterElement;
+        // Apply the dynamic element styling for chips
+        const elementClass = index > 0 && index < 4 ? `element-${selectedCharacterElement.toLowerCase()}` : "";
 
-            // Dynamically display the materials
-            const basicChipImg = `images/Item_Basic_${selectedCharacterElement}_Chip.png`;
-            const advancedChipImg = `images/Item_Advanced_${selectedCharacterElement}_Chip.png`;
-            const specializedChipImg = `images/Item_Specialized_${selectedCharacterElement}_Chip.png`;
+        materialItem.innerHTML = `
+            <img src="${material.img}" alt="${material.name}">
+            <div class="${elementClass}">${material.name}</div>
+            <div class="material-quantity">x ${material.quantity}</div>
+        `;
+        materialResults.appendChild(materialItem);
+    });
 
-            const materials = [
-                { name: "Dennies", img: "images/Item_Denny.png", quantity: totalDennies.toLocaleString() },
-                { name: `Basic ${chipTypeName} Chips`, img: basicChipImg, quantity: basicChips },
-                { name: `Advanced ${chipTypeName} Chips`, img: advancedChipImg, quantity: advancedChips },
-                { name: `Specialized ${chipTypeName} Chips`, img: specializedChipImg, quantity: specializedChips },
-                { name: "Hamster Cage Passes", img: "images/Item_Hamster_Cage_Pass.png", quantity: hamsterCagePass }
-            ];
+    // Smooth scroll to the material-results section
+    document.getElementById("material-results").scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
-            const materialResults = document.getElementById("material-results");
-            materialResults.innerHTML = "";
+// 2. Then define `attachDynamicListeners`
+function attachDynamicListeners() {
+    const skillInputs = document.querySelectorAll(".skills-container input");
+    skillInputs.forEach((input) => {
+        input.addEventListener("input", () => {
+            calculateMaterials(); // Recalculate materials on input change
+        });
+    });
+}
 
-            materials.forEach((material, index) => {
-                const materialItem = document.createElement("div");
-                materialItem.className = "material-item";
+// 3. Define `selectCharacter` after that
+function selectCharacter(name, element) {
+    selectedCharacterElement = element; // Store the selected character's element for later
+    const elementClass = `element-${element.toLowerCase()}`;
+    document.getElementById("selected-character-name").innerHTML = `
+        ${name} <span class="element ${elementClass}">
+            <img src="images/Icon_${element}.png" alt="${element}">
+            ${element}
+        </span>`;
+    document.getElementById("selected-character").classList.remove("hidden");
+    document.getElementById("selected-character").scrollIntoView({ behavior: "smooth", block: "start" });
 
-                // Apply the dynamic element styling for chips
-                const elementClass = index > 0 && index < 4 ? `element-${selectedCharacterElement.toLowerCase()}` : '';
+    // Attach dynamic calculation listeners to all inputs
+    attachDynamicListeners();
+}
 
-                materialItem.innerHTML = `
-                <img src="${material.img}" alt="${material.name}">
-                <div class="${elementClass}">${material.name}</div>
-                <div class="material-quantity">x ${material.quantity}</div>
-            `;
-                materialResults.appendChild(materialItem);
-            });
+// 4. Finally, `loadCharacters`
+function loadCharacters() {
+    const grid = document.getElementById("character-grid");
+    characters.forEach((character) => {
+        const charDiv = document.createElement("div");
+        charDiv.classList.add("character");
+        const elementClass = `element-${character.element.toLowerCase()}`;
+        charDiv.innerHTML = `
+            <img src="${character.image}" alt="${character.name}">
+            <div class="character-banner">
+                <span class="character-name ${elementClass}">${character.name}</span>
+            </div>
+        `;
+        charDiv.addEventListener("click", () => selectCharacter(character.name, character.element));
+        grid.appendChild(charDiv);
+    });
+}
 
-            // Smooth scroll to the material-results section
-            document.getElementById("material-results").scrollIntoView({ behavior: "smooth", block: "start" });
-        }
+// 5. Add event listener to Calculate button
+document.getElementById("calculate-button").addEventListener("click", calculateMaterials);
 
-        // Attach listeners to dynamically calculate materials on input changes
-        function attachDynamicListeners() {
-            const skillInputs = document.querySelectorAll('.skills-container input');
-            skillInputs.forEach((input) => {
-                input.addEventListener('input', () => {
-                    calculateMaterials(); // Recalculate materials on input change
-                });
-            });
-        }
+// 6. Load characters on page load
+loadCharacters();
 
-        // Add event listener to Calculate button
-        document.getElementById("calculate-button").addEventListener("click", calculateMaterials);
-
-        // Load characters on page load
-        loadCharacters();
     </script>
     <script src="../scripts/HTMLInclude.min.js"></script>
 </body>
