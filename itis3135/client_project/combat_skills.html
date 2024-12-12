@@ -26,11 +26,20 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+
+            /* Add the following */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
         }
 
         .character img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            /* Ensure the image fills the container */
+            object-fit: cover;
+            /* Prevent image distortion */
         }
 
         .character-banner {
@@ -92,10 +101,32 @@
             text-shadow: 0 0 5px #1E90FF;
         }
 
+        /* Physical element style for the character grid (black background) */
+        .element-physical-grid {
+            color: #FFD700;
+            --hover-color: #FFD700;
+            text-shadow: 0 0 5px #FFD700, 0 0 10px rgba(255, 255, 255, 0.8);
+            /* Bright glow effect for dark backgrounds */
+
+            /* Thin border for better readability */
+            padding: 2px;
+            /* Slight padding to space text from border */
+            border-radius: 4px;
+            /* Rounded edges */
+        }
+
+        /* Physical element style for the brighter background (brighter background shadow) */
         .element-physical {
             color: #FFD700;
             --hover-color: #FFD700;
-            text-shadow: 0 0 5px #FFD700;
+            text-shadow: 0 0 3px #8B7500;
+            /* Darker, subtler shadow */
+
+            /* Thin border for definition */
+            padding: 2px;
+            /* Slight padding to match grid style */
+            border-radius: 4px;
+            /* Keep consistent rounded edges */
         }
 
         .skills-container {
@@ -128,8 +159,8 @@
         }
 
         .skill img {
-            width: 55px;
-            height: 55px;
+            width: 75px;
+            height: 75px;
             display: block;
             margin: 0 auto;
         }
@@ -187,8 +218,8 @@
         }
 
         .material-item img {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
             display: block;
             margin: 0 auto 5px;
         }
@@ -305,10 +336,10 @@
             selectedCharacterElement = element; // Store the selected character's element for later
             const elementClass = `element-${element.toLowerCase()}`;
             document.getElementById("selected-character-name").innerHTML = `
-        ${name} <span class="element ${elementClass}">
-            <img src="images/Icon_${element}.png" alt="${element}">
-            ${element}
-        </span>`;
+            ${name} <span class="element ${elementClass}">
+                <img src="images/Icon_${element}.png" alt="${element}">
+                ${element}
+            </span>`;
             document.getElementById("selected-character").classList.remove("hidden");
             document.getElementById("selected-character").scrollIntoView({ behavior: "smooth", block: "start" });
         }
@@ -316,121 +347,134 @@
 
 
         function loadCharacters() {
-        const grid = document.getElementById("character-grid");
-        characters.forEach((character) => {
-            const charDiv = document.createElement("div");
-            charDiv.classList.add("character");
-            const elementClass = `element-${character.element.toLowerCase()}`;
-            charDiv.innerHTML = `
+            const grid = document.getElementById("character-grid");
+            characters.forEach((character) => {
+                const charDiv = document.createElement("div");
+                charDiv.classList.add("character");
+                const elementClass = `element-${character.element.toLowerCase()}`;
+                charDiv.innerHTML = `
                 <img src="${character.image}" alt="${character.name}">
                 <div class="character-banner">
                     <span class="character-name ${elementClass}">${character.name}</span>
                 </div>
             `;
-            charDiv.addEventListener("click", () => selectCharacter(character.name, character.element));
-            grid.appendChild(charDiv);
-        });
-    }
+                charDiv.addEventListener("click", () => selectCharacter(character.name, character.element));
+                grid.appendChild(charDiv);
+            });
+        }
 
 
 
-    function calculateMaterials() {
-        const skills = ["basic", "dodge", "assist", "special", "chain"];
-        let totalDennies = 0,
-            basicChips = 0,
-            advancedChips = 0,
-            specializedChips = 0,
-            hamsterCagePass = 0;
+        function calculateMaterials() {
+    const skills = ["basic", "dodge", "assist", "special", "chain"];
+    let totalDennies = 0,
+        basicChips = 0,
+        advancedChips = 0,
+        specializedChips = 0,
+        hamsterCagePass = 0;
 
-        skills.forEach((skill) => {
-            const currentLevel = parseInt(document.getElementById(`${skill}-current`).value);
-            const targetLevel = parseInt(document.getElementById(`${skill}-target`).value);
+    skills.forEach((skill) => {
+        const currentLevel = parseInt(document.getElementById(`${skill}-current`).value);
+        const targetLevel = parseInt(document.getElementById(`${skill}-target`).value);
 
-            for (let level = currentLevel; level < targetLevel; level++) {
-                switch (level + 1) {
-                    case 2:
-                        basicChips += 2;
-                        totalDennies += 2000;
-                        break;
-                    case 3:
-                        basicChips += 3;
-                        totalDennies += 3000;
-                        break;
-                    case 4:
-                        advancedChips += 2;
-                        totalDennies += 6000;
-                        break;
-                    case 5:
-                        advancedChips += 3;
-                        totalDennies += 9000;
-                        break;
-                    case 6:
-                        advancedChips += 4;
-                        totalDennies += 12000;
-                        break;
-                    case 7:
-                        advancedChips += 6;
-                        totalDennies += 18000;
-                        break;
-                    case 8:
-                        specializedChips += 5;
-                        totalDennies += 45000;
-                        break;
-                    case 9:
-                        specializedChips += 8;
-                        totalDennies += 67500;
-                        break;
-                    case 10:
-                        specializedChips += 10;
-                        totalDennies += 90000;
-                        break;
-                    case 11:
-                        specializedChips += 12;
-                        totalDennies += 112500;
-                        break;
-                    case 12:
-                        specializedChips += 15;
-                        hamsterCagePass += 1;
-                        totalDennies += 135000;
-                        break;
-                }
+        for (let level = currentLevel; level < targetLevel; level++) {
+            switch (level + 1) {
+                case 2:
+                    basicChips += 2;
+                    totalDennies += 2000;
+                    break;
+                case 3:
+                    basicChips += 3;
+                    totalDennies += 3000;
+                    break;
+                case 4:
+                    advancedChips += 2;
+                    totalDennies += 6000;
+                    break;
+                case 5:
+                    advancedChips += 3;
+                    totalDennies += 9000;
+                    break;
+                case 6:
+                    advancedChips += 4;
+                    totalDennies += 12000;
+                    break;
+                case 7:
+                    advancedChips += 6;
+                    totalDennies += 18000;
+                    break;
+                case 8:
+                    specializedChips += 5;
+                    totalDennies += 45000;
+                    break;
+                case 9:
+                    specializedChips += 8;
+                    totalDennies += 67500;
+                    break;
+                case 10:
+                    specializedChips += 10;
+                    totalDennies += 90000;
+                    break;
+                case 11:
+                    specializedChips += 12;
+                    totalDennies += 112500;
+                    break;
+                case 12:
+                    specializedChips += 15;
+                    hamsterCagePass += 1;
+                    totalDennies += 135000;
+                    break;
             }
-        });
+        }
+    });
 
-        // Dynamically display the materials
-        const basicChipImg = `images/Item_Basic_${selectedCharacterElement}_Chip.png`;
-        const advancedChipImg = `images/Item_Advanced_${selectedCharacterElement}_Chip.png`;
-        const specializedChipImg = `images/Item_Specialized_${selectedCharacterElement}_Chip.png`;
+    // Map custom chip names
+    const chipNames = {
+        Ice: "Freeze",
+        Electric: "Shock",
+        Fire: "Burn",
+        Physical: "Physical",
+        Ether: "Ether"
+    };
 
-        const materials = [
-            { name: "Dennies", img: "images/Icon_Denny.png", quantity: totalDennies },
-            { name: "Basic Chips", img: basicChipImg, quantity: basicChips },
-            { name: "Advanced Chips", img: advancedChipImg, quantity: advancedChips },
-            { name: "Specialized Chips", img: specializedChipImg, quantity: specializedChips },
-            { name: "Hamster Cage Passes", img: "images/Icon_HamsterPass.png", quantity: hamsterCagePass }
-        ];
+    // Get dynamic chip name based on the selected character's element
+    const chipTypeName = chipNames[selectedCharacterElement] || selectedCharacterElement;
 
-        const materialResults = document.getElementById("material-results");
-        materialResults.innerHTML = "";
+    // Dynamically display the materials
+    const basicChipImg = `images/Item_Basic_${selectedCharacterElement}_Chip.png`;
+    const advancedChipImg = `images/Item_Advanced_${selectedCharacterElement}_Chip.png`;
+    const specializedChipImg = `images/Item_Specialized_${selectedCharacterElement}_Chip.png`;
 
-        materials.forEach((material) => {
-            const materialItem = document.createElement("div");
-            materialItem.className = "material-item";
-            materialItem.innerHTML = `
-                <img src="${material.img}" alt="${material.name}">
-                <div>${material.name}</div>
-                <div class="material-quantity">${material.quantity}</div>
-            `;
-            materialResults.appendChild(materialItem);
-        });
+    const materials = [
+        { name: "Dennies", img: "images/Item_Denny.png", quantity: totalDennies.toLocaleString() },
+        { name: `Basic ${chipTypeName} Chips`, img: basicChipImg, quantity: basicChips },
+        { name: `Advanced ${chipTypeName} Chips`, img: advancedChipImg, quantity: advancedChips },
+        { name: `Specialized ${chipTypeName} Chips`, img: specializedChipImg, quantity: specializedChips },
+        { name: "Hamster Cage Passes", img: "images/Item_Hamster_Cage_Pass.png", quantity: hamsterCagePass }
+    ];
 
-        // Smooth scroll to the material-results section
-        document.getElementById("material-results").scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    const materialResults = document.getElementById("material-results");
+    materialResults.innerHTML = "";
 
-    document.getElementById("calculate-button").addEventListener("click", calculateMaterials);
+    materials.forEach((material) => {
+        const materialItem = document.createElement("div");
+        materialItem.className = "material-item";
+        materialItem.innerHTML = `
+            <img src="${material.img}" alt="${material.name}">
+            <div>${material.name}</div>
+            <div class="material-quantity">x ${material.quantity}</div>
+        `;
+        materialResults.appendChild(materialItem);
+    });
 
-    loadCharacters();
+    // Smooth scroll to the material-results section
+    document.getElementById("material-results").scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+
+        document.getElementById("calculate-button").addEventListener("click", calculateMaterials);
+
+        loadCharacters();
     </script>
     <script src="../scripts/HTMLInclude.min.js"></script>
 </body>
