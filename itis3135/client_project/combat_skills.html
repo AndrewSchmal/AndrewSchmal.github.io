@@ -199,39 +199,59 @@
         }
 
         .materials-container {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 20px;
-        }
+    display: flex;
+    gap: 25px; /* Increased spacing between boxes */
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
 
-        .material-item {
-            text-align: center;
-            border: 1px solid gray;
-            border-radius: 10px;
-            padding: 10px;
-            box-sizing: border-box;
-            width: 100px;
-            background-color: #fff;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+.material-item {
+    text-align: center;
+    border: 2px solid #ccc; /* Cool border for the box */
+    border-radius: 12px; /* Rounded corners for modern look */
+    padding: 10px; /* Compact padding */
+    box-sizing: border-box;
+    width: 130px; /* Larger width for spacious layout */
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+    display: flex;
+    flex-direction: column; /* Align items vertically */
+    align-items: center; /* Center-align content */
+    justify-content: space-between; /* Space between image, name, and quantity */
+}
 
-        .material-item img {
-            width: 60px;
-            height: 60px;
-            display: block;
-            margin: 0 auto 5px;
-        }
+.material-item img {
+    width: 100px; /* Larger image size */
+    height: 100px;
+    border: 3px solid #ddd; /* Border around the image */
+    border-radius: 10px; /* Rounded edges */
+    display: block;
+    margin-bottom: 10px; /* Spacing below the image */
+}
 
-        .material-quantity {
-            background-color: gray;
-            color: white;
-            padding: 5px;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            margin-top: 5px;
-        }
+.material-item div {
+    font-size: 0.85rem; /* Slightly smaller text size */
+    text-align: center;
+    margin: 5px 0;
+    word-wrap: break-word; /* Enable wrapping for long names */
+}
+
+.material-quantity {
+    background-color: #00788A; /* Background for emphasis */
+    color: white;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 1rem; /* Larger text for emphasis */
+    font-weight: bold;
+    margin-top: auto; /* Push quantity to the bottom */
+    text-align: center;
+}
+
+.element-style {
+    text-shadow: 0 0 5px currentColor; /* Add glow effect based on element */
+    font-weight: bold;
+}
     </style>
 
 </head>
@@ -332,149 +352,166 @@
 
         let selectedCharacterElement = "";
 
+
         function selectCharacter(name, element) {
-            selectedCharacterElement = element; // Store the selected character's element for later
-            const elementClass = `element-${element.toLowerCase()}`;
-            document.getElementById("selected-character-name").innerHTML = `
+        selectedCharacterElement = element; // Store the selected character's element for later
+        const elementClass = `element-${element.toLowerCase()}`;
+        document.getElementById("selected-character-name").innerHTML = `
             ${name} <span class="element ${elementClass}">
                 <img src="images/Icon_${element}.png" alt="${element}">
                 ${element}
             </span>`;
-            document.getElementById("selected-character").classList.remove("hidden");
-            document.getElementById("selected-character").scrollIntoView({ behavior: "smooth", block: "start" });
-        }
+        document.getElementById("selected-character").classList.remove("hidden");
+        document.getElementById("selected-character").scrollIntoView({ behavior: "smooth", block: "start" });
 
+        // Attach dynamic calculation listeners to all inputs
+        attachDynamicListeners();
+    }
 
-
-        function loadCharacters() {
-            const grid = document.getElementById("character-grid");
-            characters.forEach((character) => {
-                const charDiv = document.createElement("div");
-                charDiv.classList.add("character");
-                const elementClass = `element-${character.element.toLowerCase()}`;
-                charDiv.innerHTML = `
+    function loadCharacters() {
+        const grid = document.getElementById("character-grid");
+        characters.forEach((character) => {
+            const charDiv = document.createElement("div");
+            charDiv.classList.add("character");
+            const elementClass = `element-${character.element.toLowerCase()}`;
+            charDiv.innerHTML = `
                 <img src="${character.image}" alt="${character.name}">
                 <div class="character-banner">
                     <span class="character-name ${elementClass}">${character.name}</span>
                 </div>
             `;
-                charDiv.addEventListener("click", () => selectCharacter(character.name, character.element));
-                grid.appendChild(charDiv);
-            });
-        }
+            charDiv.addEventListener("click", () => selectCharacter(character.name, character.element));
+            grid.appendChild(charDiv);
+        });
+    }
 
 
+    function calculateMaterials() {
+        const skills = ["basic", "dodge", "assist", "special", "chain"];
+        let totalDennies = 0,
+            basicChips = 0,
+            advancedChips = 0,
+            specializedChips = 0,
+            hamsterCagePass = 0;
 
-        function calculateMaterials() {
-    const skills = ["basic", "dodge", "assist", "special", "chain"];
-    let totalDennies = 0,
-        basicChips = 0,
-        advancedChips = 0,
-        specializedChips = 0,
-        hamsterCagePass = 0;
+        // Iterate over skills and calculate materials based on current and target levels
+        skills.forEach((skill) => {
+            const currentLevel = parseInt(document.getElementById(`${skill}-current`).value) || 1;
+            const targetLevel = parseInt(document.getElementById(`${skill}-target`).value) || 1;
 
-    skills.forEach((skill) => {
-        const currentLevel = parseInt(document.getElementById(`${skill}-current`).value);
-        const targetLevel = parseInt(document.getElementById(`${skill}-target`).value);
-
-        for (let level = currentLevel; level < targetLevel; level++) {
-            switch (level + 1) {
-                case 2:
-                    basicChips += 2;
-                    totalDennies += 2000;
-                    break;
-                case 3:
-                    basicChips += 3;
-                    totalDennies += 3000;
-                    break;
-                case 4:
-                    advancedChips += 2;
-                    totalDennies += 6000;
-                    break;
-                case 5:
-                    advancedChips += 3;
-                    totalDennies += 9000;
-                    break;
-                case 6:
-                    advancedChips += 4;
-                    totalDennies += 12000;
-                    break;
-                case 7:
-                    advancedChips += 6;
-                    totalDennies += 18000;
-                    break;
-                case 8:
-                    specializedChips += 5;
-                    totalDennies += 45000;
-                    break;
-                case 9:
-                    specializedChips += 8;
-                    totalDennies += 67500;
-                    break;
-                case 10:
-                    specializedChips += 10;
-                    totalDennies += 90000;
-                    break;
-                case 11:
-                    specializedChips += 12;
-                    totalDennies += 112500;
-                    break;
-                case 12:
-                    specializedChips += 15;
-                    hamsterCagePass += 1;
-                    totalDennies += 135000;
-                    break;
+            for (let level = currentLevel; level < targetLevel; level++) {
+                switch (level + 1) {
+                    case 2:
+                        basicChips += 2;
+                        totalDennies += 2000;
+                        break;
+                    case 3:
+                        basicChips += 3;
+                        totalDennies += 3000;
+                        break;
+                    case 4:
+                        advancedChips += 2;
+                        totalDennies += 6000;
+                        break;
+                    case 5:
+                        advancedChips += 3;
+                        totalDennies += 9000;
+                        break;
+                    case 6:
+                        advancedChips += 4;
+                        totalDennies += 12000;
+                        break;
+                    case 7:
+                        advancedChips += 6;
+                        totalDennies += 18000;
+                        break;
+                    case 8:
+                        specializedChips += 5;
+                        totalDennies += 45000;
+                        break;
+                    case 9:
+                        specializedChips += 8;
+                        totalDennies += 67500;
+                        break;
+                    case 10:
+                        specializedChips += 10;
+                        totalDennies += 90000;
+                        break;
+                    case 11:
+                        specializedChips += 12;
+                        totalDennies += 112500;
+                        break;
+                    case 12:
+                        specializedChips += 15;
+                        hamsterCagePass += 1;
+                        totalDennies += 135000;
+                        break;
+                }
             }
-        }
-    });
+        });
 
-    // Map custom chip names
-    const chipNames = {
-        Ice: "Freeze",
-        Electric: "Shock",
-        Fire: "Burn",
-        Physical: "Physical",
-        Ether: "Ether"
-    };
+        // Map custom chip names
+        const chipNames = {
+            Ice: "Freeze",
+            Electric: "Shock",
+            Fire: "Burn",
+            Physical: "Physical",
+            Ether: "Ether"
+        };
 
-    // Get dynamic chip name based on the selected character's element
-    const chipTypeName = chipNames[selectedCharacterElement] || selectedCharacterElement;
+     // Get dynamic chip name based on the selected character's element
+        const chipTypeName = chipNames[selectedCharacterElement] || selectedCharacterElement;
 
-    // Dynamically display the materials
-    const basicChipImg = `images/Item_Basic_${selectedCharacterElement}_Chip.png`;
-    const advancedChipImg = `images/Item_Advanced_${selectedCharacterElement}_Chip.png`;
-    const specializedChipImg = `images/Item_Specialized_${selectedCharacterElement}_Chip.png`;
+        // Dynamically display the materials
+        const basicChipImg = `images/Item_Basic_${selectedCharacterElement}_Chip.png`;
+        const advancedChipImg = `images/Item_Advanced_${selectedCharacterElement}_Chip.png`;
+        const specializedChipImg = `images/Item_Specialized_${selectedCharacterElement}_Chip.png`;
 
-    const materials = [
-        { name: "Dennies", img: "images/Item_Denny.png", quantity: totalDennies.toLocaleString() },
-        { name: `Basic ${chipTypeName} Chips`, img: basicChipImg, quantity: basicChips },
-        { name: `Advanced ${chipTypeName} Chips`, img: advancedChipImg, quantity: advancedChips },
-        { name: `Specialized ${chipTypeName} Chips`, img: specializedChipImg, quantity: specializedChips },
-        { name: "Hamster Cage Passes", img: "images/Item_Hamster_Cage_Pass.png", quantity: hamsterCagePass }
-    ];
+        const materials = [
+            { name: "Dennies", img: "images/Item_Denny.png", quantity: totalDennies.toLocaleString() },
+            { name: `Basic ${chipTypeName} Chips`, img: basicChipImg, quantity: basicChips },
+            { name: `Advanced ${chipTypeName} Chips`, img: advancedChipImg, quantity: advancedChips },
+            { name: `Specialized ${chipTypeName} Chips`, img: specializedChipImg, quantity: specializedChips },
+            { name: "Hamster Cage Passes", img: "images/Item_Hamster_Cage_Pass.png", quantity: hamsterCagePass }
+        ];
 
-    const materialResults = document.getElementById("material-results");
-    materialResults.innerHTML = "";
+        const materialResults = document.getElementById("material-results");
+        materialResults.innerHTML = "";
 
-    materials.forEach((material) => {
-        const materialItem = document.createElement("div");
-        materialItem.className = "material-item";
-        materialItem.innerHTML = `
-            <img src="${material.img}" alt="${material.name}">
-            <div>${material.name}</div>
-            <div class="material-quantity">x ${material.quantity}</div>
-        `;
-        materialResults.appendChild(materialItem);
-    });
+        materials.forEach((material, index) => {
+            const materialItem = document.createElement("div");
+            materialItem.className = "material-item";
 
-    // Smooth scroll to the material-results section
-    document.getElementById("material-results").scrollIntoView({ behavior: "smooth", block: "start" });
-}
+            // Apply the dynamic element styling for chips
+            const elementClass = index > 0 && index < 4 ? `element-${selectedCharacterElement.toLowerCase()}` : '';
 
+            materialItem.innerHTML = `
+                <img src="${material.img}" alt="${material.name}">
+                <div class="${elementClass}">${material.name}</div>
+                <div class="material-quantity">x ${material.quantity}</div>
+            `;
+            materialResults.appendChild(materialItem);
+        });
 
-        document.getElementById("calculate-button").addEventListener("click", calculateMaterials);
+        // Smooth scroll to the material-results section
+        document.getElementById("material-results").scrollIntoView({ behavior: "smooth", block: "start" });
+    }
 
-        loadCharacters();
+    // Attach listeners to dynamically calculate materials on input changes
+    function attachDynamicListeners() {
+        const skillInputs = document.querySelectorAll('.skills-container input');
+        skillInputs.forEach((input) => {
+            input.addEventListener('input', () => {
+                calculateMaterials(); // Recalculate materials on input change
+            });
+        });
+    }
+
+    // Add event listener to Calculate button
+    document.getElementById("calculate-button").addEventListener("click", calculateMaterials);
+
+    // Load characters on page load
+    loadCharacters();
     </script>
     <script src="../scripts/HTMLInclude.min.js"></script>
 </body>
