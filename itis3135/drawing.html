@@ -8,6 +8,10 @@
     <title>Andrew Schmal's Acclaimed Squid 🦑 ITIS 3135 🦑 Drawing </title>    <!-- Accumulus -->
     <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
     
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.8.0/lib/p5.js"></script>
+    <script src="scripts/sketch.js"></script>
+    <script src="scripts/sketch2.js"></script>
+
     <link rel="stylesheet" href="styles/main.css">
 
     <style>
@@ -47,13 +51,7 @@
             max-width: 800px;
         }
 
-        .pet-image {
-            margin: 25px 0;
-            border: 2px solid #005F73;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
+        
         footer {
             margin-top: 30px;
             padding: 15px 0;
@@ -90,23 +88,6 @@
         .my-links img {
             vertical-align: middle;
             margin-right: 8px;
-        }
-
-        .back-home {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            border: 2px solid #0A3D40;
-            border-radius: 8px;
-            background-color: #C3DCE3;
-            color: #0D5C63;
-            font-size: 1.5rem;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        .back-home:hover {
-            background-color: #0D5C63;
-            color: white;
         }
 
         /* Design firm stuff */
@@ -201,9 +182,16 @@
     <div data-include="components/header.html"></div>    
     </header>
     <main>
-        <p>Filler first submission. Finishing later.</p>
+        <main>
+            <h2>Interactive Drawing</h2>
+            <p>Here is an interactive .js file, gotten from <a href="https://p5js.org/examples/angles-and-motion-sine-cosine/" target="_blank">p5js.org</a> 👀</p>
+            <div id="drawing-container">
+                <!-- The p5.js canvas will automatically insert here -->
+            </div>
+        </main>
     </main>
-
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.8.0/lib/p5.js"></script>
+    <script src="scripts/sketch.js"></script>
     <footer> 
     <div data-include="components/footer.html"></div>
     </footer>
