@@ -8,13 +8,13 @@
     <title>Andrew Schmal's Acclaimed Squid 🦑 ITIS 3135 🦑 First Scripts </title>    <!-- Accumulus -->
     <script src="https://lint.page/kit/4d0fe3.js" crossorigin="anonymous"></script>
     
+    <script src="scripts/defaultscripts.js"></script>
     <link rel="stylesheet" href="styles/main.css">
 
     <style>
         /* General Page Styling */
         body {
             background-color: #E8F1F2;
-            /* Softer Light Teal */
             color: #333333;
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -22,6 +22,18 @@
             line-height: 1.6;
             text-align: center;
             font-size: 22px;
+        }
+
+        main {
+            margin: 20px auto;
+            padding: 10px;
+            max-width: 800px;
+        }
+
+        #time-display {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #0A9396;
         }
 
         header {
@@ -41,17 +53,18 @@
             font-size: 2.0rem;
         }
 
-        main {
-            margin: 20px auto;
+        button {
+            margin: 10px;
             padding: 10px;
-            max-width: 800px;
+            background-color: #005F73;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
         }
 
-        .pet-image {
-            margin: 25px 0;
-            border: 2px solid #005F73;
-            border-radius: 12px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        button:hover {
+            background-color: #0A9396;
         }
 
         footer {
@@ -197,11 +210,40 @@
 </head>
 
 <body>
+    <main>
     <header>
     <div data-include="components/header.html"></div>    
     </header>
     <main>
-        <p>Filler first submission. Finishing later.</p>
+        <h2>Welcome to The Squiddy Scripts Page!</h2>
+        <h3 id="time-display"></h3>
+
+        <h3>Tell Us About Yourself</h3>
+        <form id="user-info-form">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" placeholder="Enter your name" required><br><br>
+            <label for="mood">How are you feeling?</label>
+            <input type="text" id="mood" placeholder="How are you feeling?" required><br><br>
+            <button type="button" id="submit-greeting">Submit</button>
+        </form>
+
+        <h3>Favorite Polygon</h3>
+        <label for="favorite-number">Enter a number (0 to 10):</label>
+        <input type="number" id="favorite-number" min="0" step="1" placeholder="Enter a number">
+        <button type="button" id="submit-polygon">Find Polygon</button>
+
+        <h3>Interactive Features</h3>
+        <button id="get-insult">Get an Insult</button>
+        <button id="get-compliment">Get a Compliment</button>
+        <button id="get-fact">Random Squid Fact</button>
+        <button id="calculate-sum">Calculate a Sum</button>
+        <button id="get-joke">Random Joke</button>
+    </main>
+
+    <footer>
+        <div data-include="components/footer.html"></div>
+    </footer>
+    <script src="scripts/HTMLInclude.min.js"></script>
     </main>
 
     <footer> 
